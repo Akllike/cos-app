@@ -1,6 +1,6 @@
 @extends('layouts/layout')
 @extends('header')
-@section('title', 'Home page')
+@section('title', 'ShaR - Красота и Здоровье')
 @section('content')
     <div id="carouselExampleCaptions" class="carousel carousel-dark slide carousel-fade">
         <div class="carousel-indicators">

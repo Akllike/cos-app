@@ -1,14 +1,14 @@
 @extends('layouts.layout')
 @extends('header')
-@section('title', 'Musses page id')
 @section('content')
     <img src="{{URL('./storage/img/itismuse.jpg')}}" style="width: 100%; height: 400px;" alt="...">
     <div class="container my-5">
         <div class="row">
             @foreach($data['card'] as $item)
+                @section('title', $item['name'])
                 <div class="col-md-5">
                     <div class="main-img d-flex justify-content-center mb-5">
-                        <img class="img-fluid w-50" src="https://avatars.mds.yandex.net/get-mpic/1884605/img_id6153070894882640580.png/600x800" alt="ProductS">
+                        <img class="img-fluid w-50" src="{{ $item['image'] }}" alt="ProductS">
                         {{--<div class="row my-3 previews">
                             <div class="col-md-3">
                                 <img class="w-100" src="https://avatars.mds.yandex.net/get-mpic/1884605/img_id6153070894882640580.png/600x800" alt="Sale">
@@ -52,7 +52,7 @@
                         </div>
                     </div>
 
-                    <div class="product-details my-4">
+                    <div class="product-details my-4 px-2">
                         <h6 class="details-title text-color mb-1">Описание:</h6>
                         <p class="description">{{ $item['description'] }}</p>
                     </div>

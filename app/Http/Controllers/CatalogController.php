@@ -65,16 +65,28 @@ class CatalogController extends Controller implements CatalogInterface
     public function showCardGel(int $id): View
     {
         $gels = $this->addGels();
-        //dd($muses[$id]['name']);
-        return view('Catalog/Gels/showGels')->with('gels', $gels[$id]);
+        $data = [
+            'card' => [
+                $gels[$id],
+            ],
+            'cards' => $gels,
+        ];
+        //dd($data);
+        return view('Catalog/Gels/showGels')->with('data', $data);
 
     }
 
     public function showCardScrab(int $id): View
     {
         $scrabs = $this->addScrabs();
+        $data = [
+            'card' => [
+                $scrabs[$id],
+            ],
+            'cards' => $scrabs,
+        ];
         //dd($muses[$id]['name']);
-        return view('Catalog/Scrabs/showScrabs')->with('scrabs', $scrabs[$id]);
+        return view('Catalog/Scrabs/showScrabs')->with('data', $data);
 
     }
 
@@ -92,7 +104,7 @@ class CatalogController extends Controller implements CatalogInterface
                 'composition' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt eaque eius exercitationem fugit minus nemo non nulla quis reiciendis sequi? Amet aut cupiditate magni mollitia officiis saepe, sint temporibus voluptate.',
                 'volume' => 250,
                 'price' => '1000',
-                'image' => '',
+                'image' => 'https://avatars.mds.yandex.net/get-mpic/1884605/img_id6153070894882640580.png/600x800',
                 'popular' => 1
             ],
 
@@ -104,7 +116,7 @@ class CatalogController extends Controller implements CatalogInterface
                 'composition' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt eaque eius exercitationem fugit minus nemo non nulla quis reiciendis sequi? Amet aut cupiditate magni mollitia officiis saepe, sint temporibus voluptate.',
                 'volume' => 200,
                 'price' => '1500',
-                'image' => '',
+                'image' => 'https://avatars.mds.yandex.net/get-mpic/1884605/img_id6153070894882640580.png/600x800',
                 'popular' => 1
             ],
 
@@ -116,7 +128,7 @@ class CatalogController extends Controller implements CatalogInterface
                 'composition' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt eaque eius exercitationem fugit minus nemo non nulla quis reiciendis sequi? Amet aut cupiditate magni mollitia officiis saepe, sint temporibus voluptate.',
                 'volume' => 350,
                 'price' => '1500',
-                'image' => '',
+                'image' => 'https://avatars.mds.yandex.net/get-mpic/1884605/img_id6153070894882640580.png/600x800',
                 'popular' => 1
             ],
 
@@ -128,7 +140,7 @@ class CatalogController extends Controller implements CatalogInterface
                 'composition' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt eaque eius exercitationem fugit minus nemo non nulla quis reiciendis sequi? Amet aut cupiditate magni mollitia officiis saepe, sint temporibus voluptate.',
                 'volume' => 300,
                 'price' => '1800',
-                'image' => '',
+                'image' => 'https://avatars.mds.yandex.net/get-mpic/1884605/img_id6153070894882640580.png/600x800',
                 'popular' => 0
             ],
         ];
@@ -141,53 +153,52 @@ class CatalogController extends Controller implements CatalogInterface
     public function addScrabs(): array
     {
         $data = [
+            1 =>
             [
                 'id' => 1,
                 'name' => 'Скраб для волос',
                 'description' => 'Скраб для волос, Скраб для волос',
-                'price' => 1000,
-                'image' => '',
+                'composition' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt eaque eius exercitationem fugit minus nemo non nulla quis reiciendis sequi? Amet aut cupiditate magni mollitia officiis saepe, sint temporibus voluptate.',
+                'volume' => 250,
+                'price' => '1000',
+                'image' => 'https://shigami.ru/upload/iblock/358/zs8ij3ju905dos6rc8l09qdrdfwp8pjc.jpeg',
                 'popular' => 1
             ],
+
+            2 =>
             [
                 'id' => 2,
                 'name' => 'Скраб для тела',
                 'description' => 'Скраб для тела, Скраб для тела',
-                'price' => 1500,
-                'image' => '',
+                'composition' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt eaque eius exercitationem fugit minus nemo non nulla quis reiciendis sequi? Amet aut cupiditate magni mollitia officiis saepe, sint temporibus voluptate.',
+                'volume' => 250,
+                'price' => '1000',
+                'image' => 'https://shigami.ru/upload/iblock/358/zs8ij3ju905dos6rc8l09qdrdfwp8pjc.jpeg',
                 'popular' => 1
             ],
+
+            3 =>
             [
                 'id' => 3,
                 'name' => 'Скраб для тела с холодком',
                 'description' => 'Скраб для тела с холодком, Скраб для тела с холодком',
-                'price' => 1500,
-                'image' => '',
+                'composition' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt eaque eius exercitationem fugit minus nemo non nulla quis reiciendis sequi? Amet aut cupiditate magni mollitia officiis saepe, sint temporibus voluptate.',
+                'volume' => 250,
+                'price' => '1000',
+                'image' => 'https://shigami.ru/upload/iblock/358/zs8ij3ju905dos6rc8l09qdrdfwp8pjc.jpeg',
                 'popular' => 1
             ],
+
+            4 =>
             [
                 'id' => 4,
                 'name' => 'Скраб для тела с маслами',
                 'description' => 'Скраб для тела с маслами, Скраб для тела с маслами',
-                'price' => 1800,
-                'image' => '',
-                'popular' => 0
-            ],
-            [
-                'id' => 5,
-                'name' => 'Скраб для тела с маслами',
-                'description' => 'Скраб для тела с маслами, Скраб для тела с маслами',
-                'price' => 1800,
-                'image' => '',
-                'popular' => 0
-            ],
-            [
-                'id' => 6,
-                'name' => 'Скраб для тела с маслами',
-                'description' => 'Скраб для тела с маслами, Скраб для тела с маслами',
-                'price' => 1800,
-                'image' => '',
-                'popular' => 0
+                'composition' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt eaque eius exercitationem fugit minus nemo non nulla quis reiciendis sequi? Amet aut cupiditate magni mollitia officiis saepe, sint temporibus voluptate.',
+                'volume' => 250,
+                'price' => '1000',
+                'image' => 'https://shigami.ru/upload/iblock/358/zs8ij3ju905dos6rc8l09qdrdfwp8pjc.jpeg',
+                'popular' => 1
             ],
         ];
         return $data;
@@ -199,53 +210,52 @@ class CatalogController extends Controller implements CatalogInterface
     public function addGels(): array
     {
         $data = [
+            1 =>
             [
                 'id' => 1,
                 'name' => 'Гель для волос',
                 'description' => 'Гель для волос, Гель для волос',
-                'price' => 1000,
-                'image' => '',
+                'composition' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt eaque eius exercitationem fugit minus nemo non nulla quis reiciendis sequi? Amet aut cupiditate magni mollitia officiis saepe, sint temporibus voluptate.',
+                'volume' => 250,
+                'price' => '1000',
+                'image' => 'https://static4.asna.ru/imgprx/2GaWmBLUuvZiZV1Zog49QBV5L9bI-I9iuFKdGFlIqYY/rs:fit:800:800:1/g:no/aHR0cHM6Ly9pbWdzLmFzbmEucnUvaWJsb2NrLzk3Ni85NzY2NWY1YThiMTgxYzM1ODgxZDcxNGExMWQ0MGFkMC9CSU9fU0hBTVBVTi1QUk9USVYtVllQQURFTklZQS1WT0xPUy5qcGc.jpg',
                 'popular' => 1
             ],
+
+            2 =>
             [
                 'id' => 2,
                 'name' => 'Гель для тела',
                 'description' => 'Гель для тела, Гель для тела',
-                'price' => 1500,
-                'image' => '',
+                'composition' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt eaque eius exercitationem fugit minus nemo non nulla quis reiciendis sequi? Amet aut cupiditate magni mollitia officiis saepe, sint temporibus voluptate.',
+                'volume' => 250,
+                'price' => '1000',
+                'image' => 'https://static4.asna.ru/imgprx/2GaWmBLUuvZiZV1Zog49QBV5L9bI-I9iuFKdGFlIqYY/rs:fit:800:800:1/g:no/aHR0cHM6Ly9pbWdzLmFzbmEucnUvaWJsb2NrLzk3Ni85NzY2NWY1YThiMTgxYzM1ODgxZDcxNGExMWQ0MGFkMC9CSU9fU0hBTVBVTi1QUk9USVYtVllQQURFTklZQS1WT0xPUy5qcGc.jpg',
                 'popular' => 1
             ],
+
+            3 =>
             [
                 'id' => 3,
                 'name' => 'Гель для тела с холодком',
                 'description' => 'Гель для тела с холодком, Гель для тела с холодком',
-                'price' => 1500,
-                'image' => '',
+                'composition' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt eaque eius exercitationem fugit minus nemo non nulla quis reiciendis sequi? Amet aut cupiditate magni mollitia officiis saepe, sint temporibus voluptate.',
+                'volume' => 250,
+                'price' => '1000',
+                'image' => 'https://static4.asna.ru/imgprx/2GaWmBLUuvZiZV1Zog49QBV5L9bI-I9iuFKdGFlIqYY/rs:fit:800:800:1/g:no/aHR0cHM6Ly9pbWdzLmFzbmEucnUvaWJsb2NrLzk3Ni85NzY2NWY1YThiMTgxYzM1ODgxZDcxNGExMWQ0MGFkMC9CSU9fU0hBTVBVTi1QUk9USVYtVllQQURFTklZQS1WT0xPUy5qcGc.jpg',
                 'popular' => 1
             ],
+
+            4=>
             [
                 'id' => 4,
                 'name' => 'Гель для тела с маслами',
                 'description' => 'Гель для тела с маслами, Гель для тела с маслами',
-                'price' => 1800,
-                'image' => '',
-                'popular' => 0
-            ],
-            [
-                'id' => 5,
-                'name' => 'Гель для тела с маслами',
-                'description' => 'Гель для тела с маслами, Гель для тела с маслами',
-                'price' => 1800,
-                'image' => '',
-                'popular' => 0
-            ],
-            [
-                'id' => 6,
-                'name' => 'Гель для тела с маслами',
-                'description' => 'Гель для тела с маслами, Гель для тела с маслами',
-                'price' => 1800,
-                'image' => '',
-                'popular' => 0
+                'composition' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt eaque eius exercitationem fugit minus nemo non nulla quis reiciendis sequi? Amet aut cupiditate magni mollitia officiis saepe, sint temporibus voluptate.',
+                'volume' => 250,
+                'price' => '1000',
+                'image' => 'https://static4.asna.ru/imgprx/2GaWmBLUuvZiZV1Zog49QBV5L9bI-I9iuFKdGFlIqYY/rs:fit:800:800:1/g:no/aHR0cHM6Ly9pbWdzLmFzbmEucnUvaWJsb2NrLzk3Ni85NzY2NWY1YThiMTgxYzM1ODgxZDcxNGExMWQ0MGFkMC9CSU9fU0hBTVBVTi1QUk9USVYtVllQQURFTklZQS1WT0xPUy5qcGc.jpg',
+                'popular' => 1
             ],
         ];
         return $data;
