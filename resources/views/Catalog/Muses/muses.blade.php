@@ -35,7 +35,6 @@
                 </div>
             @endforeach
         </div>
-
     </div>
 @endsection
 @extends('footer')

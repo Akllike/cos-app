@@ -50,8 +50,15 @@ class CatalogController extends Controller implements CatalogInterface
     public function showCardMuse(int $id): View
     {
         $muses = $this->addMuses();
-        //dd($muses[$id]['name']);
-        return view('Catalog/Muses/showMuses')->with('muses', $muses[$id]);
+        $data = [
+            'card' => [
+                $muses[$id],
+            ],
+            'cards' => $muses,
+        ];
+
+        //dd($data);
+        return view('Catalog/Muses/showMuses')->with('data', $data);
 
     }
 
@@ -77,34 +84,49 @@ class CatalogController extends Controller implements CatalogInterface
     public function addMuses(): array
     {
         $data = [
+            1 =>
             [
                 'id' => 1,
                 'name' => 'Мусс для волос',
                 'description' => 'Мусс для волос, мусс для волос',
+                'composition' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt eaque eius exercitationem fugit minus nemo non nulla quis reiciendis sequi? Amet aut cupiditate magni mollitia officiis saepe, sint temporibus voluptate.',
+                'volume' => 250,
                 'price' => '1000',
                 'image' => '',
                 'popular' => 1
             ],
+
+            2 =>
             [
                 'id' => 2,
                 'name' => 'Мусс для тела',
                 'description' => 'Мусс для тела, мусс для тела',
+                'composition' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt eaque eius exercitationem fugit minus nemo non nulla quis reiciendis sequi? Amet aut cupiditate magni mollitia officiis saepe, sint temporibus voluptate.',
+                'volume' => 200,
                 'price' => '1500',
                 'image' => '',
                 'popular' => 1
             ],
+
+            3 =>
             [
                 'id' => 3,
                 'name' => 'Мусс для тела с холодком',
                 'description' => 'Мусс для тела с холодком, мусс для тела с холодком',
+                'composition' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt eaque eius exercitationem fugit minus nemo non nulla quis reiciendis sequi? Amet aut cupiditate magni mollitia officiis saepe, sint temporibus voluptate.',
+                'volume' => 350,
                 'price' => '1500',
                 'image' => '',
                 'popular' => 1
             ],
+
+            4 =>
             [
                 'id' => 4,
                 'name' => 'Мусс для тела с маслами',
                 'description' => 'Мусс для тела с маслами, мусс для тела с маслами',
+                'composition' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt eaque eius exercitationem fugit minus nemo non nulla quis reiciendis sequi? Amet aut cupiditate magni mollitia officiis saepe, sint temporibus voluptate.',
+                'volume' => 300,
                 'price' => '1800',
                 'image' => '',
                 'popular' => 0
@@ -151,6 +173,22 @@ class CatalogController extends Controller implements CatalogInterface
                 'image' => '',
                 'popular' => 0
             ],
+            [
+                'id' => 5,
+                'name' => 'Скраб для тела с маслами',
+                'description' => 'Скраб для тела с маслами, Скраб для тела с маслами',
+                'price' => 1800,
+                'image' => '',
+                'popular' => 0
+            ],
+            [
+                'id' => 6,
+                'name' => 'Скраб для тела с маслами',
+                'description' => 'Скраб для тела с маслами, Скраб для тела с маслами',
+                'price' => 1800,
+                'image' => '',
+                'popular' => 0
+            ],
         ];
         return $data;
     }
@@ -187,6 +225,22 @@ class CatalogController extends Controller implements CatalogInterface
             ],
             [
                 'id' => 4,
+                'name' => 'Гель для тела с маслами',
+                'description' => 'Гель для тела с маслами, Гель для тела с маслами',
+                'price' => 1800,
+                'image' => '',
+                'popular' => 0
+            ],
+            [
+                'id' => 5,
+                'name' => 'Гель для тела с маслами',
+                'description' => 'Гель для тела с маслами, Гель для тела с маслами',
+                'price' => 1800,
+                'image' => '',
+                'popular' => 0
+            ],
+            [
+                'id' => 6,
                 'name' => 'Гель для тела с маслами',
                 'description' => 'Гель для тела с маслами, Гель для тела с маслами',
                 'price' => 1800,
