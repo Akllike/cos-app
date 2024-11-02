@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 Route::get('/', function () {
     return view('main');
 });
-/*Route::get('/catalog', 'App\Http\Controllers\CatalogController@index')->name('catalog');*/
+Route::get('/catalog', 'App\Http\Controllers\CatalogController@index')->name('catalog');
 Route::get('/catalog/musses', 'App\Http\Controllers\CatalogController@showProductMuses')->name('catalog.showmuses');
 Route::get('/catalog/musses/{id}', 'App\Http\Controllers\CatalogController@showCardMuse')->name('catalog.showcardmuse');
 Route::get('/catalog/gels', 'App\Http\Controllers\CatalogController@showProductGels')->name('catalog.showgels');

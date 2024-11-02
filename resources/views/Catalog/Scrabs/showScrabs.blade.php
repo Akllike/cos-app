@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 @extends('header')
 @section('content')
-    <img src="{{URL('./storage/img/itismuse.jpg')}}" style="width: 100%; height: 400px;" alt="...">
+    {{--<img src="{{URL('./storage/img/itismuse.jpg')}}" style="width: 100%; height: 400px;" alt="...">--}}
     <div class="container my-5">
         <div class="row">
             @foreach($data['card'] as $item)
@@ -98,13 +98,15 @@
 
         <div class="row">
             @foreach($data['cards'] as $card)
-                <div class="col-md-3">
-                    <div class="similar-product d-flex flex-column align-items-center">
-                        <img class="w-50" src="https://avatars.mds.yandex.net/get-mpic/1884605/img_id6153070894882640580.png/600x800" alt="Preview">
-                        <p class="title">{{ $card['name'] }}</p>
-                        <p class="price">{{ $card['price'] }} руб.</p>
+                @if($card['id'] <= 4)
+                    <div class="col-md-3">
+                        <div class="similar-product d-flex flex-column align-items-center">
+                            <img class="w-50" src="https://avatars.mds.yandex.net/get-mpic/1884605/img_id6153070894882640580.png/600x800" alt="Preview">
+                            <p class="title">{{ $card['name'] }}</p>
+                            <p class="price">{{ $card['price'] }} руб.</p>
+                        </div>
                     </div>
-                </div>
+                @endif
             @endforeach
         </div>
     </div>

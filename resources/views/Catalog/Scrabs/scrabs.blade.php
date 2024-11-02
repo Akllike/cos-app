@@ -2,7 +2,7 @@
 @extends('header')
 @section('title', 'Скрабы | ShaR')
 @section('content')
-    <img src="{{URL('./storage/img/itismuse.jpg')}}" style="width: 100%; height: 400px;" alt="...">
+    {{--<img src="{{URL('./storage/img/itismuse.jpg')}}" style="width: 100%; height: 400px;" alt="...">--}}
     <div class="container">
         <nav class="mt-4" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -27,18 +27,18 @@
             </div>
         </div>
         <div class="d-flex flex-wrap justify-content-around align-items-center mt-5 mb-4 wrap-md-4">
-            @foreach($scrabs as $scrab => $key)
+            @foreach($data as $scrab)
                 <div class="card h-100 mb-4" style="width: 19rem;">
                     <div class="d-flex justify-content-center">
-                        <img src="{{ $key['image'] }}" class="card-img-top w-50" alt="...">
+                        <img src="{{ $scrab['image'] }}" class="card-img-top w-50" alt="...">
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">{{$key['name']}}</h5>
+                        <h5 class="card-title">{{$scrab['name']}}</h5>
                         <div class="text-truncate text-wrap" style="height: 5rem;">
-                            <p class="card-text">{{$key['description']}}</p>
+                            <p class="card-text">{{$scrab['description']}}</p>
                         </div>
-                        <p class="card-text">Цена: {{$key['price']}} руб.</p>
-                        <a href="{{ url('catalog/scrabs') }}/{{ $key['id'] }}" class="btn btn-outline-danger">Подробнее</a>
+                        <p class="card-text">Цена: {{$scrab['price']}} руб.</p>
+                        <a href="{{ url('catalog/scrabs') }}/{{ $scrab['id'] }}" class="btn btn-outline-danger">Подробнее</a>
                     </div>
                 </div>
             @endforeach
