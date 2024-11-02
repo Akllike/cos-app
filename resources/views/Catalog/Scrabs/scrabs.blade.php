@@ -34,7 +34,7 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">{{$key['name']}}</h5>
-                        <div style="height: 5rem;">
+                        <div class="text-truncate text-wrap" style="height: 5rem;">
                             <p class="card-text">{{$key['description']}}</p>
                         </div>
                         <p class="card-text">Цена: {{$key['price']}} руб.</p>

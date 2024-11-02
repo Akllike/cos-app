@@ -54,7 +54,8 @@
 
                     <div class="product-details my-4 px-2">
                         <h6 class="details-title text-color mb-1">Описание:</h6>
-                        <p class="description">{{ $item['description'] }}</p>
+                        <p id="text-desc" class="description text-truncate">{{ $item['description'] }}</p>
+                        <button id="desc-button" class="btn btn-light">Подробнее...</button>
                     </div>
 
                     <div class="row questions bg-light p-3">
@@ -63,7 +64,7 @@
                             <h6>Состав:</h6>
                         </div>
                         <div class="col-md-11 text">
-                            {{ $item['composition'] }}
+                            <p class="fst-bold fst-italic">{{ $item['composition'] }}</p>
                         </div>
                     </div>
 
@@ -107,6 +108,15 @@
             @endforeach
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#desc-button').click(function(e) {
+                // Stop form from sending request to server
+                $(".description").toggleClass("text-truncate"); return false;
+            });
+        });
+    </script>
 
     <style>
         .bg-color-wb {
