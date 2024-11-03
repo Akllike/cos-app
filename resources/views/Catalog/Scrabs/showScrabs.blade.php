@@ -104,7 +104,7 @@
                             <img class="w-25" src="{{ $card['image'] }}" alt="Preview">
                             <p class="title">{{ $card['name'] }}</p>
                             <p class="price">{{ $card['price'] }} руб.</p>
-                            <a href="{{ url('catalog/gels') }}/{{ $card['id'] }}" class="btn btn-outline-danger">Подробнее</a>
+                            <a href="{{ url('catalog/scrabs') }}/{{ $card['id'] }}" class="btn btn-outline-danger">Подробнее</a>
                         </div>
                     </div>
                 @endif
