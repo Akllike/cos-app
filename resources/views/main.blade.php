@@ -2,7 +2,7 @@
 @extends('header')
 @section('title', 'ShaR - Красота и Здоровье')
 @section('content')
-    <div id="carouselExampleCaptions" class="carousel carousel-dark slide carousel-fade">
+    <div id="carouselExampleCaptions" class="carousel carousel-dark slide carousel-fade shadow">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -10,21 +10,21 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{{URL('./storage/img/1026963929.jpg')}}" style="width: 100%;" alt="...">
+                <img src="{{URL('storage/img/1026963929.jpg')}}" style="width: 100%;object-fit: cover; vertical-align: middle; border-style: none; height: 40vh;" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Метка первого слайда</h5>
                     <p>Некоторый репрезентативный заполнитель для первого слайда.</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="{{URL('./storage/img/1026963929.jpg')}}" class="d-block w-100" alt="...">
+                <img src="{{URL('storage/img/1026963929.jpg')}}" style="width: 100%;object-fit: cover; vertical-align: middle; border-style: none; height: 40vh;" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Метка второго слайда</h5>
                     <p>Некоторый репрезентативный заполнитель для второго слайда.</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="{{URL('./storage/img/1026963929.jpg')}}" class="d-block w-100" alt="...">
+                <img src="{{URL('storage/img/1026963929.jpg')}}" style="width: 100%;object-fit: cover; vertical-align: middle; border-style: none; height: 40vh;" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Метка третьего слайда</h5>
                     <p>Некоторый репрезентативный заполнитель для третьего слайда.</p>

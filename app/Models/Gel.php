@@ -9,4 +9,5 @@ class Gel extends Model
 {
     use HasFactory;
     protected $table = 'gels';
+    protected $guarded = [];
 }

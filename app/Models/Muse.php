@@ -9,4 +9,5 @@ class Muse extends Model
 {
     use HasFactory;
     protected $table = 'muses';
+    protected $guarded = [];
 }

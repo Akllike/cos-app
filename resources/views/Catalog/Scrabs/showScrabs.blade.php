@@ -94,16 +94,17 @@
 
     <div class="container similar-products my-4">
         <hr>
-        <p class="display-5" style="text-align: center">Похожие товары</p>
+        <p class="display-5 mb-4" style="text-align: center">Похожие товары</p>
 
-        <div class="row">
+        <div class="row my-4">
             @foreach($data['cards'] as $card)
                 @if($card['id'] <= 4)
                     <div class="col-md-3">
                         <div class="similar-product d-flex flex-column align-items-center">
-                            <img class="w-50" src="https://avatars.mds.yandex.net/get-mpic/1884605/img_id6153070894882640580.png/600x800" alt="Preview">
+                            <img class="w-25" src="{{ $card['image'] }}" alt="Preview">
                             <p class="title">{{ $card['name'] }}</p>
                             <p class="price">{{ $card['price'] }} руб.</p>
+                            <a href="{{ url('catalog/gels') }}/{{ $card['id'] }}" class="btn btn-outline-danger">Подробнее</a>
                         </div>
                     </div>
                 @endif

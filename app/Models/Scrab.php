@@ -9,4 +9,5 @@ class Scrab extends Model
 {
     use HasFactory;
     protected $table = 'scrabs';
+    protected $guarded = [];
 }
