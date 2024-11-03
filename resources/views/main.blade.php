@@ -76,31 +76,31 @@
     </div>
 
     <div class="container d-flex flex-column align-items-center mt-4">
-        <div class="d-flex flex-wrap justify-content-around mb-3 mt-4"  style="width: 100%;">
+        <div class="d-flex flex-row-reverse flex-wrap justify-content-between mb-3 mt-4 bg-danger-subtle"  style="width: 100%;">
             <div class="d-flex flex-column justify-content-center" style="width: 45%;">
                 <img src="https://avatars.mds.yandex.net/i?id=5dfac37c5c2fccdb98c4c4bdb5dbc5cd_l-8495786-images-thumbs&n=13" class="img-fluid" alt="...">
             </div>
-            <div class="d-flex flex-column justify-content-center align-items-end" style="width: 45%;">
-                <h2>Продукция ShaR</h2>
-                <p class="mb-0" style="text-align: end">невероятные текстуры, ароматы и эстетическое удовольствие в сочетании с мощными активными компонентами.</p>
-            </div>
-        </div>
-        <div class="d-flex flex-row-reverse flex-wrap justify-content-around mb-3 mt-4 bg-danger-subtle"  style="width: 100%;">
-            <div class="d-flex flex-column justify-content-center" style="width: 45%;">
-                <img src="https://avatars.mds.yandex.net/i?id=72506d7b73094365312885e9f21c1d9d_l-4080348-images-thumbs&n=13" class="img-fluid" alt="...">
-            </div>
-            <div class="d-flex flex-column justify-content-center" style="width: 45%;">
+            <div class="d-flex flex-column justify-content-center" style="width: 45%; margin-left: 10px">
                 <h2>Продукция ShaR</h2>
                 <p class="mb-0">невероятные текстуры, ароматы и эстетическое удовольствие в сочетании с мощными активными компонентами.</p>
             </div>
         </div>
-        <div class="d-flex flex-wrap justify-content-around mb-3 mt-4"  style="width: 100%;">
+        <div class="d-flex flex-wrap justify-content-between mb-3 mt-4"  style="width: 100%;">
+            <div class="d-flex flex-column justify-content-center" style="width: 45%;">
+                <img src="https://avatars.mds.yandex.net/i?id=72506d7b73094365312885e9f21c1d9d_l-4080348-images-thumbs&n=13" class="img-fluid" alt="...">
+            </div>
+            <div class="d-flex flex-column justify-content-center align-items-end" style="width: 45%;margin-right: 10px">
+                <h2>Продукция ShaR</h2>
+                <p class="mb-0" style="text-align: end">невероятные текстуры, ароматы и эстетическое удовольствие в сочетании с мощными активными компонентами.</p>
+            </div>
+        </div>
+        <div class="d-flex flex-row-reverse flex-wrap justify-content-between mb-3 mt-4 bg-danger-subtle"  style="width: 100%;">
             <div class="d-flex flex-column justify-content-center" style="width: 45%;">
                 <img src="https://avatars.mds.yandex.net/i?id=5dfac37c5c2fccdb98c4c4bdb5dbc5cd_l-8495786-images-thumbs&n=13" class="img-fluid" alt="...">
             </div>
-            <div class="d-flex flex-column justify-content-center align-items-end" style="width: 45%;">
+            <div class="d-flex flex-column justify-content-center" style="width: 45%; margin-left: 10px">
                 <h2>Продукция ShaR</h2>
-                <p class="mb-0" style="text-align: end">невероятные текстуры, ароматы и эстетическое удовольствие в сочетании с мощными активными компонентами.</p>
+                <p class="mb-0">невероятные текстуры, ароматы и эстетическое удовольствие в сочетании с мощными активными компонентами.</p>
             </div>
         </div>
     </div>
