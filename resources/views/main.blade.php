@@ -13,21 +13,21 @@
                 <img src="{{URL('storage/img/1026963929.jpg')}}" style="width: 100%;object-fit: cover; vertical-align: middle; border-style: none; height: 40vh;" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Метка первого слайда</h5>
-                    <p>Некоторый репрезентативный заполнитель для первого слайда.</p>
+                    <p>Некоторый репрезентативный заполнитель для первого слайда...</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="{{URL('storage/img/1026963929.jpg')}}" style="width: 100%;object-fit: cover; vertical-align: middle; border-style: none; height: 40vh;" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Метка второго слайда</h5>
-                    <p>Некоторый репрезентативный заполнитель для второго слайда.</p>
+                    <p>Некоторый репрезентативный заполнитель для второго слайда...</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="{{URL('storage/img/1026963929.jpg')}}" style="width: 100%;object-fit: cover; vertical-align: middle; border-style: none; height: 40vh;" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Метка третьего слайда</h5>
-                    <p>Некоторый репрезентативный заполнитель для третьего слайда.</p>
+                    <p>Некоторый репрезентативный заполнитель для третьего слайда...</p>
                 </div>
             </div>
         </div>
