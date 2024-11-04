@@ -4,6 +4,19 @@
 @section('content')
     {{--<img src="{{URL('./storage/img/itismuse.jpg')}}" style="width: 100%; height: 400px;" alt="...">--}}
     <div class="container">
+        @if($alert[0] == 1)
+            <div id="alert-success" class="alert alert-success" role="alert">
+                <h6 class="alert-heading">Успешно!</h6>
+                <hr>
+                {{ $alert[1] }}
+            </div>
+        @elseif($alert[0] == 2)
+            <div id="alert-error" class="alert alert-danger" role="alert">
+                <h6 class="alert-heading">Ошибка!</h6>
+                <hr>
+                {{ $alert[1] }}
+            </div>
+        @endif
         <nav class="mt-4" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Главная</a></li>
@@ -44,5 +57,32 @@
             @endforeach
         </div>
     </div>
+
+    <script>
+        @if($alert[0] == 1)
+            $(window).on('load',function(){
+                setTimeout(function(){
+                    $('#alert-success').css("display", "block");
+                }, 10);
+            });
+
+            setTimeout(function(){
+                $('#alert-success').css("display", "none");
+            }, 5000);
+        @elseif($alert[0] == 2)
+            $(window).on('load',function(){
+                setTimeout(function(){
+                    $('#alert-error').css("display", "block");
+                }, 10);
+            });
+
+            setTimeout(function(){
+                $('#alert-error').css("display", "none");
+            }, 5000);
+        @else
+            $('#alert-success').css("display", "none");
+            $('#alert-error').css("display", "none");
+        @endif
+    </script>
 @endsection
 @extends('footer')

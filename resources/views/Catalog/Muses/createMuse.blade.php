@@ -3,7 +3,20 @@
 @section('title', 'Муссы - Добавить мусс | ShaR')
 @section('content')
         <div class="container mt-5" style="max-width: 600px">
-            <form action="musses/add" method="POST" class="row g-3 needs-validation">
+            <div class="card-header mb-4">
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="false" href="#">Добавить</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Изменить</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">Удалить</a>
+                    </li>
+                </ul>
+            </div>
+            <form action="{{ url('create/musses/add') }}" method="POST" class="row g-3 needs-validation">
                 @csrf
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">Заголовок</span>
