@@ -14,9 +14,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('main');
-});
+Route::get('/', 'App\Http\Controllers\IndexController@index');
 Route::get('/catalog', 'App\Http\Controllers\CatalogController@index')->name('catalog');
 
 Route::get('/catalog/musses', 'App\Http\Controllers\MuseController@showProductMuses')->name('muse.show');
