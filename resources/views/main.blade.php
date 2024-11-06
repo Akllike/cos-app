@@ -49,15 +49,15 @@
     <div class="container d-flex flex-column rounded-3" style="background-image: url({{ url('storage/img/bg-header.jpg') }}); background-size: cover; background-position: center;">
         <div class="container mt-4 p-1 d-flex flex-wrap justify-content-between" style="height: 50vh;">
             <div class="d-flex">
-                <div class="w-10 d-flex flex-column align-items-center" style="margin-right: 1vh">
+                <div class="w-10 d-flex flex-column align-items-center">
                     <img class="m-2 rounded-circle" style="width: 75px" src="https://sun1-21.userapi.com/s/v1/if1/rMm-6u0GoPTLNsjTHMsj1HBwjoTBNt0Jex6Hdvaz9y3_eqtlDg9aqWqiUpG-k1GS6A3Hwyfy.jpg?size=100x100&quality=96&crop=9,0,453,453&ava=1" alt="">
                     <p class="badge mt-2" style="color: white">Волосы</p>
                 </div>
-                <div class="w-10 d-flex flex-column align-items-center" style="margin-right: 1vh">
+                <div class="w-10 d-flex flex-column align-items-center">
                     <img class="m-2 rounded-circle" style="width: 75px" src="https://sun6-23.userapi.com/s/v1/ig2/Q4JpwR8LylYMlTJW2KAi20EHX5-DJF0-QgzXW8GDoEBXyYrGaTqdbohw-nDeL35DYb0UZQ5FXdEZZLXTuZ8k001R.jpg?size=100x100&quality=96&crop=0,0,735,735&ava=1" alt="">
                     <p class="badge mt-2" style="color: white">Лицо</p>
                 </div>
-                <div class="w-10 d-flex flex-column align-items-center" style="margin-right: 1vh">
+                <div class="w-10 d-flex flex-column align-items-center">
                     <img class="m-2 rounded-circle" style="width: 75px" src="https://sun9-12.userapi.com/c11073/u171156377/d_56da7093.jpg" alt="">
                     <p class="badge mt-2" style="color: white">Тело</p>
                 </div>
@@ -71,15 +71,15 @@
                     <img class="m-2 rounded-circle" style="width: 75px" src="https://avatars.mds.yandex.net/i?id=655a45f8b79aac3a201985b7306b4a5a_sr-10812288-images-thumbs&n=13" alt="">
                     <p class="badge" style="color: white">Скрабы</p>
                 </div>
-                <div class="w-10 d-flex flex-column align-items-center" style="margin-left: 1vh">
+                <div class="w-10 d-flex flex-column align-items-center">
                     <img class="m-2 rounded-circle" style="width: 75px" src="https://sun1-54.userapi.com/s/v1/if2/URD9UDbgjML5EBiOa6AflIdIRCQo32uneeIK37xAFpc6eJZW3doCpmk2u6srhKMMARz26qWX9oW9eo3BxL5KLkZW.jpg?quality=96&crop=1,99,932,932&as=50x50,100x100,200x200,400x400&ava=1&u=UCsgkEZ1SBhNs-cXHy9rppzNl8uchGTv-2zX_zP8BVE&cs=100x100" alt="">
                     <p class="badge" style="color: white">Масла</p>
                 </div>
-                <div class="w-10 d-flex flex-column align-items-center" style="margin-left: 1vh">
+                <div class="w-10 d-flex flex-column align-items-center">
                     <img class="m-2 rounded-circle" style="width: 75px" src="https://avatars.mds.yandex.net/i?id=2af6d7b407c08a98d54b3e18251bd91f_sr-4078232-images-thumbs&n=13" alt="">
                     <p class="badge" style="color: white">Гели</p>
                 </div>
-                <div class="w-10 d-flex flex-column align-items-center" style="margin-left: 1vh">
+                <div class="w-10 d-flex flex-column align-items-center">
                     <img class="m-2 rounded-circle" style="width: 75px" src="https://soodring.ch/wp-content/uploads/2020/05/Mousse-au-Chaucolate-100x100.png" alt="">
                     <p class="badge" style="color: white">Муссы</p>
                 </div>
