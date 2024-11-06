@@ -31,3 +31,5 @@ Route::get('/catalog/scrabs', 'App\Http\Controllers\ScrabController@showProductS
 Route::get('/catalog/scrabs/{id}', 'App\Http\Controllers\ScrabController@showCardScrab')->name('scrab.card');
 Route::get('/create/scrabs', 'App\Http\Controllers\ScrabController@createScrab')->name('scrab.create');
 Route::post('/create/scrabs/add', 'App\Http\Controllers\ScrabController@addCardScrab')->name('scrab.addcard');
+
+Route::get('/admin', 'App\Http\Controllers\AdminController@index')->name('admin.index');

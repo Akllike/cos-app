@@ -2,6 +2,12 @@
 @extends('header')
 @section('title', 'ShaR - Красота и Здоровье')
 @section('content')
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('[data-toggle="popover"]').popover();
+        });
+    </script>
+
     {{--<div id="carouselExampleCaptions" class="carousel carousel-dark slide carousel-fade shadow">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -43,38 +49,38 @@
     <div class="container d-flex flex-column rounded-3" style="background-image: url({{ url('storage/img/bg-header.jpg') }}); background-size: cover; background-position: center;">
         <div class="container mt-4 p-1 d-flex flex-wrap justify-content-between" style="height: 50vh;">
             <div class="d-flex">
-                <div class="w-25 d-flex flex-column align-items-center">
-                    <img class="w-75 rounded-circle" src="https://cdn.olcha.uz/image/100x100/products/2022-09-03/saxarnyi-skrab-dlya-gub-sweet-scrub-zeltyi-ut-00003231xhtex-112481-0.jpeg" alt="">
-                    <p class="badge" style="color: white">Волосы</p>
+                <div class="w-10 d-flex flex-column align-items-center" style="margin-right: 1vh">
+                    <img class="m-2 rounded-circle" style="width: 75px" src="https://sun1-21.userapi.com/s/v1/if1/rMm-6u0GoPTLNsjTHMsj1HBwjoTBNt0Jex6Hdvaz9y3_eqtlDg9aqWqiUpG-k1GS6A3Hwyfy.jpg?size=100x100&quality=96&crop=9,0,453,453&ava=1" alt="">
+                    <p class="badge mt-2" style="color: white">Волосы</p>
                 </div>
-                <div class="w-25 d-flex flex-column align-items-center">
-                    <img class="w-75 rounded-circle" src="https://cdn.olcha.uz/image/100x100/products/2022-09-03/saxarnyi-skrab-dlya-gub-sweet-scrub-zeltyi-ut-00003231xhtex-112481-0.jpeg" alt="">
-                    <p class="badge" style="color: white">Лицо</p>
+                <div class="w-10 d-flex flex-column align-items-center" style="margin-right: 1vh">
+                    <img class="m-2 rounded-circle" style="width: 75px" src="https://sun6-23.userapi.com/s/v1/ig2/Q4JpwR8LylYMlTJW2KAi20EHX5-DJF0-QgzXW8GDoEBXyYrGaTqdbohw-nDeL35DYb0UZQ5FXdEZZLXTuZ8k001R.jpg?size=100x100&quality=96&crop=0,0,735,735&ava=1" alt="">
+                    <p class="badge mt-2" style="color: white">Лицо</p>
                 </div>
-                <div class="w-25 d-flex flex-column align-items-center">
-                    <img class="w-75 rounded-circle" src="https://cdn.olcha.uz/image/100x100/products/2022-09-03/saxarnyi-skrab-dlya-gub-sweet-scrub-zeltyi-ut-00003231xhtex-112481-0.jpeg" alt="">
-                    <p class="badge" style="color: white">Тело</p>
+                <div class="w-10 d-flex flex-column align-items-center" style="margin-right: 1vh">
+                    <img class="m-2 rounded-circle" style="width: 75px" src="https://sun9-12.userapi.com/c11073/u171156377/d_56da7093.jpg" alt="">
+                    <p class="badge mt-2" style="color: white">Тело</p>
                 </div>
-                <div class="w-25 d-flex flex-column align-items-center">
-                    <img class="w-75 rounded-circle" src="https://cdn.olcha.uz/image/100x100/products/2022-09-03/saxarnyi-skrab-dlya-gub-sweet-scrub-zeltyi-ut-00003231xhtex-112481-0.jpeg" alt="">
-                    <p class="badge" style="color: white">Подборки</p>
+                <div class="w-10 d-flex flex-column align-items-center">
+                    <img class="m-2 rounded-circle" style="width: 75px" src="https://avatars.mds.yandex.net/i?id=0edae5e99bc3f992433dcd0f4bec976d_sr-9666026-images-thumbs&n=13" alt="">
+                    <p class="badge mt-2" style="color: white">Подборки</p>
                 </div>
             </div>
             <div class="d-flex">
-                <div class="w-25 d-flex flex-column align-items-center">
-                    <img class="w-75 rounded-circle" src="https://cdn.olcha.uz/image/100x100/products/2022-09-03/saxarnyi-skrab-dlya-gub-sweet-scrub-zeltyi-ut-00003231xhtex-112481-0.jpeg" alt="">
+                <div class="w-10 d-flex flex-column align-items-center">
+                    <img class="m-2 rounded-circle" style="width: 75px" src="https://avatars.mds.yandex.net/i?id=655a45f8b79aac3a201985b7306b4a5a_sr-10812288-images-thumbs&n=13" alt="">
                     <p class="badge" style="color: white">Скрабы</p>
                 </div>
-                <div class="w-25 d-flex flex-column align-items-center">
-                    <img class="w-75 rounded-circle" src="https://cdn.olcha.uz/image/100x100/products/2022-09-03/saxarnyi-skrab-dlya-gub-sweet-scrub-zeltyi-ut-00003231xhtex-112481-0.jpeg" alt="">
+                <div class="w-10 d-flex flex-column align-items-center" style="margin-left: 1vh">
+                    <img class="m-2 rounded-circle" style="width: 75px" src="https://sun1-54.userapi.com/s/v1/if2/URD9UDbgjML5EBiOa6AflIdIRCQo32uneeIK37xAFpc6eJZW3doCpmk2u6srhKMMARz26qWX9oW9eo3BxL5KLkZW.jpg?quality=96&crop=1,99,932,932&as=50x50,100x100,200x200,400x400&ava=1&u=UCsgkEZ1SBhNs-cXHy9rppzNl8uchGTv-2zX_zP8BVE&cs=100x100" alt="">
                     <p class="badge" style="color: white">Масла</p>
                 </div>
-                <div class="w-25 d-flex flex-column align-items-center">
-                    <img class="w-75 rounded-circle" src="https://cdn.olcha.uz/image/100x100/products/2022-09-03/saxarnyi-skrab-dlya-gub-sweet-scrub-zeltyi-ut-00003231xhtex-112481-0.jpeg" alt="">
+                <div class="w-10 d-flex flex-column align-items-center" style="margin-left: 1vh">
+                    <img class="m-2 rounded-circle" style="width: 75px" src="https://avatars.mds.yandex.net/i?id=2af6d7b407c08a98d54b3e18251bd91f_sr-4078232-images-thumbs&n=13" alt="">
                     <p class="badge" style="color: white">Гели</p>
                 </div>
-                <div class="w-25 d-flex flex-column align-items-center">
-                    <img class="w-75 rounded-circle" src="https://cdn.olcha.uz/image/100x100/products/2022-09-03/saxarnyi-skrab-dlya-gub-sweet-scrub-zeltyi-ut-00003231xhtex-112481-0.jpeg" alt="">
+                <div class="w-10 d-flex flex-column align-items-center" style="margin-left: 1vh">
+                    <img class="m-2 rounded-circle" style="width: 75px" src="https://soodring.ch/wp-content/uploads/2020/05/Mousse-au-Chaucolate-100x100.png" alt="">
                     <p class="badge" style="color: white">Муссы</p>
                 </div>
             </div>
@@ -98,10 +104,11 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title" style="height: 4rem;">{{$scrab['name']}}</h5>
-                        <div class="text-truncate text-wrap" style="height:7rem;">
-                            <p class="card-text" style="font-size: 12px;">{{$scrab['description']}}</p>
+                        <div class="text-truncate text-wrap" style="height:2rem;">
+                            <p class="description text-truncate" style="font-size: 12px;" data-container="body" data-toggle="popover" data-placement="top" data-content="Lorem ipsum dolor sit amet. Suscipit laboriosam, nisi ut perspiciatis.">
+                                {{$scrab['description']}}</p>
                         </div>
-                        <p class="card-text text-secondary mt-2">{{$scrab['price']}} руб. / {{ $scrab['volume'] }} мл</p>
+                        <p class="card-text text-secondary mt-1">{{$scrab['price']}} руб. / {{ $scrab['volume'] }} мл</p>
                         <a href="{{ url('catalog/scrabs') }}/{{ $scrab['id'] }}" class="btn btn-dark border-2">Подробнее</a>
                         <a href="{{ url('catalog/scrabs') }}/{{ $scrab['id'] }}" class="btn btn-outline-dark border-2">В корзину</a>
                     </div>
@@ -120,7 +127,7 @@
             <a href="#" class="btn btn-light btn-sm border-1 w-50">Подробнее</a>
         </div>
         <div class="card mb-4 p-2 border-0 d-flex flex-column justify-content-end" style="width: 17rem; height: 19rem;  background-image: url('https://i.pinimg.com/736x/d0/5a/af/d05aaf7b2eb3e3345dc1d3b631bff18b.jpg'); background-size: cover; background-position: center;">
-            <h5 style="color: white">Сужая кожа</h5>
+            <h5 style="color: white">Сухая кожа</h5>
             <a href="#" class="btn btn-light btn-sm border-1 w-50">Подробнее</a>
         </div>
         <div class="card mb-4 p-2 border-0 d-flex flex-column justify-content-end" style="width: 17rem; height: 21rem;  background-image: url('https://avatars.mds.yandex.net/i?id=e04c502a742316928a18830259f5895f_l-4120244-images-thumbs&n=13'); background-size: cover; background-position: center;">
@@ -275,7 +282,6 @@
     </script>
 
     <style>
-
         .carousel-inner img {
             height: 500px;
             width: 100%;
