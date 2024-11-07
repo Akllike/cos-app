@@ -2,12 +2,6 @@
 @extends('header')
 @section('title', 'ShaR - Красота и Здоровье')
 @section('content')
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('[data-toggle="popover"]').popover();
-        });
-    </script>
-
     {{--<div id="carouselExampleCaptions" class="carousel carousel-dark slide carousel-fade shadow">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>

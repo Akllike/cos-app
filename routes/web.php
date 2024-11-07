@@ -32,4 +32,12 @@ Route::get('/catalog/scrabs/{id}', 'App\Http\Controllers\ScrabController@showCar
 Route::get('/create/scrabs', 'App\Http\Controllers\ScrabController@createScrab')->name('scrab.create');
 Route::post('/create/scrabs/add', 'App\Http\Controllers\ScrabController@addCardScrab')->name('scrab.addcard');
 
-Route::get('/admin', 'App\Http\Controllers\AdminController@index')->name('admin.index');
+
+Route::get('/admin', 'App\Http\Controllers\HomeController@index');
+
+Route::get('/search', 'App\Http\Controllers\SearchController@viewSearch')->name('search.view');
+Route::post('/search/result', 'App\Http\Controllers\SearchController@index')->name('search.index');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
