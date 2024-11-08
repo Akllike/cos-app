@@ -33,23 +33,4 @@ class GelController extends Controller
         $data = Gel::all();
         return view('Catalog/Gels/gels', compact('data'));
     }
-
-    public function createGel(): View
-    {
-        return view('Catalog/Gels/createGel');
-    }
-
-    public function addCardGel(Request $request): View
-    {
-        $data = Gel::create([
-            'name' => $request->input('name'),
-            'description' => $request->input('description'),
-            'composition' => $request->input('composition'),
-            'volume' => (int)$request->input('volume'),
-            'price' => (int)$request->input('price'),
-            'image' => $request->input('image'),
-        ]);
-
-        return $this->showProductGels();
-    }
 }

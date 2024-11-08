@@ -33,23 +33,4 @@ class ScrabController extends Controller
         $data = Scrab::all();
         return view('Catalog/Scrabs/scrabs', compact('data'));
     }
-
-    public function createScrab(): View
-    {
-        return view('Catalog/Scrabs/createScrab');
-    }
-
-    public function addCardScrab(Request $request): View
-    {
-        $data = Scrab::create([
-            'name' => $request->input('name'),
-            'description' => $request->input('description'),
-            'composition' => $request->input('composition'),
-            'volume' => (int)$request->input('volume'),
-            'price' => (int)$request->input('price'),
-            'image' => $request->input('image'),
-        ]);
-
-        return $this->showProductScrabs();
-    }
 }
