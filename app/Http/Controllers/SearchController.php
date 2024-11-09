@@ -19,7 +19,7 @@ class SearchController extends Controller
     {
         $this->productsService = new ProductsService();
         $data = $this->productsService->SearchProduct($request);
-        $muses = $data['muses']; $gels = $data['gels']; $scrabs = $data['scrabs'];
+        $muses = $data['muses']; $gels = $data['gels']; $scrabs = $data['scrabs']; $oils = $data['oils'];
 
         $title = 'Результаты поиска - ' . $request->input('name') . ' | ShaR';
 
