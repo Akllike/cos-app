@@ -12,6 +12,7 @@
                     <option value="1">Муссы</option>
                     <option value="2">Гели</option>
                     <option value="3">Скрабы</option>
+                    <option value="4">Масла</option>
                 </select>
 
                 <div class="input-group mb-3">
@@ -63,6 +64,9 @@
         </li>
         <li id="tag-scrab" class="nav-item">
             <a id="src-scrab" class="nav-link" href="#">Скрабы</a>
+        </li>
+        <li id="tag-oil" class="nav-item">
+            <a id="src-oil" class="nav-link" href="#">Масла</a>
         </li>
         <li class="nav-item">
             <a id="src-muse" class="nav-link disabled" href="#">Другое</a>
@@ -290,6 +294,80 @@
             </div>
         @endforeach
     </div>
+
+    <div id="list-oils" class="mt-4 d-none flex-column">
+        @foreach($oils as $oil)
+            <div class="mt-2 d-flex flex-wrap h-auto align-items-center justify-content-between border" style="height: 50px">
+                <div class="d-flex flex-row">
+                    <p class="m-2">id: {{ $oil['id'] }}</p> <p class="m-2">{{ $oil['name'] }}</p>
+                    <p class="m-2">({{ $oil['volume'] }} мл)</p>
+                </div>
+                <div class="d-flex">
+                    <button id="btn-edit-oil-{{ $oil['id'] }}" class="btn btn-primary m-1">Редактировать</button>
+                    <form action="{{ url('admin/delete/') }}" method="POST" class="m-1">
+                        @csrf
+                        <input type="hidden" name="group-name" value="4">
+                        <input type="hidden" name="id" value="{{ $oil['id'] }}">
+                        <button class="btn btn-primary">Удалить</button>
+                    </form>
+                </div>
+            </div>
+            <div id="toggle-oil-{{ $oil['id'] }}" style="display: none">
+                <div class="mt-2 d-flex align-items-center justify-content-between border-1">
+                    <form action="{{ url('admin/edit/') }}" method="POST" class="row g-3 needs-validation">
+                        @csrf
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Группа</span>
+                            <input class="form-control" type="text" id="group-name" value="4" name="group-name"><br><br>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">id</span>
+                            <input class="form-control" type="text" id="group-name" value="{{ $oil['id'] }}" name="id"><br><br>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Заголовок</span>
+                            <input type="text" name="name" value="{{ $oil['name'] }}" class="form-control" placeholder="Название товара" aria-label="Название товара" aria-describedby="basic-addon1">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Описание</span>
+                            <input type="text" name="description" value="{{ $oil['description'] }}" class="form-control" placeholder="Описание товара" aria-label="Описание товара">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Состав</span>
+                            <input type="text" name="composition" value="{{ $oil['composition'] }}" class="form-control" placeholder="Состав товара, условия хранения" aria-label="Состав товара, условия хранения">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Цена</span>
+                                <input type="text" name="price" value="{{ $oil['price'] }}" class="form-control" placeholder="Цена товара" aria-label="Цена товара" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Объем</span>
+                                <input type="text" name="volume" value="{{ $oil['volume'] }}" class="form-control" placeholder="Объем товара" aria-label="Объем товара" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="basic-url" class="form-label">Название фото</label>
+                            <div class="input-group">
+                                {{--<span class="input-group-text" id="basic-addon3">https://example.com/storage/</span>--}}
+                                <input type="text" name="image" value="{{ $oil['image'] }}" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
+                            </div>
+                            <div class="form-text" id="basic-addon4">Пример текста справки выходит за пределы группы ввода.</div>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="submit">Изменить</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        @endforeach
+    </div>
 </div>
 
     <script>
@@ -316,37 +394,61 @@
             $("#toggle-scrab-{{ $scrab['id'] }}").toggle();
         });
         @endforeach
+
+        @foreach($oils as $oil)
+        $("#btn-edit-oil-{{ $oil['id'] }}").on("click", function() {
+            $("#toggle-oil-{{ $oil['id'] }}").toggle();
+        });
+        @endforeach
     </script>
 
     <script>
         $('#tag-muse').click(function(){
+            $('#list-oils').attr('class', 'mt-4 d-none flex-column');
             $('#list-gels').attr('class', 'mt-4 d-none flex-column');
             $('#list-scrabs').attr('class', 'mt-4 d-none flex-column');
             $('#list-muses').attr('class', 'mt-4 d-flex flex-column');
 
+            $('#src-oil').attr('class', 'nav-link');
             $('#src-gel').attr('class', 'nav-link');
             $('#src-scrab').attr('class', 'nav-link');
             $('#src-muse').attr('class', 'nav-link active');
         });
 
         $('#tag-gel').click(function(){
+            $('#list-oils').attr('class', 'mt-4 d-none flex-column');
             $('#list-scrabs').attr('class', 'mt-4 d-none flex-column');
             $('#list-muses').attr('class', 'mt-4 d-none flex-column');
             $('#list-gels').attr('class', 'mt-4 d-flex flex-column');
 
+            $('#src-oil').attr('class', 'nav-link');
             $('#src-scrab').attr('class', 'nav-link');
             $('#src-muse').attr('class', 'nav-link');
             $('#src-gel').attr('class', 'nav-link active');
         });
 
         $('#tag-scrab').click(function(){
+            $('#list-oils').attr('class', 'mt-4 d-none flex-column');
             $('#list-muses').attr('class', 'mt-4 d-none flex-column');
             $('#list-gels').attr('class', 'mt-4 d-none flex-column');
             $('#list-scrabs').attr('class', 'mt-4 d-flex flex-column');
 
+            $('#src-oil').attr('class', 'nav-link');
             $('#src-muse').attr('class', 'nav-link');
             $('#src-gel').attr('class', 'nav-link');
             $('#src-scrab').attr('class', 'nav-link active');
+        });
+
+        $('#tag-oil').click(function(){
+            $('#list-scrabs').attr('class', 'mt-4 d-none flex-column');
+            $('#list-muses').attr('class', 'mt-4 d-none flex-column');
+            $('#list-gels').attr('class', 'mt-4 d-none flex-column');
+            $('#list-oils').attr('class', 'mt-4 d-flex flex-column');
+
+            $('#src-scrab').attr('class', 'nav-link');
+            $('#src-muse').attr('class', 'nav-link');
+            $('#src-gel').attr('class', 'nav-link');
+            $('#src-oil').attr('class', 'nav-link active');
         });
     </script>
 @endsection

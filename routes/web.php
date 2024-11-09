@@ -15,15 +15,15 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\IndexController@index');
+Route::get('/', 'App\Http\Controllers\IndexController@index')->name('index');
 
 Route::prefix('search')->group(function () {
-    Route::get('/', 'App\Http\Controllers\SearchController@viewSearch')->name('search.view');
-    Route::post('/result', 'App\Http\Controllers\SearchController@index')->name('search.index');
+    Route::get('/', 'App\Http\Controllers\SearchController')->name('search');
+    Route::post('/result', 'App\Http\Controllers\SearchController@viewSearch')->name('search.view');
 });
 
 Route::prefix('catalog')->group(function () {
-    Route::get('/', 'App\Http\Controllers\CatalogController@index')->name('catalog');
+    Route::get('/', 'App\Http\Controllers\CatalogController')->name('catalog');
 
     Route::get('/musses', 'App\Http\Controllers\MuseController@showProductMuses')->name('muse.show');
     Route::get('/musses/{id}', 'App\Http\Controllers\MuseController@showCardMuse')->name('muse.card');
@@ -33,6 +33,9 @@ Route::prefix('catalog')->group(function () {
 
     Route::get('/scrabs', 'App\Http\Controllers\ScrabController@showProductScrabs')->name('scrab.show');
     Route::get('/scrabs/{id}', 'App\Http\Controllers\ScrabController@showCardScrab')->name('scrab.card');
+
+    Route::get('/oils', 'App\Http\Controllers\OilController@showProductOils')->name('oil.show');
+    Route::get('/oils/{id}', 'App\Http\Controllers\OilController@showCardOil')->name('oil.card');
 });
 
 Auth::routes();

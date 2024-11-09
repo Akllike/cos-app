@@ -12,16 +12,17 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/">Главная</a>
+                            <a class="nav-link active" aria-current="page" href="{{ route('index') }}">Главная</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Каталог
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ url('catalog/musses') }}">Муссы</a></li>
-                                <li><a class="dropdown-item" href="{{ url('catalog/gels') }}">Гели</a></li>
-                                <li><a class="dropdown-item" href="{{ url('catalog/scrabs') }}">Скрабы</a></li>
+                                <li><a class="dropdown-item" href="{{ route('muse.show') }}">Муссы</a></li>
+                                <li><a class="dropdown-item" href="{{ route('gel.show') }}">Гели</a></li>
+                                <li><a class="dropdown-item" href="{{ route('scrab.show') }}">Скрабы</a></li>
+                                <li><a class="dropdown-item" href="{{ route('oil.show') }}">Масла</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
