@@ -18,7 +18,7 @@
                             <p class="card-text">{{$muse['description']}}</p>
                         </div>
                         <p class="card-text">Цена: {{$muse['price']}} руб.</p>
-                        <a href="{{ url('catalog/gels') }}/{{ $muse['id'] }}" class="btn btn-outline-danger">Подробнее</a>
+                        <a href="{{ url('catalog/musses') }}/{{ $muse['id'] }}" class="btn btn-outline-danger">Подробнее</a>
                     </div>
                 </div>
             @endforeach
@@ -37,7 +37,7 @@
                     </div>
                 </div>
             @endforeach
-                @foreach($scrabs as $scrab)
+            @foreach($scrabs as $scrab)
                 <div class="card h-100 mb-4" style="width: 19rem;">
                     <div class="d-flex justify-content-center">
                         <img src="{{ $scrab['image'] }}" class="card-img-top w-50" alt="...">
@@ -48,10 +48,25 @@
                             <p class="card-text">{{$scrab['description']}}</p>
                         </div>
                         <p class="card-text">Цена: {{$scrab['price']}} руб.</p>
-                        <a href="{{ url('catalog/gels') }}/{{ $scrab['id'] }}" class="btn btn-outline-danger">Подробнее</a>
+                        <a href="{{ url('catalog/scrabs') }}/{{ $scrab['id'] }}" class="btn btn-outline-danger">Подробнее</a>
                     </div>
                 </div>
             @endforeach
+                @foreach($oils as $oil)
+                    <div class="card h-100 mb-4" style="width: 19rem;">
+                        <div class="d-flex justify-content-center">
+                            <img src="{{ $oil['image'] }}" class="card-img-top w-50" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{$oil['name']}}</h5>
+                            <div class="text-truncate text-wrap" style="height: 5rem;">
+                                <p class="card-text">{{$oil['description']}}</p>
+                            </div>
+                            <p class="card-text">Цена: {{$oil['price']}} руб.</p>
+                            <a href="{{ url('catalog/oils') }}/{{ $oil['id'] }}" class="btn btn-outline-danger">Подробнее</a>
+                        </div>
+                    </div>
+                @endforeach
         </div>
     </div>
 
