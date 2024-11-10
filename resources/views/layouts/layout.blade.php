@@ -40,5 +40,11 @@
         box-shadow: 0 0 0 0.2rem rgb(180, 155, 125, 0.5);
         border-color: rgba(180, 155, 125, 0.5);
     }
+
+    .dropdown-item:active {
+        color: var(--bs-dropdown-link-active-color);
+        text-decoration: none;
+        background-color: rgba(180, 155, 125, 0.5);
+    }
 </style>
 </html>
