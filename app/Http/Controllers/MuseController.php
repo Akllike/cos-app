@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Muse;
+use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -11,7 +11,7 @@ class MuseController extends Controller
     public function showCardMuse(int $id): View
     {
         $send = [];
-        $muses = Muse::all();
+        $muses = Products::where('category', 'muse')->get();
         foreach ($muses as $muse) {
             if ($muse->id == $id) {
                 $send = $muse;
@@ -30,7 +30,7 @@ class MuseController extends Controller
 
     public function showProductMuses(): View
     {
-        $data = Muse::all();
+        $data = Products::where('category', 'muse')->get();
         return view('Catalog/Muses/muses', compact('data'));
     }
 }

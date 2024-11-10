@@ -30,5 +30,15 @@
         font-weight: <weight>;
         font-style: normal;
     }
+
+    .btn:focus {
+        box-shadow: 0 0 0 0.2rem rgba(255, 87, 51, 0.5);
+        border-color: #ff5733;
+    }
+
+    .form-control:focus {
+        box-shadow: 0 0 0 0.2rem rgba(255, 87, 51, 0.5);
+        border-color: #ff5733;
+    }
 </style>
 </html>

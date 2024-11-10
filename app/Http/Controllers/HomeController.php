@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Gel;
-use App\Models\Muse;
-use App\Models\Oil;
-use App\Models\Scrab;
+use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Services\ProductsService;
@@ -26,10 +23,10 @@ class HomeController extends Controller
 
     public function index(): View
     {
-        $muses = Muse::all();
-        $gels = Gel::all();
-        $scrabs = Scrab::all();
-        $oils = Oil::all();
+        $muses = Products::where('category', 'muse')->get();
+        $gels = Products::where('category', 'gel')->get();
+        $scrabs = Products::where('category', 'scrab')->get();
+        $oils = Products::where('category', 'oil')->get();
 
         return view('home', compact('muses', 'gels', 'scrabs', 'oils'));
     }

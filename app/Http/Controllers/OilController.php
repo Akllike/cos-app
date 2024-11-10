@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Models\Oil;
+use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -12,7 +11,7 @@ class OilController extends Controller
     public function showCardOil(int $id): View
     {
         $send = [];
-        $oils = Oil::all();
+        $oils = Products::where('category', 'oil')->get();
         foreach ($oils as $oil) {
             if ($oil->id == $id) {
                 $send = $oil;
@@ -31,7 +30,7 @@ class OilController extends Controller
 
     public function showProductOils(): View
     {
-        $data = Oil::all();
+        $data = Products::where('category', 'oil')->get();
         return view('Catalog/Oils/oils', compact('data'));
     }
 }

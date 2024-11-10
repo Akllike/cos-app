@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Scrab;
+use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -11,7 +11,7 @@ class ScrabController extends Controller
     public function showCardScrab(int $id): View
     {
         $send = [];
-        $scrabs = Scrab::all();
+        $scrabs = Products::where('category', 'scrab')->get();
         foreach ($scrabs as $scrab) {
             if ($scrab->id == $id) {
                 $send = $scrab;
@@ -30,7 +30,7 @@ class ScrabController extends Controller
 
     public function showProductScrabs(): View
     {
-        $data = Scrab::all();
+        $data = Products::where('category', 'scrab')->get();
         return view('Catalog/Scrabs/scrabs', compact('data'));
     }
 }

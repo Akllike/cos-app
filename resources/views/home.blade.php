@@ -9,10 +9,10 @@
                 @csrf
                 <select class="form-select m-4" style="width: 95%" name="group-name" aria-label="Пример выбора по умолчанию">
                     <option selected>Выберите группу карточки</option>
-                    <option value="1">Муссы</option>
-                    <option value="2">Гели</option>
-                    <option value="3">Скрабы</option>
-                    <option value="4">Масла</option>
+                    <option value="muse">Муссы</option>
+                    <option value="gel">Гели</option>
+                    <option value="scrab">Скрабы</option>
+                    <option value="oil">Масла</option>
                 </select>
 
                 <div class="input-group mb-3">
@@ -96,12 +96,12 @@
                         @csrf
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1">Группа</span>
-                            <input class="form-control" type="text" id="group-name" value="1" name="group-name"><br><br>
+                            <input class="form-control" type="text" id="group-name" value="{{ $muse['category'] }}" name="group-name"><br><br>
                         </div>
 
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1">id</span>
-                            <input class="form-control" type="text" id="group-name" value="{{ $muse['id'] }}" name="id"><br><br>
+                            <input class="form-control" type="text" id="id" value="{{ $muse['id'] }}" name="id"><br><br>
                         </div>
 
                         <div class="input-group mb-3">
@@ -170,37 +170,37 @@
                         @csrf
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1">Группа</span>
-                            <input class="form-control" type="text" id="group-name" value="2" name="group-name"><br><br>
+                            <input class="form-control" type="text" id="group-name" value="{{ $gel['category'] }}" name="group-name"><br><br>
                         </div>
 
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1">id</span>
-                            <input class="form-control" type="text" id="group-name" value="{{ $muse['id'] }}" name="id"><br><br>
+                            <input class="form-control" type="text" id="group-name" value="{{ $gel['id'] }}" name="id"><br><br>
                         </div>
 
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1">Заголовок</span>
-                            <input type="text" name="name" value="{{ $muse['name'] }}" class="form-control" placeholder="Название товара" aria-label="Название товара" aria-describedby="basic-addon1">
+                            <input type="text" name="name" value="{{ $gel['name'] }}" class="form-control" placeholder="Название товара" aria-label="Название товара" aria-describedby="basic-addon1">
                         </div>
 
                         <div class="input-group mb-3">
                             <span class="input-group-text">Описание</span>
-                            <input type="text" name="description" value="{{ $muse['description'] }}" class="form-control" placeholder="Описание товара" aria-label="Описание товара">
+                            <input type="text" name="description" value="{{ $gel['description'] }}" class="form-control" placeholder="Описание товара" aria-label="Описание товара">
                         </div>
 
                         <div class="input-group mb-3">
                             <span class="input-group-text">Состав</span>
-                            <input type="text" name="composition" value="{{ $muse['composition'] }}" class="form-control" placeholder="Состав товара, условия хранения" aria-label="Состав товара, условия хранения">
+                            <input type="text" name="composition" value="{{ $gel['composition'] }}" class="form-control" placeholder="Состав товара, условия хранения" aria-label="Состав товара, условия хранения">
                         </div>
 
                         <div class="input-group mb-3">
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Цена</span>
-                                <input type="text" name="price" value="{{ $muse['price'] }}" class="form-control" placeholder="Цена товара" aria-label="Цена товара" aria-describedby="basic-addon1">
+                                <input type="text" name="price" value="{{ $gel['price'] }}" class="form-control" placeholder="Цена товара" aria-label="Цена товара" aria-describedby="basic-addon1">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Объем</span>
-                                <input type="text" name="volume" value="{{ $muse['volume'] }}" class="form-control" placeholder="Объем товара" aria-label="Объем товара" aria-describedby="basic-addon1">
+                                <input type="text" name="volume" value="{{ $gel['volume'] }}" class="form-control" placeholder="Объем товара" aria-label="Объем товара" aria-describedby="basic-addon1">
                             </div>
                         </div>
 
@@ -208,7 +208,7 @@
                             <label for="basic-url" class="form-label">Название фото</label>
                             <div class="input-group">
                                 {{--<span class="input-group-text" id="basic-addon3">https://example.com/storage/</span>--}}
-                                <input type="text" name="image" value="{{ $muse['image'] }}" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
+                                <input type="text" name="image" value="{{ $gel['image'] }}" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
                             </div>
                             <div class="form-text" id="basic-addon4">Пример текста справки выходит за пределы группы ввода.</div>
                         </div>
@@ -244,7 +244,7 @@
                         @csrf
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1">Группа</span>
-                            <input class="form-control" type="text" id="group-name" value="3" name="group-name"><br><br>
+                            <input class="form-control" type="text" id="group-name" value="{{ $scrab['category'] }}" name="group-name"><br><br>
                         </div>
 
                         <div class="input-group mb-3">
@@ -318,7 +318,7 @@
                         @csrf
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1">Группа</span>
-                            <input class="form-control" type="text" id="group-name" value="4" name="group-name"><br><br>
+                            <input class="form-control" type="text" id="group-name" value="{{ $oil['category'] }}" name="group-name"><br><br>
                         </div>
 
                         <div class="input-group mb-3">

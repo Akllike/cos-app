@@ -2,10 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\Gel;
-use App\Models\Muse;
-use App\Models\Oil;
-use App\Models\Scrab;
+use App\Models\Products;
 use Illuminate\Http\Request;
 
 class ProductsService
@@ -18,32 +15,9 @@ class ProductsService
      */
     public function CreateProduct(Request $request): void
     {
-        $data = [];
-        $info = (int)$request->input('group-name');
         try
         {
-            if($info)
-            {
-                switch ($info)
-                {
-                    case 1:
-                        $data = new Muse();
-                        break;
-                    case 2:
-                        $data = new Gel();
-                        break;
-                    case 3:
-                        $data = new Scrab();
-                        break;
-                    case 4:
-                        $data = new Oil();
-                        break;
-                }
-            }
-            else
-            {
-                die();
-            }
+            $data = new Products();
 
             if ($data) {
                 $data->name = $request->input('name');
@@ -51,6 +25,8 @@ class ProductsService
                 $data->composition = $request->input('composition');
                 $data->volume = (int)$request->input('volume');
                 $data->price = (int)$request->input('price');
+                $data->category = $request->input('group-name');
+                $data->article = 0;
                 $data->image = $request->input('image');
                 $data->save();
             }
@@ -70,25 +46,9 @@ class ProductsService
      */
     public function UpdateProduct(Request $request): void
     {
-        $data = [];
-        $info = (int)$request->input('group-name');
         try
         {
-            switch ($info)
-            {
-                case 1:
-                    $data = Muse::find($request->input('id'));
-                    break;
-                case 2:
-                    $data = Gel::find($request->input('id'));
-                    break;
-                case 3:
-                    $data = Scrab::find($request->input('id'));
-                    break;
-                case 4:
-                    $data = Oil::find($request->input('id'));
-                    break;
-            }
+            $data = Products::find($request->input('id'));
 
             if ($data) {
                 $data->name = $request->input('name');
@@ -96,6 +56,8 @@ class ProductsService
                 $data->composition = $request->input('composition');
                 $data->volume = (int)$request->input('volume');
                 $data->price = (int)$request->input('price');
+                $data->category = $request->input('group-name');
+                $data->article = 0;
                 $data->image = $request->input('image');
                 $data->save();
             }
@@ -115,26 +77,9 @@ class ProductsService
      */
     public function DeleteProduct(Request $request): void
     {
-        $data = [];
-        $info = (int)$request->input('group-name');
-
         try
         {
-            switch ($info)
-            {
-                case 1:
-                    $data = Muse::find($request->input('id'));
-                    break;
-                case 2:
-                    $data = Gel::find($request->input('id'));
-                    break;
-                case 3:
-                    $data = Scrab::find($request->input('id'));
-                    break;
-                case 4:
-                    $data = Oil::find($request->input('id'));
-                    break;
-            }
+            $data = Products::find($request->input('id'));
 
             if ($data) {
                 $data->delete();
@@ -155,16 +100,10 @@ class ProductsService
      */
     public function SearchProduct(Request $request): array
     {
-        $muses = Muse::where('name', 'like', '%' . $request->input('name') . '%')->get();
-        $gels = Gel::where('name', 'like', '%' . $request->input('name') . '%')->get();
-        $scrabs = Scrab::where('name', 'like', '%' . $request->input('name') . '%')->get();
-        $oils = Oil::where('name', 'like', '%' . $request->input('name') . '%')->get();
+        $products = Products::where('name', 'like', '%' . $request->input('name') . '%')->get();
 
         $data = [
-            'muses' => $muses,
-            'gels' => $gels,
-            'scrabs' => $scrabs,
-            'oils' => $oils,
+            'products' => $products,
         ];
         return $data;
     }

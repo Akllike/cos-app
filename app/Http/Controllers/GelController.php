@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Gel;
+use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -11,7 +11,7 @@ class GelController extends Controller
     public function showCardGel(int $id): View
     {
         $send = [];
-        $gels = Gel::all();
+        $gels = Products::where('category', 'gel')->get();
         foreach ($gels as $gel) {
             if ($gel->id == $id) {
                 $send = $gel;
@@ -30,7 +30,7 @@ class GelController extends Controller
 
     public function showProductGels(): View
     {
-        $data = Gel::all();
+        $data = Products::where('category', 'gel')->get();
         return view('Catalog/Gels/gels', compact('data'));
     }
 }
