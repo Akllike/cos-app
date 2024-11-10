@@ -32,13 +32,13 @@
     }
 
     .btn:focus {
-        box-shadow: 0 0 0 0.2rem rgba(255, 87, 51, 0.5);
-        border-color: #ff5733;
+        box-shadow: 0 0 0 0.2rem rgb(180, 155, 125, 0.5);
+        border-color: rgba(180, 155, 125, 0.5);
     }
 
     .form-control:focus {
-        box-shadow: 0 0 0 0.2rem rgba(255, 87, 51, 0.5);
-        border-color: #ff5733;
+        box-shadow: 0 0 0 0.2rem rgb(180, 155, 125, 0.5);
+        border-color: rgba(180, 155, 125, 0.5);
     }
 </style>
 </html>

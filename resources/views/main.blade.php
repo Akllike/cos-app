@@ -65,7 +65,16 @@
                     </div>
                     <p class="card-text text-secondary mt-1">{{$item['price']}} руб. / {{ $item['volume'] }} мл</p>
                     <div class="d-flex justify-content-center">
-                        <a href="{{ url('catalog/scrabs') }}/{{ $item['id'] }}" class="btn btn-dark border-2 m-1" style="font-size: 14px">Подробнее</a>
+                        @if($item['category'] === 'muse')
+                            <a href="{{ url('catalog/musses') }}/{{ $item['id'] }}" class="btn btn-dark border-2 m-1" style="font-size: 14px">Подробнее</a>
+                        @elseif($item['category'] === 'gel')
+                            <a href="{{ url('catalog/gels') }}/{{ $item['id'] }}" class="btn btn-dark border-2 m-1" style="font-size: 14px">Подробнее</a>
+                        @elseif($item['category'] === 'scrab')
+                            <a href="{{ url('catalog/scrabs') }}/{{ $item['id'] }}" class="btn btn-dark border-2 m-1" style="font-size: 14px">Подробнее</a>
+                        @elseif($item['category'] === 'oil')
+                            <a href="{{ url('catalog/oils') }}/{{ $item['id'] }}" class="btn btn-dark border-2 m-1" style="font-size: 14px">Подробнее</a>
+                        @endif
+
                         <form action="{{ route('cart.add') }}" method="post" class="m-1">
                             @csrf
                             <input type="hidden" name="product_id" value="{{ $item['id'] }}">
