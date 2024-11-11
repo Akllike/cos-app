@@ -9,7 +9,7 @@ use App\Services\ProductsService;
 
 class HomeController extends Controller
 {
-    protected $productsService;
+    protected ProductsService $productsService;
 
     /**
      * Create a new controller instance.

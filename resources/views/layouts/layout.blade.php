@@ -17,6 +17,7 @@
     @yield('sidebar')
     @yield('header')
     @yield('content')
+    @yield('modals')
     <script>
         ScrollReveal().reveal('.container');
     </script>

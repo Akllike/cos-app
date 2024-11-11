@@ -8,7 +8,7 @@ use Illuminate\View\View;
 
 class SearchController extends Controller
 {
-    protected $productsService;
+    protected ProductsService $productsService;
 
     public function __invoke(): View
     {

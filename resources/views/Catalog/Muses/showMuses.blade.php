@@ -110,16 +110,14 @@
 
         <div class="row">
             @foreach($data['cards'] as $card)
-                @if($card['id'] <= 4)
-                    <div class="col-md-3">
-                        <div class="similar-product d-flex flex-column align-items-center">
-                            <img class="w-25" src="{{ $card['image'] }}" alt="Preview">
-                            <p class="title">{{ $card['name'] }}</p>
-                            <p class="price">{{ $card['price'] }} руб.</p>
-                            <a href="{{ url('catalog/musses') }}/{{ $card['id'] }}" class="btn btn-outline-danger">Подробнее</a>
-                        </div>
+                <div class="col-md-3">
+                    <div class="similar-product d-flex flex-column align-items-center">
+                        <img class="w-25" src="{{ $card['image'] }}" alt="Preview">
+                        <p class="title">{{ $card['name'] }}</p>
+                        <p class="price">{{ $card['price'] }} руб.</p>
+                        <a href="{{ url('catalog/musses') }}/{{ $card['id'] }}" class="btn btn-outline-danger">Подробнее</a>
                     </div>
-                @endif
+                </div>
             @endforeach
         </div>
     </div>

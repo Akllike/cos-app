@@ -2,35 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Products;
+use App\Services\ProductsService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class MuseController extends Controller
 {
+    protected ProductsService $productsService;
     public function showCardMuse(int $id): View
     {
-        $send = [];
-        $muses = Products::where('category', 'muse')->get();
-        foreach ($muses as $muse) {
-            if ($muse->id == $id) {
-                $send = $muse;
-            }
-        }
-
-        $data = [
-            'card' => [
-                $send,
-            ],
-            'cards' => $muses,
-        ];
-        //dd($data[$id]['name']);
+        $this->productsService = new ProductsService();
+        $data = $this->productsService->getProduct($id, 'muse');
         return view('Catalog/Muses/showMuses')->with('data', $data);
     }
 
     public function showProductMuses(): View
     {
-        $data = Products::where('category', 'muse')->get();
+        $this->productsService = new ProductsService();
+        $data = $this->productsService->getProducts('muse');
         return view('Catalog/Muses/muses', compact('data'));
     }
 }

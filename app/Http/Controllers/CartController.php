@@ -8,7 +8,7 @@ use App\Services\CartService;
 
 class CartController extends Controller
 {
-    protected $cartService;
+    protected CartService $cartService;
 
     public function index(Request $request): View
     {
@@ -16,7 +16,7 @@ class CartController extends Controller
         return view('cart', compact('cart'));
     }
 
-    public function add(Request $request): View
+    public function add(Request $request): array
     {
         $productId  = $request->input('product_id');
         $quantity   = $request->input('quantity', 1);
@@ -26,7 +26,7 @@ class CartController extends Controller
 
         session(['cart' => $cart]);
 
-        return view('cart')->with('cart', $cart);
+        return ['cart' => $cart];
     }
 
     // Удаление товара из корзины

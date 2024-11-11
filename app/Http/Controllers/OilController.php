@@ -2,35 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Products;
+use App\Services\ProductsService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class OilController extends Controller
 {
+    protected ProductsService $productsService;
     public function showCardOil(int $id): View
     {
-        $send = [];
-        $oils = Products::where('category', 'oil')->get();
-        foreach ($oils as $oil) {
-            if ($oil->id == $id) {
-                $send = $oil;
-            }
-        }
-
-        $data = [
-            'card' => [
-                $send,
-            ],
-            'cards' => $oils,
-        ];
-        //dd($data[$id]['name']);
+        $this->productsService = new ProductsService();
+        $data = $this->productsService->getProduct($id, 'oil');
         return view('Catalog/Oils/showOils')->with('data', $data);
     }
 
     public function showProductOils(): View
     {
-        $data = Products::where('category', 'oil')->get();
+        $this->productsService = new ProductsService();
+        $data = $this->productsService->getProducts('oil');
         return view('Catalog/Oils/oils', compact('data'));
     }
 }

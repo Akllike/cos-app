@@ -8,6 +8,39 @@ use Illuminate\Http\Request;
 class ProductsService
 {
     /**
+     * Получить все карточки по категории
+     *
+     * @param string $category
+     * @return mixed
+     */
+    public function getProducts(string $category): mixed
+    {
+        return Products::where('category', $category)->get();
+    }
+
+    /**
+     * Получить одну карточку по id и получение 4-х карточек по категории
+     *
+     * @param int $id
+     * @param string $category
+     * @return array
+     */
+    public function getProduct(int $id, string $category): array
+    {
+        $send = [];
+
+        $items = Products::where('category', $category)->get();
+        foreach ($items as $item) {
+            if ($item->id == $id) {
+                $send = $item;
+            }
+        }
+
+        $items = Products::where('category', $category)->take(4)->get();
+        return [ 'card' => [ $send ], 'cards' => $items ];
+    }
+
+    /**
      * Создать карточку продукта
      *
      * @param Request $request

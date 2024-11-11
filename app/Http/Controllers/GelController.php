@@ -2,35 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Products;
+use App\Services\ProductsService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class GelController extends Controller
 {
+    protected ProductsService $productsService;
     public function showCardGel(int $id): View
     {
-        $send = [];
-        $gels = Products::where('category', 'gel')->get();
-        foreach ($gels as $gel) {
-            if ($gel->id == $id) {
-                $send = $gel;
-            }
-        }
-
-        $data = [
-            'card' => [
-                $send,
-            ],
-            'cards' => $gels,
-        ];
-        //dd($data[$id]['name']);
+        $this->productsService = new ProductsService();
+        $data = $this->productsService->getProduct($id, 'gel');
         return view('Catalog/Gels/showGels')->with('data', $data);
     }
 
     public function showProductGels(): View
     {
-        $data = Products::where('category', 'gel')->get();
+        $this->productsService = new ProductsService();
+        $data = $this->productsService->getProducts('gel');
         return view('Catalog/Gels/gels', compact('data'));
     }
 }
