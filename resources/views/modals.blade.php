@@ -7,7 +7,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                 </div>
                 <div class="modal-body">
-                    Товар успешно добавлен в корзину!
+                    Товар успешно добавлен в корзину!<br><br> Теперь вы можете перейти в корзину или продолжить выбирать товары.
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Продолжить</button>

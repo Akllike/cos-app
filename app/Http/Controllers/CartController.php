@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\TelegramService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Services\CartService;
@@ -9,6 +10,7 @@ use App\Services\CartService;
 class CartController extends Controller
 {
     protected CartService $cartService;
+    protected TelegramService $telegramService;
 
     public function index(Request $request): View
     {
@@ -29,7 +31,6 @@ class CartController extends Controller
         return ['cart' => $cart];
     }
 
-    // Удаление товара из корзины
     public function remove(Request $request): View
     {
         $productId = $request->input('product_id');
@@ -38,5 +39,12 @@ class CartController extends Controller
         $cart = $this->cartService->removeProductFromCart($productId);
 
         return view('cart')->with('cart', $cart);
+    }
+
+    public function sendTelegram(Request $request): View
+    {
+        $this->telegramService = new TelegramService();
+        $this->telegramService->sendMessage($request->input('message'));
+        return view('cart');
     }
 }

@@ -41,6 +41,7 @@ Route::prefix('catalog')->group(function () {
 Route::get('/cart', 'App\Http\Controllers\CartController@index')->name('cart.index');
 Route::post('/cart/add', 'App\Http\Controllers\CartController@add')->name('cart.add');
 Route::post('/cart/remove', 'App\Http\Controllers\CartController@remove')->name('cart.remove');
+Route::post('/cart/telegram', 'App\Http\Controllers\CartController@sendTelegram')->name('cart.tg');
 
 Auth::routes();
 
