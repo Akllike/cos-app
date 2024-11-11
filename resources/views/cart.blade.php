@@ -44,7 +44,7 @@
             <p>Корзина пуста</p>
         @endif
 
-        <form action="{{ route('cart.tg') }}" method="post" class="m-1">
+        {{--<form action="{{ route('cart.tg') }}" method="post" class="m-1">
             @csrf
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Адрес электронной почты</label>
@@ -55,6 +55,6 @@
                 <textarea class="form-control" name="message" id="message" rows="3"></textarea>
             </div>
             <button type="submit" class="btn btn-danger">Отправить</button>
-        </form>
+        </form>--}}
     </div>
 @endsection

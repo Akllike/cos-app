@@ -43,6 +43,7 @@ class CartController extends Controller
 
     public function sendTelegram(Request $request): View
     {
+        $send = '';
         $number = $request->input('number');
         $message = $request->input('message');
         $send = 'Новый заказ! <br>Номер: ' . $number . '<br>Сообщение: ' . $message;
@@ -50,6 +51,6 @@ class CartController extends Controller
         $this->telegramService = new TelegramService();
         $this->telegramService->sendMessage($request->input($send));
         $cart = session('cart', null);
-        return view('cart', compact('cart'));
+        return view();
     }
 }
