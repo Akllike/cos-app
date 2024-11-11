@@ -45,6 +45,7 @@ class CartController extends Controller
     {
         $this->telegramService = new TelegramService();
         $this->telegramService->sendMessage($request->input('message'));
-        return view('cart');
+        $cart = session('cart', null);
+        return view('cart', compact('cart'));
     }
 }
