@@ -5,12 +5,6 @@
     <div class="container">
         <h1>Корзина</h1>
 
-        @if(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-
         @if(count($cart) > 0)
             <table class="table">
                 <thead>

@@ -30,7 +30,7 @@
             @foreach($data as $gels)
                 <div class="card h-100 mb-4" style="width: 19rem;">
                     <div class="d-flex justify-content-center">
-                        <img src="{{ $gels['image'] }}" class="card-img-top w-50" alt="...">
+                        <img src="{{ url($gels['image']) }}" class="card-img-top w-50" alt="...">
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">{{$gels['name']}}</h5>

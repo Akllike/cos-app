@@ -8,7 +8,7 @@
                 @section('title', $item['name'])
                 <div class="col-md-5">
                     <div class="main-img d-flex justify-content-center mb-5">
-                        <img class="img-fluid w-50" src="{{ $item['image'] }}" alt="ProductS">
+                        <img class="img-fluid w-50" src="{{ url($item['image']) }}" alt="ProductS">
                         {{--<div class="row my-3 previews">
                             <div class="col-md-3">
                                 <img class="w-100" src="https://avatars.mds.yandex.net/get-mpic/1884605/img_id6153070894882640580.png/600x800" alt="Sale">
@@ -109,14 +109,14 @@
         <p class="display-5 mb-4" style="text-align: center">Похожие товары</p>
 
         <div class="row my-4">
-            @foreach($data['cards'] as $card)
-                @if($card['id'] <= 4)
+            @foreach($data['cards'] as $item)
+                @if($item['id'] <= 4)
                     <div class="col-md-3">
                         <div class="similar-product d-flex flex-column align-items-center">
-                            <img class="w-25" src="{{ $card['image'] }}" alt="Preview">
-                            <p class="title">{{ $card['name'] }}</p>
-                            <p class="price">{{ $card['price'] }} руб.</p>
-                            <a href="{{ url('catalog/scrabs') }}/{{ $card['id'] }}" class="btn btn-outline-danger">Подробнее</a>
+                            <img class="w-25" src="{{ url($item['image']) }}" alt="Preview">
+                            <p class="title">{{ $item['name'] }}</p>
+                            <p class="price">{{ $item['price'] }} руб.</p>
+                            <a href="{{ url('catalog/scrabs') }}/{{ $item['id'] }}" class="btn btn-outline-danger">Подробнее</a>
                         </div>
                     </div>
                 @endif

@@ -4,16 +4,18 @@
 <div class="container w-75">
     <button id="btn-create-card" class="btn btn-primary m-2">Добавить карточку</button>
     <div id="create-card" style="display: none;">
-        <div class="mt-2 mb-4 d-flex align-items-center justify-content-between border">
-            <form action="{{ url('admin/create/') }}" method="POST" class="row g-3 needs-validation">
+        <div class="mt-2 mb-4 p-2 d-flex align-items-center justify-content-between border">
+            <form action="{{ url('admin/create/') }}" method="POST" enctype="multipart/form-data" class="row g-3 needs-validation">
                 @csrf
-                <select class="form-select m-4" style="width: 95%" name="group-name" aria-label="Пример выбора по умолчанию">
-                    <option selected>Выберите группу карточки</option>
-                    <option value="muse">Муссы</option>
-                    <option value="gel">Гели</option>
-                    <option value="scrab">Скрабы</option>
-                    <option value="oil">Масла</option>
-                </select>
+                <div class="input-group mb-3">
+                    <select class="form-select m-4" name="group-name" aria-label="Пример выбора по умолчанию">
+                        <option selected>Выберите группу карточки</option>
+                        <option value="muse">Муссы</option>
+                        <option value="gel">Гели</option>
+                        <option value="scrab">Скрабы</option>
+                        <option value="oil">Масла</option>
+                    </select>
+                </div>
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">Заголовок</span>
@@ -42,10 +44,9 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="basic-url" class="form-label">Название фото</label>
-                    <div class="input-group">
-                        {{--<span class="input-group-text" id="basic-addon3">https://example.com/storage/</span>--}}
-                        <input type="text" name="image" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
+                    <label for="basic-url" class="form-label">Загрузить фото карточки</label>
+                    <div class="input-group mb-3">
+                        <input type="file" name="photo" id="photo" class="form-control" required>
                     </div>
                     <div class="form-text" id="basic-addon4">Пример текста справки выходит за пределы группы ввода.</div>
                 </div>
@@ -130,14 +131,14 @@
                             </div>
                         </div>
 
-                        <div class="mb-3">
+                        {{--<div class="mb-3">
                             <label for="basic-url" class="form-label">Название фото</label>
                             <div class="input-group">
-                                {{--<span class="input-group-text" id="basic-addon3">https://example.com/storage/</span>--}}
+                                --}}{{--<span class="input-group-text" id="basic-addon3">https://example.com/storage/</span>--}}{{--
                                 <input type="text" name="image" value="{{ $muse['image'] }}" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
                             </div>
                             <div class="form-text" id="basic-addon4">Пример текста справки выходит за пределы группы ввода.</div>
-                        </div>
+                        </div>--}}
                         <div class="col-12">
                             <button class="btn btn-primary" type="submit">Изменить</button>
                         </div>
@@ -204,14 +205,14 @@
                             </div>
                         </div>
 
-                        <div class="mb-3">
+                        {{--<div class="mb-3">
                             <label for="basic-url" class="form-label">Название фото</label>
                             <div class="input-group">
-                                {{--<span class="input-group-text" id="basic-addon3">https://example.com/storage/</span>--}}
+                                --}}{{--<span class="input-group-text" id="basic-addon3">https://example.com/storage/</span>--}}{{--
                                 <input type="text" name="image" value="{{ $gel['image'] }}" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
                             </div>
                             <div class="form-text" id="basic-addon4">Пример текста справки выходит за пределы группы ввода.</div>
-                        </div>
+                        </div>--}}
                         <div class="col-12">
                             <button class="btn btn-primary" type="submit">Изменить</button>
                         </div>
@@ -278,14 +279,14 @@
                             </div>
                         </div>
 
-                        <div class="mb-3">
+                       {{-- <div class="mb-3">
                             <label for="basic-url" class="form-label">Название фото</label>
                             <div class="input-group">
-                                {{--<span class="input-group-text" id="basic-addon3">https://example.com/storage/</span>--}}
+                                --}}{{--<span class="input-group-text" id="basic-addon3">https://example.com/storage/</span>--}}{{--
                                 <input type="text" name="image" value="{{ $scrab['image'] }}" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
                             </div>
                             <div class="form-text" id="basic-addon4">Пример текста справки выходит за пределы группы ввода.</div>
-                        </div>
+                        </div>--}}
                         <div class="col-12">
                             <button class="btn btn-primary" type="submit">Изменить</button>
                         </div>
@@ -352,14 +353,14 @@
                             </div>
                         </div>
 
-                        <div class="mb-3">
+                        {{--<div class="mb-3">
                             <label for="basic-url" class="form-label">Название фото</label>
                             <div class="input-group">
-                                {{--<span class="input-group-text" id="basic-addon3">https://example.com/storage/</span>--}}
+                                --}}{{--<span class="input-group-text" id="basic-addon3">https://example.com/storage/</span>--}}{{--
                                 <input type="text" name="image" value="{{ $oil['image'] }}" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
                             </div>
                             <div class="form-text" id="basic-addon4">Пример текста справки выходит за пределы группы ввода.</div>
-                        </div>
+                        </div>--}}
                         <div class="col-12">
                             <button class="btn btn-primary" type="submit">Изменить</button>
                         </div>

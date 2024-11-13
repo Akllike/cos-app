@@ -28,6 +28,12 @@ jobs:
       run: |
         mkdir -p database
         touch database/database.sqlite
+    - name: Setup Node.js environment & setup vite
+      uses: actions/setup-node@v4.1.0
+    - name: Setup vite
+      run: npm i vite
+    - name: NPM Build packages
+      run: npm run build
     - name: Execute tests (Unit and Feature tests) via PHPUnit/Pest
       env:
         DB_CONNECTION: sqlite

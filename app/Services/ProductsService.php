@@ -52,6 +52,13 @@ class ProductsService
         {
             $data = new Products();
 
+            $request->validate([
+                'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ]);
+
+            if ($request->file('photo')->isValid())
+                $path = 'storage/' . $request->file('photo')->store('cards', 'public');
+            //dd($path);
             if ($data) {
                 $data->name = $request->input('name');
                 $data->description = $request->input('description');
@@ -60,7 +67,7 @@ class ProductsService
                 $data->price = (int)$request->input('price');
                 $data->category = $request->input('group-name');
                 $data->article = 0;
-                $data->image = $request->input('image');
+                $data->image = $path;
                 $data->save();
             }
         }
@@ -91,7 +98,7 @@ class ProductsService
                 $data->price = (int)$request->input('price');
                 $data->category = $request->input('group-name');
                 $data->article = 0;
-                $data->image = $request->input('image');
+                //$data->image = $request->input('image');
                 $data->save();
             }
         }
