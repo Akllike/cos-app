@@ -30,7 +30,7 @@
             @foreach($data as $muses)
                 <div class="card h-50 mb-4" style="width: 19rem;">
                     <div class="d-flex justify-content-center">
-                        <img src="{{ $muses['image'] }}" class="card-img-top w-50" alt="...">
+                        <img src="{{ url($muses['image']) }}" class="card-img-top w-50" alt="...">
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">{{$muses['name']}}</h5>

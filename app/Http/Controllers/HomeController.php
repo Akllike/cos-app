@@ -11,11 +11,6 @@ class HomeController extends Controller
 {
     protected ProductsService $productsService;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth');

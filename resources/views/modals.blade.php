@@ -7,6 +7,36 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                 </div>
                 <div class="modal-body">
+                    {{--@if(count($cart) > 0)
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Название</th>
+                                <th>Кол-во</th>
+                                <th>Сумма</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($cart as $item)
+                                <tr>
+                                    <td>{{ $item['name'] }}</td>
+                                    <td>{{ $item['quantity'] }}</td>
+                                    <td>{{ $item['price'] * $item['quantity'] }}</td>
+                                    <td>
+                                        <form action="{{ route('cart.remove') }}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $item['product_id'] }}">
+                                            <button type="submit" class="btn btn-danger">Удалить</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    @endif--}}
+                </div>
+                <div class="modal-body">
                     Товар успешно добавлен в корзину!<br><br> Теперь вы можете перейти в корзину или продолжить выбирать товары.
                 </div>
                 <div class="modal-footer">
