@@ -12,13 +12,13 @@ class CartController extends Controller
     protected CartService $cartService;
     protected TelegramService $telegramService;
 
-    public function index(Request $request): View
+    public function index(): View
     {
         $cart = session('cart', []);
-        return view('cart', compact('cart'));
+        return view('cart')->with(['cart' => $cart]);
     }
 
-    public function add(Request $request): array
+    public function add(Request $request): string
     {
         $productId  = $request->input('product_id');
         $quantity   = $request->input('quantity', 1);
@@ -28,7 +28,7 @@ class CartController extends Controller
 
         session(['cart' => $cart]);
 
-        return ['cart' => $cart];
+        return json_encode($cart, true);
     }
 
     public function remove(Request $request): View

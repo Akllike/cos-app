@@ -13,7 +13,6 @@ class CartService
         if (isset($cart[$productId])) {
             $cart[$productId]['quantity'] += $quantity;
         } else {
-            // Допустим, у нас есть метод для получения информации о товаре
             $product = $this->getProductById($productId);
             $cart[$productId] = [
                 'product_id' => $product->id,

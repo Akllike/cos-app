@@ -7,35 +7,14 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                 </div>
                 <div class="modal-body">
-                    {{--@if(count($cart) > 0)
+
                         <table class="table">
-                            <thead>
-                            <tr>
-                                <th>Название</th>
-                                <th>Кол-во</th>
-                                <th>Сумма</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($cart as $item)
-                                <tr>
-                                    <td>{{ $item['name'] }}</td>
-                                    <td>{{ $item['quantity'] }}</td>
-                                    <td>{{ $item['price'] * $item['quantity'] }}</td>
-                                    <td>
-                                        <form action="{{ route('cart.remove') }}" method="post">
-                                            @csrf
-                                            <input type="hidden" name="product_id" value="{{ $item['product_id'] }}">
-                                            <button type="submit" class="btn btn-danger">Удалить</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
+                            <tbody id="data-display">
                             </tbody>
                         </table>
-                    @endif--}}
                 </div>
+                <tr id="data-display">
+                </tr>
                 <div class="modal-body">
                     Товар успешно добавлен в корзину!<br><br> Теперь вы можете перейти в корзину или продолжить выбирать товары.
                 </div>
@@ -56,6 +35,7 @@
 
     <script>
         function addToCart(id) {
+            $("#data-display").empty();
             let product_id = $('#product_id-' + id).val();
             let quantity = $('#quantity-' + id).val();
 
@@ -72,7 +52,12 @@
                 contentType: 'application/json; charset=utf-8',
                 dataType: 'json',
                 success: function(response) {
-
+                    console.log(response);
+                    $(document).ready(function() {
+                        $.each(response, function(key, value) {
+                            $('#data-display').append('<tr><td>' + value.name + '</td><td>' + value.quantity + ' шт.</td><td>' + value.price + ' руб.</td</tr>');
+                        });
+                    });
                 },
                 error: function(error) {
                     alert('Ошибка при добавлении товара');

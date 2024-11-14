@@ -11,6 +11,8 @@ class IndexController extends Controller
     public function index(): View
     {
         $data = Products::inRandomOrder()->take(4)->get();
-        return view('main', compact('data'));
+        $cart = session('cart', []);
+        //dd($cart);
+        return view('main', compact('data', 'cart'));
     }
 }

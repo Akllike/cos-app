@@ -8,7 +8,7 @@
     <title>@yield('title')</title>
     @vite(['resources/js/app.js', 'resources/css/app.css'])
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://unpkg.com/scrollreveal"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -18,9 +18,7 @@
     @yield('header')
     @yield('content')
     @yield('modals')
-    <script>
-        ScrollReveal().reveal('.container');
-    </script>
+
     @yield('footer')
 </body>
 <style>
