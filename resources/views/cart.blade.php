@@ -6,7 +6,7 @@
         <h1>Корзина</h1>
 
         @if(count($cart) > 0)
-            <table class="table">
+            <table class="table cart">
                 <thead>
                 <tr>
                     <th>Название</th>
@@ -18,17 +18,16 @@
                 </thead>
                 <tbody>
                 @foreach($cart as $item)
-                    <tr>
+                    <tr data-id="{{$item['product_id']}}">
                         <td>{{ $item['name'] }}</td>
                         <td>{{ $item['price'] }}</td>
                         <td>{{ $item['quantity'] }}</td>
                         <td>{{ $item['price'] * $item['quantity'] }}</td>
                         <td>
-                            <form action="{{ route('cart.remove') }}" method="post">
-                                @csrf
-                                <input type="hidden" name="product_id" value="{{ $item['product_id'] }}">
-                                <button type="submit" class="btn btn-danger">Удалить</button>
-                            </form>
+                            <!-- <form action="{{ route('cart.remove') }}" method="post">
+                                <input type="hidden" name="product_id" value="{{ $item['product_id'] }}"> -->
+                                <button type="submit" class="btn btn-danger remove-cart" data->Удалить</button>
+                            <!-- </form> -->
                         </td>
                     </tr>
                 @endforeach
@@ -51,4 +50,5 @@
             <button type="submit" class="btn btn-danger">Отправить</button>
         </form>--}}
     </div>
+    @csrf
 @endsection
