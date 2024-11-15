@@ -10,7 +10,7 @@
             @foreach($products as $item)
                 <div class="card h-100 mb-4" style="width: 19rem;">
                     <div class="d-flex justify-content-center">
-                        <img src="{{ $item['image'] }}" class="card-img-top w-50" alt="...">
+                        <img src="{{ url($item['image']) }}" class="card-img-top w-50" alt="...">
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">{{$item['name']}}</h5>
