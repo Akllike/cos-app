@@ -374,27 +374,21 @@
     </script>
 
     <script>
-        @foreach($muses as $muse)
-            $("#btn-edit-muse-{{ $muse['id'] }}").on("click", function() {
-                $("#toggle-muse-{{ $muse['id'] }}").toggle();
+        @foreach($hairs as $item)
+            $("#btn-edit-muse-{{ $item['id'] }}").on("click", function() {
+                $("#toggle-muse-{{ $item['id'] }}").toggle();
             });
         @endforeach
 
-        @foreach($gels as $gel)
-        $("#btn-edit-gel-{{ $gel['id'] }}").on("click", function() {
-            $("#toggle-gel-{{ $gel['id'] }}").toggle();
+        @foreach($faces as $item)
+        $("#btn-edit-gel-{{ $item['id'] }}").on("click", function() {
+            $("#toggle-gel-{{ $item['id'] }}").toggle();
         });
         @endforeach
 
-        @foreach($scrabs as $scrab)
-        $("#btn-edit-scrab-{{ $scrab['id'] }}").on("click", function() {
-            $("#toggle-scrab-{{ $scrab['id'] }}").toggle();
-        });
-        @endforeach
-
-        @foreach($oils as $oil)
-        $("#btn-edit-oil-{{ $oil['id'] }}").on("click", function() {
-            $("#toggle-oil-{{ $oil['id'] }}").toggle();
+        @foreach($bodies as $item)
+        $("#btn-edit-scrab-{{ $item['id'] }}").on("click", function() {
+            $("#toggle-scrab-{{ $item['id'] }}").toggle();
         });
         @endforeach
     </script>
@@ -434,18 +428,6 @@
             $('#src-muse').attr('class', 'nav-link');
             $('#src-gel').attr('class', 'nav-link');
             $('#src-scrab').attr('class', 'nav-link active');
-        });
-
-        $('#tag-oil').click(function(){
-            $('#list-scrabs').attr('class', 'mt-4 d-none flex-column');
-            $('#list-muses').attr('class', 'mt-4 d-none flex-column');
-            $('#list-gels').attr('class', 'mt-4 d-none flex-column');
-            $('#list-oils').attr('class', 'mt-4 d-flex flex-column');
-
-            $('#src-scrab').attr('class', 'nav-link');
-            $('#src-muse').attr('class', 'nav-link');
-            $('#src-gel').attr('class', 'nav-link');
-            $('#src-oil').attr('class', 'nav-link active');
         });
     </script>
 @endsection
