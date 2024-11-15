@@ -19,9 +19,9 @@
                                 Каталог
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ route('muse.show') }}">Для волос</a></li>
-                                <li><a class="dropdown-item" href="{{ route('gel.show') }}">Для лица</a></li>
-                                <li><a class="dropdown-item" href="{{ route('scrab.show') }}">Для тела</a></li>
+                                <li><a class="dropdown-item" href="{{ route('hair.show') }}">Для волос</a></li>
+                                <li><a class="dropdown-item" href="{{ route('face.show') }}">Для лица</a></li>
+                                <li><a class="dropdown-item" href="{{ route('body.show') }}">Для тела</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
