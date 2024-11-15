@@ -45,12 +45,13 @@ class CartController extends Controller
     {
         $send = '';
         $number = $request->input('number');
+        $name = $request->input('name');
         $message = $request->input('message');
-        $send = 'Новый заказ! <br>Номер: ' . $number . '<br>Сообщение: ' . $message;
+        $send = 'Новый заказ! Имя:' . $name . ' Номер: ' . $number . ' Сообщение: ' . $message;
 
         $this->telegramService = new TelegramService();
         $this->telegramService->sendMessage($request->input($send));
-        $cart = session('cart', null);
-        return view();
+        //$cart = session('cart', null);
+        return $this->index();
     }
 }
