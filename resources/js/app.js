@@ -60,11 +60,9 @@ const openModal = items => {
     for (const index in items) {
         const tr = document.createElement('tr');
         tr.innerHTML = `
-        <tr>
             <td>${items[index].name}</td>
             <td>${items[index].quantity} шт.</td>
-            <td>${items[index].price} руб.</td>
-        </tr>
+            <td>${items[index].price * items[index].quantity} руб.</td>
         `;
         modal.append(tr);
     }
