@@ -12,14 +12,14 @@ class GelController extends Controller
     public function showCardGel(int $id): View
     {
         $this->productsService = new ProductsService();
-        $data = $this->productsService->getProduct($id, 'gel');
+        $data = $this->productsService->getProduct($id, 'face');
         return view('Catalog/Gels/showGels')->with('data', $data);
     }
 
     public function showProductGels(): View
     {
         $this->productsService = new ProductsService();
-        $data = $this->productsService->getProducts('gel');
+        $data = $this->productsService->getProducts('face');
         return view('Catalog/Gels/gels', compact('data'));
     }
 }

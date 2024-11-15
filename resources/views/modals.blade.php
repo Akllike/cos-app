@@ -1,23 +1,19 @@
 @section('modals')
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Корзина</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                 </div>
                 <div class="modal-body">
-
-                        <table class="table">
-                            <tbody id="data-display">
-                            </tbody>
-                        </table>
+                    <table class="table">
+                        <tbody id="data-display" style="font-size: 14px">
+                        </tbody>
+                    </table>
                 </div>
-                <tr id="data-display">
-                </tr>
-                <div class="modal-body">
-                    Товар успешно добавлен в корзину!<br><br> Теперь вы можете перейти в корзину или продолжить выбирать товары.
-                </div>
+                <p class="p-4">Товар успешно добавлен в корзину!<br>
+                    <br> Теперь вы можете перейти в корзину для оформления заказа или продолжить выбирать товары.</p>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Продолжить</button>
                     <form action="{{ route('cart.index') }}" method="get">
@@ -32,38 +28,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        function addToCart(id) {
-            $("#data-display").empty();
-            let product_id = $('#product_id-' + id).val();
-            let quantity = $('#quantity-' + id).val();
-
-            let data = {
-                product_id: product_id,
-                quantity: quantity
-            };
-
-            // AJAX POST-запрос
-            $.ajax({
-                url: '{{ route('cart.add') }}',
-                type: 'POST',
-                data: JSON.stringify(data),
-                contentType: 'application/json; charset=utf-8',
-                dataType: 'json',
-                success: function(response) {
-                    console.log(response);
-                    $(document).ready(function() {
-                        $.each(response, function(key, value) {
-                            $('#data-display').append('<tr><td>' + value.name + '</td><td>' + value.quantity + ' шт.</td><td>' + value.price + ' руб.</td</tr>');
-                        });
-                    });
-                },
-                error: function(error) {
-                    alert('Ошибка при добавлении товара');
-                    console.log(error);
-                }
-            });
-        }
-    </script>
 @endsection

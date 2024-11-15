@@ -10,10 +10,9 @@
                 <div class="input-group mb-3">
                     <select class="form-select m-4" name="group-name" aria-label="Пример выбора по умолчанию">
                         <option selected>Выберите группу карточки</option>
-                        <option value="muse">Муссы</option>
-                        <option value="gel">Гели</option>
-                        <option value="scrab">Скрабы</option>
-                        <option value="oil">Масла</option>
+                        <option value="hair">Для волос</option>
+                        <option value="face">Для лица</option>
+                        <option value="body">Для тела</option>
                     </select>
                 </div>
 

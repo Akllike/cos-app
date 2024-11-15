@@ -12,14 +12,14 @@ class ScrabController extends Controller
     public function showCardScrab(int $id): View
     {
         $this->productsService = new ProductsService();
-        $data = $this->productsService->getProduct($id, 'scrab');
+        $data = $this->productsService->getProduct($id, 'body');
         return view('Catalog/Scrabs/showScrabs')->with('data', $data);
     }
 
     public function showProductScrabs(): View
     {
         $this->productsService = new ProductsService();
-        $data = $this->productsService->getProducts('scrab');
+        $data = $this->productsService->getProducts('body');
         return view('Catalog/Scrabs/scrabs', compact('data'));
     }
 }

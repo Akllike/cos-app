@@ -12,14 +12,14 @@ class MuseController extends Controller
     public function showCardMuse(int $id): View
     {
         $this->productsService = new ProductsService();
-        $data = $this->productsService->getProduct($id, 'muse');
+        $data = $this->productsService->getProduct($id, 'hair');
         return view('Catalog/Muses/showMuses')->with('data', $data);
     }
 
     public function showProductMuses(): View
     {
         $this->productsService = new ProductsService();
-        $data = $this->productsService->getProducts('muse');
+        $data = $this->productsService->getProducts('hair');
         return view('Catalog/Muses/muses', compact('data'));
     }
 }
