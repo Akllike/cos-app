@@ -71,7 +71,7 @@
     </ul>
 
     <div id="list-muses" class="mt-4 d-flex flex-column">
-        @foreach($muses as $item)
+        @foreach($hairs as $item)
             <div class="mt-2 d-flex flex-wrap h-auto align-items-center justify-content-between border" style="height: 50px">
                 <div class="d-flex flex-row">
                     <p class="m-2">id: {{ $item['id'] }}</p> <p class="m-2">{{ $item['name'] }}</p>
@@ -145,7 +145,7 @@
     </div>
 
     <div id="list-gels" class="mt-4 d-none flex-column">
-        @foreach($gels as $item)
+        @foreach($faces as $item)
             <div class="mt-2 d-flex flex-wrap h-auto align-items-center justify-content-between border" style="height: 50px">
                 <div class="d-flex flex-row">
                     <p class="m-2">id: {{ $item['id'] }}</p> <p class="m-2">{{ $item['name'] }}</p>
@@ -219,7 +219,7 @@
     </div>
 
     <div id="list-scrabs" class="mt-4 d-none flex-column">
-        @foreach($scrabs as $item)
+        @foreach($bodies as $item)
             <div class="mt-2 d-flex flex-wrap h-auto align-items-center justify-content-between border" style="height: 50px">
                 <div class="d-flex flex-row">
                     <p class="m-2">id: {{ $item['id'] }}</p> <p class="m-2">{{ $item['name'] }}</p>
