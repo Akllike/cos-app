@@ -15,10 +15,10 @@ class TelegramService
         $this->chatId = env('TELEGRAM_CHAT_ID');
     }
 
-    public function sendMessage($message): void
+    public function sendMessage(string $message): void
     {
         $response = Http::post("https://api.telegram.org/bot{$this->token}/sendMessage", [
-            'parse_mode' => 'markdown',
+
             'chat_id' => $this->chatId,
             'text' => $message,
         ]);

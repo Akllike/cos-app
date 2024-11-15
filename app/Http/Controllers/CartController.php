@@ -47,11 +47,21 @@ class CartController extends Controller
         $number = $request->input('number');
         $name = $request->input('name');
         $message = $request->input('message');
-        $send = 'Новый заказ! Имя:' . $name . ' Номер: ' . $number . ' Сообщение: ' . $message;
+        $send = "Новый заказ! \nИмя: " . $number . " \nНомер: " . $name . " \nСообщение: " . $message . "\n\n";
+        $cart = session('cart', null);
+
+        $i = 1;
+        foreach($cart as $item)
+        {
+            $send .= $i . ". Название: " . $item['name'] . "\n";
+            $send .= "Количество: " . $item['quantity'] . " шт.\n";
+            $send .= "Сумма: " . $item['price'] * $item['quantity'] . " руб.\n\n";
+            $i++;
+        }
 
         $this->telegramService = new TelegramService();
-        $this->telegramService->sendMessage($request->input($send));
-        //$cart = session('cart', null);
+        $this->telegramService->sendMessage($send);
+
         return $this->index();
     }
 }
