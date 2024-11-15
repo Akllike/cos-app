@@ -57,16 +57,13 @@
     </div>
     <ul class="nav nav-tabs">
         <li id="tag-muse" class="nav-item">
-            <a id="src-muse" class="nav-link active" href="#">Муссы</a>
+            <a id="src-muse" class="nav-link active" href="#">Для волос</a>
         </li>
         <li id="tag-gel" class="nav-item">
-            <a id="src-gel" class="nav-link" href="#">Гели</a>
+            <a id="src-gel" class="nav-link" href="#">Для лица</a>
         </li>
         <li id="tag-scrab" class="nav-item">
-            <a id="src-scrab" class="nav-link" href="#">Скрабы</a>
-        </li>
-        <li id="tag-oil" class="nav-item">
-            <a id="src-oil" class="nav-link" href="#">Масла</a>
+            <a id="src-scrab" class="nav-link" href="#">Для тела</a>
         </li>
         <li class="nav-item">
             <a id="src-muse" class="nav-link disabled" href="#">Другое</a>
@@ -295,7 +292,7 @@
         @endforeach
     </div>
 
-    <div id="list-oils" class="mt-4 d-none flex-column">
+    {{--<div id="list-oils" class="mt-4 d-none flex-column">
         @foreach($oils as $oil)
             <div class="mt-2 d-flex flex-wrap h-auto align-items-center justify-content-between border" style="height: 50px">
                 <div class="d-flex flex-row">
@@ -352,14 +349,14 @@
                             </div>
                         </div>
 
-                        {{--<div class="mb-3">
+                        --}}{{--<div class="mb-3">
                             <label for="basic-url" class="form-label">Название фото</label>
                             <div class="input-group">
-                                --}}{{--<span class="input-group-text" id="basic-addon3">https://example.com/storage/</span>--}}{{--
+                                --}}{{----}}{{--<span class="input-group-text" id="basic-addon3">https://example.com/storage/</span>--}}{{----}}{{--
                                 <input type="text" name="image" value="{{ $oil['image'] }}" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
                             </div>
                             <div class="form-text" id="basic-addon4">Пример текста справки выходит за пределы группы ввода.</div>
-                        </div>--}}
+                        </div>--}}{{--
                         <div class="col-12">
                             <button class="btn btn-primary" type="submit">Изменить</button>
                         </div>
@@ -367,7 +364,7 @@
                 </div>
             </div>
         @endforeach
-    </div>
+    </div>--}}
 </div>
 
     <script>
