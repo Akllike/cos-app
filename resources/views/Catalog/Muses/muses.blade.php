@@ -39,7 +39,7 @@
                         </div>
                         <p class="card-text text-secondary mt-1">{{$muses['price']}} руб. / {{ $muses['volume'] }} мл</p>
                         <div class="d-flex justify-content-center">
-                            <a href="{{ url('catalog/musses') }}/{{ $muses['id'] }}" class="btn btn-dark border-2 m-1" style="font-size: 14px">Подробнее</a>
+                            <a href="{{ url('catalog/hairs') }}/{{ $muses['id'] }}" class="btn btn-dark border-2 m-1" style="font-size: 14px">Подробнее</a>
                             <div class="m-1">
                                 <button type="button" class="btn btn-outline-dark border-2 add-cart" style="font-size: 14px">
                                     В корзину
