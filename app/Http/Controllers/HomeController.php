@@ -18,12 +18,11 @@ class HomeController extends Controller
 
     public function index(): View
     {
-        $muses = Products::where('category', 'muse')->get();
-        $gels = Products::where('category', 'gel')->get();
-        $scrabs = Products::where('category', 'scrab')->get();
-        $oils = Products::where('category', 'oil')->get();
+        $hairs = Products::where('category', 'hair')->get();
+        $faces = Products::where('category', 'face')->get();
+        $bodies = Products::where('category', 'body')->get();
 
-        return view('home', compact('muses', 'gels', 'scrabs', 'oils'));
+        return view('home', compact('hairs', 'faces', 'bodies'));
     }
 
     public function create(Request $request): View

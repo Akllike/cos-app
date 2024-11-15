@@ -6,17 +6,17 @@ use App\Services\ProductsService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class MuseController extends Controller
+class HairController extends Controller
 {
     protected ProductsService $productsService;
-    public function showCardMuse(int $id): View
+    public function showCardHairs(int $id): View
     {
         $this->productsService = new ProductsService();
         $data = $this->productsService->getProduct($id, 'hair');
         return view('Catalog/Muses/showMuses')->with('data', $data);
     }
 
-    public function showProductMuses(): View
+    public function showProductHairs(): View
     {
         $this->productsService = new ProductsService();
         $data = $this->productsService->getProducts('hair');

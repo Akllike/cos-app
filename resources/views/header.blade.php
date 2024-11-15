@@ -19,10 +19,9 @@
                                 Каталог
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ route('muse.show') }}">Муссы</a></li>
-                                <li><a class="dropdown-item" href="{{ route('gel.show') }}">Гели</a></li>
-                                <li><a class="dropdown-item" href="{{ route('scrab.show') }}">Скрабы</a></li>
-                                <li><a class="dropdown-item" href="{{ route('oil.show') }}">Масла</a></li>
+                                <li><a class="dropdown-item" href="{{ route('muse.show') }}">Для волос</a></li>
+                                <li><a class="dropdown-item" href="{{ route('gel.show') }}">Для лица</a></li>
+                                <li><a class="dropdown-item" href="{{ route('scrab.show') }}">Для тела</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">

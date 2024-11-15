@@ -25,17 +25,14 @@ Route::prefix('search')->group(function () {
 Route::prefix('catalog')->group(function () {
     Route::get('/', 'App\Http\Controllers\CatalogController')->name('catalog');
 
-    Route::get('/musses', 'App\Http\Controllers\MuseController@showProductMuses')->name('muse.show');
-    Route::get('/musses/{id}', 'App\Http\Controllers\MuseController@showCardMuse')->name('muse.card');
+    Route::get('/hairs', 'App\Http\Controllers\HairController@showProductHairs')->name('muse.show');
+    Route::get('/hairs/{id}', 'App\Http\Controllers\HairController@showCardHairs')->name('muse.card');
 
-    Route::get('/gels', 'App\Http\Controllers\GelController@showProductGels')->name('gel.show');
-    Route::get('/gels/{id}', 'App\Http\Controllers\GelController@showCardGel')->name('gel.card');
+    Route::get('/faces', 'App\Http\Controllers\FaceController@showProductFaces')->name('gel.show');
+    Route::get('/faces/{id}', 'App\Http\Controllers\FaceController@showCardFaces')->name('gel.card');
 
-    Route::get('/scrabs', 'App\Http\Controllers\ScrabController@showProductScrabs')->name('scrab.show');
-    Route::get('/scrabs/{id}', 'App\Http\Controllers\ScrabController@showCardScrab')->name('scrab.card');
-
-    Route::get('/oils', 'App\Http\Controllers\OilController@showProductOils')->name('oil.show');
-    Route::get('/oils/{id}', 'App\Http\Controllers\OilController@showCardOil')->name('oil.card');
+    Route::get('/bodies', 'App\Http\Controllers\BodyController@showProductBodies')->name('scrab.show');
+    Route::get('/bodies/{id}', 'App\Http\Controllers\BodyController@showCardBodies')->name('scrab.card');
 });
 
 Route::get('/cart', 'App\Http\Controllers\CartController@index')->name('cart.index');

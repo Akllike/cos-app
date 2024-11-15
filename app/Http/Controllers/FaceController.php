@@ -6,17 +6,17 @@ use App\Services\ProductsService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class GelController extends Controller
+class FaceController extends Controller
 {
     protected ProductsService $productsService;
-    public function showCardGel(int $id): View
+    public function showCardFaces(int $id): View
     {
         $this->productsService = new ProductsService();
         $data = $this->productsService->getProduct($id, 'face');
         return view('Catalog/Gels/showGels')->with('data', $data);
     }
 
-    public function showProductGels(): View
+    public function showProductFaces(): View
     {
         $this->productsService = new ProductsService();
         $data = $this->productsService->getProducts('face');
