@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Services\TelegramService;
-use http\Exception\InvalidArgumentException;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use \Illuminate\Http\RedirectResponse;
@@ -83,9 +82,9 @@ class CartController extends Controller
         }
 
         try {
-            $this->telegramService = new TelegramService();
+            //$this->telegramService = new TelegramService();
             $this->cartService = new CartService();
-            $this->telegramService->sendMessage($send);
+            //$this->telegramService->sendMessage($send);
             $this->cartService->removeProductFromAllCart();
             return redirect()->back()->with('status', $status);
         }

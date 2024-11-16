@@ -91,8 +91,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                     </div>
                     <div class="modal-body">
-                        <p> {{ session('status') ?? session('status') }}</p>
-                        <p><br>В ближайшее время с вами свяжется менеджер и уточнит данные заказа и способы оплаты. </p>
+                        <p> {{ session('status') ?? session('status') . '<br>В ближайшее время с вами свяжется менеджер и уточнит данные заказа и способы оплаты.' }}</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
