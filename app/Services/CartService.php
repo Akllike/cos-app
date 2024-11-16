@@ -38,6 +38,16 @@ class CartService
         return $cart;
     }
 
+    public function removeProductFromAllCart(): void
+    {
+        $cart = session('cart', []);
+
+        if (isset($cart)) {
+            array_splice($cart, 0);
+            session(['cart' => $cart]);
+        }
+    }
+
     protected function getProductById(int $productId)
     {
         return Products::find($productId);

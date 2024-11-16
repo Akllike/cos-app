@@ -60,7 +60,9 @@ class CartController extends Controller
         }
 
         $this->telegramService = new TelegramService();
+        $this->cartService = new CartService();
         $this->telegramService->sendMessage($send);
+        $this->cartService->removeProductFromAllCart();
 
         return $this->index();
     }
