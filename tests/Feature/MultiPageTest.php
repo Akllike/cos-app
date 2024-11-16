@@ -14,27 +14,21 @@ class MultiPageTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_visit_musses_page(): void
+    public function test_visit_hairs_page(): void
     {
-        $response = $this->get('/catalog/musses');
+        $response = $this->get('/catalog/hairs');
         $response->assertStatus(200);
     }
 
-    public function test_visit_scrabs_page(): void
+    public function test_visit_faces_page(): void
     {
-        $response = $this->get('/catalog/scrabs');
+        $response = $this->get('/catalog/faces');
         $response->assertStatus(200);
     }
 
-    public function test_visit_oils_page(): void
+    public function test_visit_bodies_page(): void
     {
-        $response = $this->get('/catalog/oils');
-        $response->assertStatus(200);
-    }
-
-    public function test_visit_gels_page(): void
-    {
-        $response = $this->get('/catalog/gels');
+        $response = $this->get('/catalog/bodies');
         $response->assertStatus(200);
     }
 
