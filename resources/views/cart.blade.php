@@ -91,7 +91,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                     </div>
                     <div class="modal-body">
-                        <p> {{ session('status') ?? 'Форма успешно отправлена!' }}</p>
+                        <p> {{ session('status') ?? 'Ваш заказ успешно отправлен!' }}</p>
                         <p><br>В ближайшее время с вами свяжется менеджер и уточнит данные заказа и способы оплаты. </p>
                     </div>
                     <div class="modal-footer">
