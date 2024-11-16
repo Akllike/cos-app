@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\TelegramService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use \Illuminate\Http\RedirectResponse;
 use App\Services\CartService;
 
 class CartController extends Controller
@@ -41,7 +42,7 @@ class CartController extends Controller
         return view('cart')->with('cart', $cart);
     }
 
-    public function sendTelegram(Request $request): View
+    public function sendTelegram(Request $request): RedirectResponse
     {
         $send = '';
         $number = $request->input('number');
@@ -64,6 +65,6 @@ class CartController extends Controller
         $this->telegramService->sendMessage($send);
         $this->cartService->removeProductFromAllCart();
 
-        return $this->index();
+        return redirect()->back()->with('status', 'Форма успешно отправлена!');
     }
 }
