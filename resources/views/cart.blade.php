@@ -87,11 +87,12 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Заголовок модального окна</h5>
+                        <h5 class="modal-title">Успешно!</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                     </div>
                     <div class="modal-body">
-                        {{ session('status') ?? 'Форма успешно отправлена!' }}
+                        <p> {{ session('status') ?? 'Форма успешно отправлена!' }}</p>
+                        <p><br>В ближайшее время с вами свяжется менеджер и уточнит данные заказа и способы оплаты. </p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
