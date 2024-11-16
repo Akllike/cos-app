@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\TelegramService;
+use http\Exception\InvalidArgumentException;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use \Illuminate\Http\RedirectResponse;
@@ -48,10 +49,31 @@ class CartController extends Controller
         $number = $request->input('number');
         $name = $request->input('name');
         $message = $request->input('message');
-        $send = "Новый заказ! \nИмя: " . $number . " \nНомер: " . $name . " \nСообщение: " . $message . "\n\n";
-        $cart = session('cart', null);
 
+        if(empty($number))
+        {
+            $status = 'Вы не указали имя!';
+            return redirect()->back()->with('status', $status);
+        }
+        elseif(empty($name))
+        {
+            $status = 'Вы не указани номер телефона!';
+            return redirect()->back()->with('status', $status);
+        }
+        elseif(empty($message))
+        {
+            $status = 'Ваш заказ успешно отправлен!';
+            $send = "Новый заказ! \nИмя: " . $number . " \nНомер: " . $name . "\n\n";
+        }
+        else
+        {
+            $status = 'Ваш заказ успешно отправлен!';
+            $send = "Новый заказ! \nИмя: " . $number . " \nНомер: " . $name . " \nСообщение: " . $message . "\n\n";
+        }
+
+        $cart = session('cart', null);
         $i = 1;
+
         foreach($cart as $item)
         {
             $send .= $i . ". Название: " . $item['name'] . "\n";
@@ -60,11 +82,15 @@ class CartController extends Controller
             $i++;
         }
 
-        $this->telegramService = new TelegramService();
-        $this->cartService = new CartService();
-        $this->telegramService->sendMessage($send);
-        $this->cartService->removeProductFromAllCart();
-
-        return redirect()->back()->with('status', 'Форма успешно отправлена!');
+        try {
+            $this->telegramService = new TelegramService();
+            $this->cartService = new CartService();
+            $this->telegramService->sendMessage($send);
+            $this->cartService->removeProductFromAllCart();
+            return redirect()->back()->with('status', $status);
+        }
+        catch (\Exception $e) {
+            return redirect()->back()->with('status', $e->getMessage());
+        }
     }
 }
