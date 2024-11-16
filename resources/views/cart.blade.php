@@ -37,19 +37,52 @@
             <p>Корзина пуста</p>
         @endif
 
-        <form action="{{ route('cart.tg') }}" method="post" class="m-1">
-            @csrf
-            <div class="mb-3">
-                <label class="form-label">Адрес электронной почты</label>
-                <input type="text" class="form-control" name="number" id="number" placeholder="123">
-                <input type="text" class="form-control" name="name" id="name" placeholder="123">
+        <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Оформление заказа</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                    </div>
+                    <form action="{{ route('cart.tg') }}" method="post" class="m-1">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label class="form-label">Ваше имя</label>
+                                <input type="text" class="form-control" name="number" id="number" placeholder="Иван">
+                                <label class="form-label">Ваш номер телефона</label>
+                                <input type="text" class="form-control" name="name" id="name" placeholder="+79111233321">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Пожелания к заказу</label>
+                                <textarea class="form-control" name="message" id="message" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-outline-dark border-2 remove-cart">Отправить</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Пример текстового поля</label>
-                <textarea class="form-control" name="message" id="message" rows="3"></textarea>
+        </div>
+        <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Модалка 2</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                    </div>
+                    <div class="modal-body">
+                        Скройте это модальное окно и покажите первое с помощью кнопки ниже.
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Вернуться к первому</button>
+                    </div>
+                </div>
             </div>
-            <button type="submit" class="btn btn-danger">Отправить</button>
-        </form>
+        </div>
+        <button class="btn btn-outline-dark border-2 remove-cart" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Заказать</button>
+
     </div>
     @csrf
 @endsection
