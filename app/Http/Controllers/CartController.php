@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use \Illuminate\Http\RedirectResponse;
 use App\Services\CartService;
+use Illuminate\Http\JsonResponse;
 
 class CartController extends Controller
 {
@@ -42,7 +43,7 @@ class CartController extends Controller
         return view('cart')->with('cart', $cart);
     }
 
-    public function sendTelegram(Request $request): RedirectResponse
+    public function sendTelegram(Request $request): JsonResponse
     {
         $send = '';
         $number = $request->input('number');
@@ -52,12 +53,12 @@ class CartController extends Controller
         if(empty($number))
         {
             $status = 'Вы не указали имя!';
-            return redirect()->back()->with('error', $status);
+            return response()->json(['error' => $status]);
         }
         elseif(empty($name))
         {
             $status = 'Вы не указани номер телефона!';
-            return redirect()->back()->with('error', $status);
+            return response()->json(['error' => $status]);
         }
         elseif(empty($message))
         {
@@ -86,10 +87,10 @@ class CartController extends Controller
             $this->cartService = new CartService();
             //$this->telegramService->sendMessage($send);
             $this->cartService->removeProductFromAllCart();
-            return redirect()->back()->with('success', $status);
+            return response()->json(['error' => false]);
         }
         catch (\Exception $e) {
-            return redirect()->back()->with('success', $e->getMessage());
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 }
