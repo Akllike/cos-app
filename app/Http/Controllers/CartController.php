@@ -52,12 +52,12 @@ class CartController extends Controller
         if(empty($number))
         {
             $status = 'Вы не указали имя!';
-            return redirect()->back()->with('status', $status);
+            return redirect()->back()->with('error', $status);
         }
         elseif(empty($name))
         {
             $status = 'Вы не указани номер телефона!';
-            return redirect()->back()->with('status', $status);
+            return redirect()->back()->with('error', $status);
         }
         elseif(empty($message))
         {
@@ -86,10 +86,10 @@ class CartController extends Controller
             $this->cartService = new CartService();
             //$this->telegramService->sendMessage($send);
             $this->cartService->removeProductFromAllCart();
-            return redirect()->back()->with('status', $status);
+            return redirect()->back()->with('success', $status);
         }
         catch (\Exception $e) {
-            return redirect()->back()->with('status', $e->getMessage());
+            return redirect()->back()->with('success', $e->getMessage());
         }
     }
 }

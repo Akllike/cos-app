@@ -91,7 +91,8 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                     </div>
                     <div class="modal-body">
-                        <p> {{ session('status') ?? session('status') }}</p>
+                        <p>{{ session('error') ?? session('error') }}</p>
+                        <p>{{ session('success') ?? session('success') }}</p>
                         <p><br>В ближайшее время с вами свяжется менеджер и уточнит данные заказа и способы оплаты. </p>
                     </div>
                     <div class="modal-footer">
@@ -103,7 +104,7 @@
 
         <script>
             $(document).ready(function() {
-                @if(session('status'))
+                @if(session('success') || session('error'))
                 $('#confirmationModal').modal('show');
                 @endif
             });
