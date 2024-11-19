@@ -1,5 +1,6 @@
 import './bootstrap';
 import 'bootstrap';
+import toastr from 'toastr';
 
 const addToCart = async (id, quantity) => {
     let data = {
@@ -50,7 +51,9 @@ const removeFromCart = async id => {
 
     if(!document.querySelectorAll('.cart tbody tr').length) {
         const cartTable = document.querySelector('.cart');
-        cartTable.outerHTML = `<p>Корзина пуста</p>`;
+        if(cartTable) {
+            cartTable.outerHTML = `<p>Корзина пуста</p>`;
+        }
     }
 };
 
@@ -59,10 +62,14 @@ const openModal = items => {
     modal.innerHTML = '';
     for (const index in items) {
         const tr = document.createElement('tr');
+        tr.setAttribute('data-id', index);
         tr.innerHTML = `
             <td>${items[index].name}</td>
             <td>${items[index].quantity} шт.</td>
             <td>${items[index].price * items[index].quantity} руб.</td>
+            <td>
+                <button class="btn btn-danger btn-sm remove-cart">Удалить</button>
+            </td>
         `;
         modal.append(tr);
     }
@@ -112,14 +119,22 @@ document.querySelectorAll('[action="https://netmeta.ru/cart/remove"]').forEach(e
 // добавление в корзину
 document.querySelectorAll('.add-cart').forEach(element => {
     element.addEventListener('click', () => {
-        const id = element.closest('.card').getAttribute('data-id');
-        addToCart(id);
+        const dataIdEl = element.closest('[data-id]');
+        const id = dataIdEl.getAttribute('data-id');
+
+        // Ищем инпут с классом quantity
+        let quantity = 1;
+        if(dataIdEl.querySelector('.quantity')) {
+            quantity = dataIdEl.querySelector('.quantity').value;
+        }
+
+        addToCart(id, quantity);
     });
 });
-// удалить в корзине
-document.querySelectorAll('.remove-cart').forEach(element => {
-    element.addEventListener('click', () => {
-        const id = element.closest('tr').getAttribute('data-id');
+// удалить в корзине и в модалке
+document.addEventListener('click', event => {
+    if(event.target.classList.contains('remove-cart')) {
+        const id = event.target.closest('tr').getAttribute('data-id');
         removeFromCart(id);
-    });
+    }
 });
