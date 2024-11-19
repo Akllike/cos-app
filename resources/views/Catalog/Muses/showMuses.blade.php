@@ -66,7 +66,7 @@
                             </div>
                             <div class="block" style="margin-right: 15px;">
                                 <a href="#" class="shadow btn btn-primary">Заказать на OZON</a>
-                            </div>
+                             </div>
                         </div>
                     </div>
 
