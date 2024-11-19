@@ -119,8 +119,16 @@ document.querySelectorAll('[action="https://netmeta.ru/cart/remove"]').forEach(e
 // добавление в корзину
 document.querySelectorAll('.add-cart').forEach(element => {
     element.addEventListener('click', () => {
-        const id = element.closest('.card').getAttribute('data-id');
-        addToCart(id);
+        const dataIdEl = element.closest('[data-id]');
+        const id = dataIdEl.getAttribute('data-id');
+
+        // Ищем инпут с классом quantity
+        let quantity = 1;
+        if(dataIdEl.querySelector('.quantity')) {
+            quantity = dataIdEl.querySelector('.quantity').value;
+        }
+
+        addToCart(id, quantity);
     });
 });
 // удалить в корзине и в модалке
