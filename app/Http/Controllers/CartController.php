@@ -35,10 +35,11 @@ class CartController extends Controller
 
     public function remove(Request $request): View
     {
-        $productId = $request->input('product_id');
+        $productId  = $request->input('product_id');
+        $quantity   = $request->input('quantity');
 
         $this->cartService = new CartService();
-        $cart = $this->cartService->removeProductFromCart($productId);
+        $cart = $this->cartService->removeProductFromCart($productId, $quantity);
 
         return view('cart')->with('cart', $cart);
     }

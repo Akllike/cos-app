@@ -43,14 +43,23 @@ class CartService
      * Удаление одной карточки с сессии
      *
      * @param int $productId ID карточки
+     * @param int $quantity
      * @return array
      */
-    public function removeProductFromCart(int $productId): array
+    public function removeProductFromCart(int $productId, int $quantity): array
     {
         $cart = session('cart', []);
 
+        if($quantity == 0){
+            if (isset($cart[$productId])) {
+                unset($cart[$productId]);
+                session(['cart' => $cart]);
+                return $cart;
+            }
+        }
+
         if (isset($cart[$productId])) {
-            unset($cart[$productId]);
+            $cart[$productId]['quantity'] -= $quantity;
             session(['cart' => $cart]);
         }
 
