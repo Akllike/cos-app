@@ -33,7 +33,7 @@ class CartController extends Controller
         return json_encode($cart, true);
     }
 
-    public function remove(Request $request): View
+    public function remove(Request $request): string
     {
         $productId  = $request->input('product_id');
         $quantity   = $request->input('quantity');
@@ -41,7 +41,7 @@ class CartController extends Controller
         $this->cartService = new CartService();
         $cart = $this->cartService->removeProductFromCart($productId, $quantity);
 
-        return view('cart')->with('cart', $cart);
+        return json_encode($cart, true);
     }
 
     public function sendTelegram(Request $request): JsonResponse
