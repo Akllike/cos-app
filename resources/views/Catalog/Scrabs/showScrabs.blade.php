@@ -53,7 +53,12 @@
                                 </svg>
                             </button>
                         </form>--}}
-                        <input type="text" class="form-control quantity" placeholder="Количество" value="1">
+                        <div class="quantity-block" style="display: flex">
+                            <button class="btn btn-primary quantity-minus" style="margin: 2px;">-</button>
+                            <p class="quantity" style="margin: 2px;">1</p>
+                            <button class="btn btn-primary quantity-plus" style="margin: 2px;">+</button>
+                        </div>
+                        <!-- <input type="text" class="form-control quantity" placeholder="Количество" value="1"> -->
                         <button type="submit" class="btn btn-outline-dark border-2 m-1 shadow add-cart">
                             В корзину
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-basket" viewBox="0 0 16 16">
