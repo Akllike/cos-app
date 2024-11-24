@@ -54,9 +54,9 @@
                             </button>
                         </form>--}}
                         <div class="quantity-block" style="display: flex">
-                            <button class="btn btn-primary quantity-minus" style="margin: 2px;">-</button>
-                            <p class="quantity" style="margin: 2px;">1</p>
-                            <button class="btn btn-primary quantity-plus" style="margin: 2px;">+</button>
+                            <button class="btn quantity-minus" style="margin: 2px; width: 30px; height: 30px;">-</button>
+                            <p class="quantity" style="margin: 2px; font-size: 25px;">1</p>
+                            <button class="btn quantity-plus" style="margin: 2px; width: 30px; height: 30px;">+</button>
                         </div>
                         <!-- <input type="text" class="form-control quantity" placeholder="Количество" value="1"> -->
                         <button type="submit" class="btn btn-outline-dark border-2 m-1 shadow add-cart">
