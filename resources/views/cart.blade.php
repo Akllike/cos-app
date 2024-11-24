@@ -21,7 +21,11 @@
                     <tr data-id="{{$item['product_id']}}">
                         <td>{{ $item['name'] }}</td>
                         <td>{{ $item['price'] }}</td>
-                        <td>{{ $item['quantity'] }}</td>
+                        <td>
+                            <button class="btn btn-sm cart-minus">-</button>
+                            {{ $item['quantity'] }}
+                            <button class="btn btn-sm cart-plus">+</button>
+                        </td>
                         <td>{{ $item['price'] * $item['quantity'] }}</td>
                         <td>
                             <!-- <form action="{{ route('cart.remove') }}" method="post">

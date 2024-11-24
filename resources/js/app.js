@@ -19,62 +19,100 @@ const addToCart = async (id, quantity) => {
 
     getElementButton(id).textContent = 'Добавлено';
 
-    let storage = localStorage.getItem('cart');
-    if (storage) {
-        storage = JSON.parse(storage);
-    } else {
-        storage = [];
-    }
-
-    storage.push(id);
-    setStorage(storage);
-
     openModal(res);
+
+    updateCart(res);
 };
 
-const removeFromCart = async id => {
+const removeFromCart = async (id, quantity = 0) => {
     const req = await fetch('/cart/remove', {
         method: 'post',
         body: JSON.stringify({
             product_id: id,
-            _token: document.querySelector('[name="_token"]').value
+            _token: document.querySelector('[name="_token"]').value,
+            quantity: quantity
         }),
         headers: {
             'content-type': 'application/json'
         }
     });
-    const res = await req.text();
+    const res = await req.json();
 
-    removeStorage(id);
+    openModal(res);
 
-    document.querySelector(`tr[data-id="${id}"]`).remove();
-
-    if(!document.querySelectorAll('.cart tbody tr').length) {
-        const cartTable = document.querySelector('.cart');
-        if(cartTable) {
-            cartTable.outerHTML = `<p>Корзина пуста</p>`;
-        }
-    }
+    updateCart(res);
 };
 
 const openModal = items => {
     const modal = document.querySelector('#staticBackdrop #data-display');
+    if(!modal) {
+        return;
+    }
     modal.innerHTML = '';
+
+    const ids = [];
     for (const index in items) {
         const tr = document.createElement('tr');
         tr.setAttribute('data-id', index);
         tr.innerHTML = `
             <td>${items[index].name}</td>
-            <td>${items[index].quantity} шт.</td>
+            <td>
+                <button class="btn btn-sm cart-minus">-</button>
+                ${items[index].quantity} шт.
+                <button class="btn btn-sm cart-plus">+</button>
+            </td>
             <td>${items[index].price * items[index].quantity} руб.</td>
             <td>
                 <button class="btn btn-danger btn-sm remove-cart">Удалить</button>
             </td>
         `;
         modal.append(tr);
+
+        ids.push(index);
     }
 
-    $('#staticBackdrop').modal('toggle');
+    if(!$('#staticBackdrop').hasClass('show'))
+        $('#staticBackdrop').modal('toggle');
+
+    setStorage(ids);
+};
+const updateCart = items => {
+    const table = document.querySelector('.table.cart tbody');
+
+    if(!table) {
+        return;
+    }
+
+    table.innerHTML = '';
+
+    if(!Object.keys(items).length) {
+        setStorage([]);
+        table.closest('.cart').outerHTML = `<p>Корзина пуста</p>`;
+        return;
+    }
+
+    const ids = [];
+    for (const index in items) {
+        const tr = document.createElement('tr');
+        tr.setAttribute('data-id', index);
+        tr.innerHTML = `
+            <td>${items[index].name}</td>
+            <td>${items[index].price}</td>
+            <td>
+                <button class="btn btn-sm cart-minus">-</button>
+                ${items[index].quantity} шт.
+                <button class="btn btn-sm cart-plus">+</button>
+            </td>
+            <td>${items[index].price * items[index].quantity} руб.</td>
+            <td>
+                <button class="btn btn-danger btn-sm remove-cart">Удалить</button>
+            </td>
+        `;
+        table.append(tr);
+        ids.push(index);
+    }
+
+    setStorage(ids);
 };
 
 const getStorage = () => {
@@ -136,5 +174,13 @@ document.addEventListener('click', event => {
     if(event.target.classList.contains('remove-cart')) {
         const id = event.target.closest('tr').getAttribute('data-id');
         removeFromCart(id);
+    }
+    if(event.target.classList.contains('cart-plus')) {
+        const id = event.target.closest('tr').getAttribute('data-id');
+        addToCart(id, 1);
+    }
+    if(event.target.classList.contains('cart-minus')) {
+        const id = event.target.closest('tr').getAttribute('data-id');
+        removeFromCart(id, 1);
     }
 });
