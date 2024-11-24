@@ -54,18 +54,21 @@ class CartService
             if (isset($cart[$productId])) {
                 unset($cart[$productId]);
                 session(['cart' => $cart]);
-                return $cart;
             }
         }
-
-        if (isset($cart[$productId])) {
-            $cart[$productId]['quantity'] -= $quantity;
-            session(['cart' => $cart]);
+        else
+        {
+            if (isset($cart[$productId])) {
+                $cart[$productId]['quantity'] -= $quantity;
+                if($cart[$productId]['quantity'] <= 0) {
+                    unset($cart[$productId]);
+                    session(['cart' => $cart]);
+                }
+                session(['cart' => $cart]);
+            }
         }
-
         return $cart;
     }
-
     /**
      * Удаление всех карточек с сессии
      *
