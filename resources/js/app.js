@@ -140,6 +140,23 @@ const getElementButton = id => {
     return document.querySelector(`[data-id="${id}"] .add-cart`) || {};
 };
 
+const quantityToggle = (type) => {
+    const block = document.querySelector('.quantity-block');
+    const currentValueBlock = block.querySelector('.quantity');
+
+    let value = +currentValueBlock.textContent;
+    if(type == 'plus') {
+        value++;
+    } else {
+        value--;
+        if(value <= 0) {
+            value = 1;
+        }
+    }
+
+    currentValueBlock.textContent = value;
+};
+
 // Слушатели
 document.addEventListener('DOMContentLoaded', () => {
     const storage = getStorage();
@@ -162,8 +179,9 @@ document.querySelectorAll('.add-cart').forEach(element => {
 
         // Ищем инпут с классом quantity
         let quantity = 1;
+
         if(dataIdEl.querySelector('.quantity')) {
-            quantity = dataIdEl.querySelector('.quantity').value;
+            quantity = dataIdEl.querySelector('.quantity').textContent;
         }
 
         addToCart(id, quantity);
@@ -182,5 +200,11 @@ document.addEventListener('click', event => {
     if(event.target.classList.contains('cart-minus')) {
         const id = event.target.closest('tr').getAttribute('data-id');
         removeFromCart(id, 1);
+    }
+    if(event.target.classList.contains('quantity-plus')) {
+        quantityToggle('plus');
+    }
+    if(event.target.classList.contains('quantity-minus')) {
+        quantityToggle('minus');
     }
 });
