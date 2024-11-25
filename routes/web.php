@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +15,8 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', 'App\Http\Controllers\IndexController@index')->name('index');
+Route::get('/about', 'App\Http\Controllers\IndexController@showAbout')->name('about');
+Route::get('/delivery', 'App\Http\Controllers\IndexController@showDelivery')->name('delivery');
 
 Route::prefix('search')->group(function () {
     Route::get('/', 'App\Http\Controllers\SearchController')->name('search');
@@ -35,10 +36,12 @@ Route::prefix('catalog')->group(function () {
     Route::get('/bodies/{id}', 'App\Http\Controllers\BodyController@showCardBodies')->name('body.card');
 });
 
-Route::get('/cart', 'App\Http\Controllers\CartController@index')->name('cart.index');
-Route::post('/cart/add', 'App\Http\Controllers\CartController@add')->name('cart.add');
-Route::post('/cart/remove', 'App\Http\Controllers\CartController@remove')->name('cart.remove');
-Route::post('/cart/telegram', 'App\Http\Controllers\CartController@sendTelegram')->name('cart.tg');
+Route::prefix('cart')->group(function () {
+    Route::get('/', 'App\Http\Controllers\CartController@index')->name('cart.index');
+    Route::post('/add', 'App\Http\Controllers\CartController@add')->name('cart.add');
+    Route::post('/remove', 'App\Http\Controllers\CartController@remove')->name('cart.remove');
+    Route::post('/telegram', 'App\Http\Controllers\CartController@sendTelegram')->name('cart.tg');
+});
 
 Auth::routes();
 

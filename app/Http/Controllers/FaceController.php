@@ -13,13 +13,13 @@ class FaceController extends Controller
     {
         $this->productsService = new ProductsService();
         $data = $this->productsService->getProduct($id, 'face');
-        return view('Catalog/Gels/showGels')->with('data', $data);
+        return view('Catalog/Faces/showFaces')->with('data', $data);
     }
 
     public function showProductFaces(): View
     {
         $this->productsService = new ProductsService();
         $data = $this->productsService->getProducts('face');
-        return view('Catalog/Gels/gels', compact('data'));
+        return view('Catalog/Faces/faces', compact('data'));
     }
 }

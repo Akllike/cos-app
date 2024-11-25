@@ -13,13 +13,13 @@ class HairController extends Controller
     {
         $this->productsService = new ProductsService();
         $data = $this->productsService->getProduct($id, 'hair');
-        return view('Catalog/Muses/showMuses')->with('data', $data);
+        return view('Catalog/Hairs/showHairs')->with('data', $data);
     }
 
     public function showProductHairs(): View
     {
         $this->productsService = new ProductsService();
         $data = $this->productsService->getProducts('hair');
-        return view('Catalog/Muses/muses', compact('data'));
+        return view('Catalog/Hairs/hairs', compact('data'));
     }
 }

@@ -1,5 +1,5 @@
 @section('sidebar')
-    <div class="container p-0">
+    <div class="container p-0 sticky-top">
         <nav class="navbar sticky-top navbar-expand-lg" style="background-color: #ffffff;" id="myTab" role="tablist">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Переключатель навигации">
@@ -19,16 +19,16 @@
                                 Каталог
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ route('hair.show') }}">Для волос</a></li>
-                                <li><a class="dropdown-item" href="{{ route('face.show') }}">Для лица</a></li>
-                                <li><a class="dropdown-item" href="{{ route('body.show') }}">Для тела</a></li>
+                                <li><a class="dropdown-item" href="{{ route('hair.show') }}"><img style="margin-right: 5px;" width="18" height="18" src="https://img.icons8.com/carbon-copy/100/womans-hair.png" alt="womans-hair"/>Для волос</a></li>
+                                <li><a class="dropdown-item" href="{{ route('face.show') }}"><img style="margin-right: 5px;" width="18" height="18" src="https://img.icons8.com/ios/50/bavarian-girl.png" alt="bavarian-girl"/>Для лица</a></li>
+                                <li><a class="dropdown-item" href="{{ route('body.show') }}"><img style="margin-right: 5px;" width="18" height="18" src="https://img.icons8.com/ios/50/female-back.png" alt="female-back"/>Для тела</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="#">О нас</a>
+                            <a class="nav-link " href="{{ route('about') }}">О нас</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="#">Оплата и доставка</a>
+                            <a class="nav-link " href="{{ route('delivery') }}">Оплата и доставка</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="{{ route('cart.index') }}">

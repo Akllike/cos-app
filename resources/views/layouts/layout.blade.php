@@ -18,7 +18,6 @@
     @yield('header')
     @yield('content')
     @yield('modals')
-
     @yield('footer')
 </body>
 <style>

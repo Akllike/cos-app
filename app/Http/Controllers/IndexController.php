@@ -15,4 +15,14 @@ class IndexController extends Controller
         //dd($cart);
         return view('main', compact('data', 'cart'));
     }
+
+    public function showAbout(): View
+    {
+        return view('about');
+    }
+
+    public function showDelivery(): View
+    {
+        return view('delivery');
+    }
 }

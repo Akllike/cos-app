@@ -1,6 +1,9 @@
 import './bootstrap';
 import 'bootstrap';
 import toastr from 'toastr';
+import ScrollReveal from "scrollreveal";
+
+ScrollReveal().reveal('.container');
 
 const addToCart = async (id, quantity) => {
     let data = {

@@ -85,7 +85,11 @@
                 </div>
             </div>
         </div>
-        <button class="btn btn-outline-dark border-2 remove-cart" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Заказать</button>
+        @if(count($cart) > 0)
+            <button class="btn btn-outline-dark border-2 remove-cart" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Заказать</button>
+        @else
+            <button class="btn btn-outline-dark disabled border-2 remove-cart" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Заказать</button>
+        @endif
 
         <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">

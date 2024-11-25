@@ -13,13 +13,13 @@ class BodyController extends Controller
     {
         $this->productsService = new ProductsService();
         $data = $this->productsService->getProduct($id, 'body');
-        return view('Catalog/Scrabs/showScrabs')->with('data', $data);
+        return view('Catalog/Bodies/showBodies')->with('data', $data);
     }
 
     public function showProductBodies(): View
     {
         $this->productsService = new ProductsService();
         $data = $this->productsService->getProducts('body');
-        return view('Catalog/Scrabs/scrabs', compact('data'));
+        return view('Catalog/Bodies/bodies', compact('data'));
     }
 }

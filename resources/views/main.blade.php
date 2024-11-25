@@ -53,7 +53,7 @@
 
     <div class="container d-flex flex-wrap justify-content-around align-items-center mt-4 mb-4 wrap-md-4">
         @foreach($data as $item)
-            <div class="card h-100 mb-4" data-id="{{$item['id']}}" style="width: 17rem;">
+            <div class="card h-100 mb-4 shadow" data-id="{{$item['id']}}" style="width: 17rem;">
                 <div class="d-flex justify-content-center">
                     <img src="{{ $item['image'] }}" class="card-img-top w-50" alt="...">
                 </div>
@@ -91,19 +91,19 @@
     </div>
 
     <div class="container d-flex flex-wrap justify-content-around align-items-center mt-4 mb-4 wrap-md-4">
-        <div class="card mb-4 p-2 border-0 d-flex flex-column justify-content-end" style="width: 17rem; height: 21rem; background-image: url('https://i.pinimg.com/originals/30/b9/80/30b980a6eb54ed73b399458465328b64.jpg'); background-size: cover; background-position: center;">
+        <div class="card mb-4 p-2 border-0 d-flex flex-column justify-content-end shadow" style="width: 17rem; height: 21rem; background-image: url('https://i.pinimg.com/originals/30/b9/80/30b980a6eb54ed73b399458465328b64.jpg'); background-size: cover; background-position: center;">
             <h5 style="color: white">Проблемная кожа</h5>
             <a href="#" class="btn btn-light btn-sm border-1 w-50">Подробнее</a>
         </div>
-        <div class="card mb-4 p-2 border-0 d-flex flex-column justify-content-end" style="width: 17rem; height: 19rem;  background-image: url('https://i.pinimg.com/736x/d0/5a/af/d05aaf7b2eb3e3345dc1d3b631bff18b.jpg'); background-size: cover; background-position: center;">
+        <div class="card mb-4 p-2 border-0 d-flex flex-column justify-content-end shadow" style="width: 17rem; height: 19rem;  background-image: url('https://i.pinimg.com/736x/d0/5a/af/d05aaf7b2eb3e3345dc1d3b631bff18b.jpg'); background-size: cover; background-position: center;">
             <h5 style="color: white">Сухая кожа</h5>
             <a href="#" class="btn btn-light btn-sm border-1 w-50">Подробнее</a>
         </div>
-        <div class="card mb-4 p-2 border-0 d-flex flex-column justify-content-end" style="width: 17rem; height: 21rem;  background-image: url('https://avatars.mds.yandex.net/i?id=e04c502a742316928a18830259f5895f_l-4120244-images-thumbs&n=13'); background-size: cover; background-position: center;">
+        <div class="card mb-4 p-2 border-0 d-flex flex-column justify-content-end shadow" style="width: 17rem; height: 21rem;  background-image: url('https://avatars.mds.yandex.net/i?id=e04c502a742316928a18830259f5895f_l-4120244-images-thumbs&n=13'); background-size: cover; background-position: center;">
             <h5 style="color: white">Возрастная кожа</h5>
             <a href="#" class="btn btn-light btn-sm border-1 w-50">Подробнее</a>
         </div>
-        <div class="card mb-4 p-2 border-0 d-flex flex-column justify-content-end" style="width: 17rem; height: 19rem;  background-image: url('https://img.the-village.kz/the-village.com.kz/post_image-image/P94I1oxWXVZ6hv-I8HdSIw.jpg'); background-size: cover; background-position: center;">
+        <div class="card mb-4 p-2 border-0 d-flex flex-column justify-content-end shadow" style="width: 17rem; height: 19rem;  background-image: url('https://img.the-village.kz/the-village.com.kz/post_image-image/P94I1oxWXVZ6hv-I8HdSIw.jpg'); background-size: cover; background-position: center;">
             <h5 style="color: white">Пигменция</h5>
             <a href="#" class="btn btn-light btn-sm border-1 w-50">Подробнее</a>
         </div>
@@ -144,38 +144,6 @@
             </div>--}}
         </div>
     </div>
-
-    <style>
-        .line-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin: 20px; /* Отступы для красоты */
-        }
-
-        .dot {
-            width: 10px; /* Ширина точки */
-            height: 10px; /* Высота точки */
-            border-radius: 50%; /* Закругление для получения круга */
-            background-color: black; /* Цвет точки */
-        }
-
-        .line {
-            flex-grow: 1; /* Линия занимает оставшееся пространство */
-            height: 2px; /* Высота линии */
-            background-color: black; /* Цвет линии */
-            max-width: 130px;
-        }
-
-        @media (min-width: 768px) {
-            .line {
-                flex-grow: 1; /* Линия занимает оставшееся пространство */
-                height: 2px; /* Высота линии */
-                background-color: black; /* Цвет линии */
-                max-width: 1030px;
-            }
-        }
-    </style>
 
     <div class="modal fade-in-down" style="background-color: white; modal-show-transform: scale(.8);" id="myModal">
         <div class="d-flex flex-column align-items-center justify-content-center" style="height: 100%;">
