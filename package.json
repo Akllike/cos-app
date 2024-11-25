@@ -12,7 +12,6 @@
     },
     "dependencies": {
         "bootstrap": "^5.3.3",
-        "scrollreveal": "^4.0.9",
         "toastr": "^2.1.4"
     }
 }
