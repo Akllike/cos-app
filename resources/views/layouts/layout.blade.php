@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
     <meta name="description" content="Косметика для твоей жизни ❤">
+    <meta property="og:title" content="@yield('title')" />
+    <meta property="og:description" content="Косметика для твоей жизни ❤" />
     <meta property="og:image" content="{{ url('storage/img/navbar.jpg') }}" />
     <meta property="og:url" content="{{ route('index') }}" />
     @vite(['resources/js/app.js', 'resources/css/app.css'])
