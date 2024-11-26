@@ -5,22 +5,22 @@
     <div class="container d-flex flex-column rounded-3" style="background-image: url({{ url('storage/img/bg-header.jpg') }}); background-size: cover; background-position: center;">
         <div class="container mt-4 p-1 d-flex flex-wrap justify-content-between" style="height: 50vh;">
             <div class="d-flex">
-                <div class="w-10 d-flex flex-column align-items-center">
+                <a href="{{ url('catalog/hairs') }}" class="w-10 d-flex flex-column align-items-center">
                     <img class="m-2 rounded-circle" style="width: 75px" src="https://sun1-21.userapi.com/s/v1/if1/rMm-6u0GoPTLNsjTHMsj1HBwjoTBNt0Jex6Hdvaz9y3_eqtlDg9aqWqiUpG-k1GS6A3Hwyfy.jpg?size=100x100&quality=96&crop=9,0,453,453&ava=1" alt="">
                     <p class="badge" style="color: white">Волосы</p>
-                </div>
-                <div class="w-10 d-flex flex-column align-items-center">
+                </a>
+                <a href="{{ url('catalog/faces') }}" class="w-10 d-flex flex-column align-items-center">
                     <img class="m-2 rounded-circle" style="width: 75px" src="https://sun6-23.userapi.com/s/v1/ig2/Q4JpwR8LylYMlTJW2KAi20EHX5-DJF0-QgzXW8GDoEBXyYrGaTqdbohw-nDeL35DYb0UZQ5FXdEZZLXTuZ8k001R.jpg?size=100x100&quality=96&crop=0,0,735,735&ava=1" alt="">
                     <p class="badge" style="color: white">Лицо</p>
-                </div>
-                <div class="w-10 d-flex flex-column align-items-center">
+                </a>
+                <a href="{{ url('catalog/bodies') }}" class="w-10 d-flex flex-column align-items-center">
                     <img class="m-2 rounded-circle" style="width: 75px" src="https://sun9-12.userapi.com/c11073/u171156377/d_56da7093.jpg" alt="">
                     <p class="badge" style="color: white">Тело</p>
-                </div>
-                <div class="w-10 d-flex flex-column align-items-center">
+                </a>
+                <a class="w-10 d-flex flex-column align-items-center">
                     <img class="m-2 rounded-circle" style="width: 75px" src="https://avatars.mds.yandex.net/i?id=0edae5e99bc3f992433dcd0f4bec976d_sr-9666026-images-thumbs&n=13" alt="">
                     <p class="badge" style="color: white">Подборки</p>
-                </div>
+                </a>
             </div>
             <div class="d-flex">
                 <div class="w-10 d-flex flex-column align-items-center">
@@ -136,12 +136,54 @@
                 </div>
             </div>
         </div>
-        <div class="w-100 mb-4 p-4 border-0 d-flex justify-content-evenly rounded-3" style="height: 30rem; background-image: url('https://i.pinimg.com/originals/0d/a5/93/0da593203807e2d57fb98bd877eb0a53.jpg'); background-size: cover; background-position: center;">
-            {{--<div class="d-flex flex-column"><p>1</p></div>
+    </div>
+
+    <div class="container">
+        <div class="d-flex justify-content-around flex-wrap">
             <div class="d-flex flex-column">
-                <h1 style="color: white">12312312</h1>
-                <p class="text-wrap" style="color: white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus assumenda atque debitis, deserunt dicta earum eos excepturi impedit incidunt ipsum itaque neque nesciunt nisi numquam placeat possimus quisquam reprehenderit sequi?</p>
-            </div>--}}
+                <div class="mb-sm-2">
+                    <div class="card text-center shadow" style="height: 200px; width: 340px;">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <h5 class="card-title">Натуральные ингредиенты</h5>
+                            <p class="card-text">Продукция изготовлена из высококачественных натуральных веществ, что обеспечивает безопасность и здоровье как для кожи, так и для волос.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-sm-2">
+                    <div class="card text-center shadow" style="height: 250px; width: 340px;">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <h5 class="card-title">Широкий ассортимент</h5>
+                            <p class="card-text">С более чем 100 единицами продукции, ваша компания предлагает разнообразие товаров для ухода за волосами, лицом и телом.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-column">
+                <div class="mb-sm-2">
+                    <div class="card text-center shadow" style="height: 250px; width: 340px;">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <h5 class="card-title">Экологическая устойчивость и этика</h5>
+                            <p class="card-text">Использование натуральных компонентов способствует сохранению окружающей среды, так как такие ингредиенты, как правило, поддаются биологическому разложению и не наносят вреда экосистеме.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-sm-2">
+                    <div class="card text-center shadow" style="height: 200px; width: 340px;">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <h5 class="card-title">Поддержка здоровья кожи и волос</h5>
+                            <p class="card-text">Натуральная косметика обеспечивает глубокое питание и увлажнение, помогает улучшить состояние кожи и волос, сохраняя их красоту и здоровье.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="card text-center gradient-advanced shadow" style="height: 458px; width: 400px">
+                    <div class="card-body d-flex flex-column justify-content-center">
+                        <h5 class="card-title">Улучшаем качество жизни через уход и любовь к себе</h5>
+                        <p class="card-text">Это пространство эффективных средств широкого действия, которые могут решить эстетичные проблемы кожи лица , тела и волос. Мы всей командой тестируем все средства: состав, сочетаемость, текстуры и эффективность, которая подтверждена клиническими испытаниями.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -161,6 +203,21 @@
             </div>
         </div>
     </div>
+
+    <style>
+        a {
+            text-decoration: none;
+        }
+
+        .gradient-advanced {
+            background: radial-gradient(50% 123.47% at 50% 50%, #00ff94 0%, #720059 100%),
+            linear-gradient(121.28deg, #669600 0%, #ff0000 100%),
+            linear-gradient(360deg, #0029ff 0%, #8fff00 100%),
+            radial-gradient(100% 164.72% at 100% 100%, #6100ff 0%, #00ff57 100%),
+            radial-gradient(100% 148.07% at 0% 0%, #fff500 0%, #51d500 100%);
+            background-blend-mode: screen, color-dodge, overlay, difference, normal;
+        }
+    </style>
 
     <script type="text/javascript">
         $(window).on('load',function() {

@@ -28,7 +28,7 @@
                 <div class="col-md-7" data-id="{{ $item['id'] }}">
                     <div class="main-description px-2">
                         <div class="category text-bold">
-                            Категория: Скрабы
+                            Категория: Для тела
                         </div>
                         <div class="product-title text-bold my-3">
                             <p class="display-5">{{ $item['name'] }}</p>
@@ -158,5 +158,4 @@
     </style>
 @endsection
 @extends('modals')
-
 @extends('footer')
