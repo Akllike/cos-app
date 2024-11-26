@@ -219,7 +219,7 @@
         }
     </style>
 
-    <script type="text/javascript">
+    {{--<script type="text/javascript">
         $(window).on('load',function() {
 
             let delayMs = 1;
@@ -232,7 +232,7 @@
             $('#myModal').modal('toggle');
         }, 1000);
         $('#myModal').css("display", "block");
-    </script>
+    </script>--}}
 @endsection
 @extends('modals')
 @extends('footer')
