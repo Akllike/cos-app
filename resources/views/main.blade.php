@@ -177,7 +177,7 @@
                 </div>
             </div>
             <div>
-                <div class="card text-center gradient-advanced shadow" style="height: 458px; width: 400px">
+                <div class="card text-center gradient-advanced shadow" style="height: 458px; width: 390px">
                     <div class="card-body d-flex flex-column justify-content-center">
                         <h5 class="card-title">Улучшаем качество жизни через уход и любовь к себе</h5>
                         <p class="card-text">Это пространство эффективных средств широкого действия, которые могут решить эстетичные проблемы кожи лица , тела и волос. Мы всей командой тестируем все средства: состав, сочетаемость, текстуры и эффективность, которая подтверждена клиническими испытаниями.</p>
