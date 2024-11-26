@@ -11,6 +11,8 @@
     <meta property="og:description" content="Косметика для твоей жизни ❤" />
     <meta property="og:image" content="{{ url('storage/img/navbar.jpg') }}" />
     <meta property="og:url" content="{{ route('index') }}" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
     @vite(['resources/js/app.js', 'resources/css/app.css'])
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
