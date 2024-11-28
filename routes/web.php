@@ -50,3 +50,4 @@ Route::get('/admin', 'App\Http\Controllers\HomeController@index')->name('home');
 Route::post('admin/create', 'App\Http\Controllers\HomeController@create')->name('home.create');
 Route::post('admin/edit', 'App\Http\Controllers\HomeController@edit')->name('home.edit');
 Route::post('admin/delete', 'App\Http\Controllers\HomeController@delete')->name('home.delete');
+Route::post('/admin/instock', 'App\Http\Controllers\HomeController@inStock')->name('home.instock');

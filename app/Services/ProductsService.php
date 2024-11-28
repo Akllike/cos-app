@@ -142,9 +142,30 @@ class ProductsService
     {
         $products = Products::where('name', 'like', '%' . $request->input('name') . '%')->get();
 
-        $data = [
-            'products' => $products,
-        ];
-        return $data;
+        return [ 'products' => $products ];
+    }
+
+    public function UpdateInStockProduct(Request $request): array
+    {
+        try
+        {
+            $data = Products::find($request->input('id'));
+
+            if ($data) {
+                if($data->popular == 0)
+                    $data->popular = 1;
+                else
+                    $data->popular = 0;
+
+                $data->save();
+            }
+
+            return [ 'in-stock' => $data->popular ];
+        }
+        catch (\Exception $e)
+        {
+            $send = 'Произошла какая-то ошибка: ' . $e->getMessage();
+            dd($send);
+        }
     }
 }

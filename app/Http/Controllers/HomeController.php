@@ -45,4 +45,10 @@ class HomeController extends Controller
         $this->productsService->DeleteProduct($request);
         return $this->index();
     }
+
+    public function inStock(Request $request): array
+    {
+        $this->productsService = new ProductsService();
+        return $this->productsService->UpdateInStockProduct($request);
+    }
 }

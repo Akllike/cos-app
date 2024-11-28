@@ -77,13 +77,18 @@
                     <p class="m-2">id: {{ $item['id'] }}</p> <p class="m-2">{{ $item['name'] }}</p>
                     <p class="m-2">({{ $item['volume'] }} мл)</p>
                 </div>
-                <div class="d-flex">
+
+                <div class="d-flex flex-wrap align-items-center">
+                    <div class="toggle-container">
+                        <input type="checkbox" id="toggle-btn-{{ $item['id'] }}" data-id="{{ $item['id'] }}" class="toggle-btn">
+                        <label for="toggle-btn-{{ $item['id'] }}" class="toggle-label"></label>
+                    </div>
                     <button id="btn-edit-muse-{{ $item['id'] }}" class="btn btn-primary m-1">Редактировать</button>
                     <form action="{{ url('admin/delete/') }}" method="POST" class="m-1">
                         @csrf
                         <input type="hidden" name="group-name" value="1">
                         <input type="hidden" name="id" value="{{ $item['id'] }}">
-                        <button class="btn btn-primary">Удалить</button>
+                        <button class="btn btn-danger">Удалить</button>
                     </form>
                 </div>
             </div>
@@ -151,13 +156,17 @@
                     <p class="m-2">id: {{ $item['id'] }}</p> <p class="m-2">{{ $item['name'] }}</p>
                     <p class="m-2">({{ $item['volume'] }} мл)</p>
                 </div>
-                <div class="d-flex">
+                <div class="d-flex flex-wrap align-items-center">
+                    <div class="toggle-container">
+                        <input type="checkbox" id="toggle-btn-{{ $item['id'] }}" data-id="{{ $item['id'] }}" class="toggle-btn">
+                        <label for="toggle-btn-{{ $item['id'] }}" class="toggle-label"></label>
+                    </div>
                     <button id="btn-edit-gel-{{ $item['id'] }}" class="btn btn-primary m-1">Редактировать</button>
                     <form action="{{ url('admin/delete/') }}" method="POST" class="m-1">
                         @csrf
                         <input type="hidden" name="group-name" value="2">
                         <input type="hidden" name="id" value="{{ $item['id'] }}">
-                        <button class="btn btn-primary">Удалить</button>
+                        <button class="btn btn-danger">Удалить</button>
                     </form>
                 </div>
             </div>
@@ -225,13 +234,17 @@
                     <p class="m-2">id: {{ $item['id'] }}</p> <p class="m-2">{{ $item['name'] }}</p>
                     <p class="m-2">({{ $item['volume'] }} мл)</p>
                 </div>
-                <div class="d-flex">
+                <div class="d-flex flex-wrap align-items-center">
+                    <div class="toggle-container">
+                        <input type="checkbox" id="toggle-btn-{{ $item['id'] }}" data-id="{{ $item['id'] }}" class="toggle-btn">
+                        <label for="toggle-btn-{{ $item['id'] }}" class="toggle-label"></label>
+                    </div>
                     <button id="btn-edit-scrab-{{ $item['id'] }}" class="btn btn-primary m-1">Редактировать</button>
                     <form action="{{ url('admin/delete/') }}" method="POST" class="m-1">
                         @csrf
                         <input type="hidden" name="group-name" value="3">
                         <input type="hidden" name="id" value="{{ $item['id'] }}">
-                        <button class="btn btn-primary">Удалить</button>
+                        <button class="btn btn-danger">Удалить</button>
                     </form>
                 </div>
             </div>
@@ -367,6 +380,72 @@
     </div>--}}
 </div>
 
+<style>
+    .toggle-container {
+        position: relative;
+    }
+
+    .toggle-btn {
+        display: none;
+    }
+
+    .toggle-label {
+        background: #ccc;
+        border-radius: 20px;
+        cursor: pointer;
+        display: block;
+        height: 30px;
+        width: 60px;
+        position: relative;
+    }
+
+    .toggle-label:before {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        height: 26px;
+        width: 26px;
+        background: white;
+        border-radius: 50%;
+        transition: 0.3s;
+    }
+
+    .toggle-btn:checked + .toggle-label {
+        background: #4caf50;
+    }
+
+    .toggle-btn:checked + .toggle-label:before {
+        transform: translateX(30px);
+    }
+</style>
+
+    <script>
+        @foreach($hairs as $item)
+            @if($item['popular'] == 0)
+                $('[data-id="{{ $item['id'] }}"].toggle-btn').prop("checked", false);
+            @else
+                $('[data-id="{{ $item['id'] }}"].toggle-btn').prop("checked", true);
+            @endif
+        @endforeach
+
+        @foreach($faces as $item)
+            @if($item['popular'] == 0)
+                $('[data-id="{{ $item['id'] }}"].toggle-btn').prop("checked", false);
+            @else
+                $('[data-id="{{ $item['id'] }}"].toggle-btn').prop("checked", true);
+            @endif
+        @endforeach
+
+        @foreach($bodies as $item)
+            @if($item['popular'] == 0)
+                $('[data-id="{{ $item['id'] }}"].toggle-btn').prop("checked", false);
+            @else
+                $('[data-id="{{ $item['id'] }}"].toggle-btn').prop("checked", true);
+            @endif
+        @endforeach
+    </script>
+
     <script>
         $("#btn-create-card").on("click", function() {
             $("#create-card").toggle();
@@ -428,6 +507,41 @@
             $('#src-muse').attr('class', 'nav-link');
             $('#src-gel').attr('class', 'nav-link');
             $('#src-scrab').attr('class', 'nav-link active');
+        });
+    </script>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <script>
+        $(document).ready(function() {
+            const csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken
+                }
+            });
+
+            $('.toggle-btn').change(function() {
+                let id = $(this).data('id');
+                console.log(id);
+                let state = $(this).is(':checked') ? 1 : 0; // Получаем состояние кнопки (1 или 0)
+
+                // AJAX-запрос
+                $.ajax({
+                    url: '{{ url('admin/instock') }}', // Укажите ваш URL для отправки данных
+                    type: 'POST',
+                    data: {
+                        id: id
+                    },
+                    success: function(response) {
+                        console.log('Ответ сервера: ', response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Ошибка AJAX: ', status, error);
+                    }
+                });
+            });
         });
     </script>
 @endsection
