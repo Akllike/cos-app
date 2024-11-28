@@ -48,7 +48,7 @@
     </div>
 
     <div class="container d-flex flex-wrap mt-5">
-        <h6>⚫ Популярные товары</h6>
+        <h2>⚫ Популярные товары</h2>
     </div>
 
     <div class="container d-flex flex-wrap justify-content-around align-items-center mt-4 mb-4 wrap-md-4">
@@ -87,7 +87,7 @@
     </div>
 
     <div class="container d-flex flex-wrap mt-4">
-        <h6>⚫ Наши подборки по типу кожи</h6>
+        <h2>⚫ Наши подборки по типу кожи</h2>
     </div>
 
     <div class="container d-flex flex-wrap justify-content-around align-items-center mt-4 mb-4 wrap-md-4">
@@ -110,7 +110,7 @@
     </div>
 
     <div class="container d-flex flex-wrap mt-4">
-        <h6>⚫ О нас</h6>
+        <h2>⚫ О нас</h2>
     </div>
 
     <div class="container d-flex flex-wrap justify-content-around align-items-center mt-4 mb-4 wrap-md-4">
@@ -207,6 +207,10 @@
     <style>
         a {
             text-decoration: none;
+        }
+
+        h2 {
+            font-size: 16px;
         }
 
         .gradient-advanced {

@@ -25,4 +25,11 @@ class IndexController extends Controller
     {
         return view('delivery');
     }
+
+    public function stock(): View
+    {
+        $data = Products::where('popular', 1)->get();
+
+        return view('stock', compact('data'));
+    }
 }

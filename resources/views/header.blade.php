@@ -14,6 +14,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{ route('index') }}">Главная</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{ route('stock') }}">В наличии</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Каталог

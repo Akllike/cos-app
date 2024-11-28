@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'App\Http\Controllers\IndexController@index')->name('index');
+Route::get('/stock', 'App\Http\Controllers\IndexController@stock')->name('stock');
 Route::get('/about', 'App\Http\Controllers\IndexController@showAbout')->name('about');
 Route::get('/delivery', 'App\Http\Controllers\IndexController@showDelivery')->name('delivery');
 Route::get('/sitemap.xml', 'App\Http\Controllers\SitemapController')->name('sitemap');
