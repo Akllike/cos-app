@@ -1,6 +1,6 @@
 @section('modals')
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Корзина</h1>
@@ -8,7 +8,7 @@
                 </div>
                 <div class="modal-body">
                     <table class="table">
-                        <tbody id="data-display" style="font-size: 14px">
+                        <tbody id="data-display" style="font-size: 14px; vertical-align: middle;">
                         </tbody>
                     </table>
                 </div>
