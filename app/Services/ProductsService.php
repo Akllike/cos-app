@@ -66,17 +66,7 @@ class ProductsService
                 $path = 'storage/img/shablon.jpg';
             }
             //dd($path);
-            if ($data) {
-                $data->name = $request->input('name');
-                $data->description = $request->input('description');
-                $data->composition = $request->input('composition');
-                $data->volume = (int)$request->input('volume');
-                $data->price = (int)$request->input('price');
-                $data->category = $request->input('group-name');
-                $data->article = 0;
-                $data->image = $path;
-                $data->save();
-            }
+            $this->extracted($data, $request, $path);
         }
         catch (\Exception $e)
         {
@@ -96,18 +86,21 @@ class ProductsService
         try
         {
             $data = Products::find($request->input('id'));
+            $request->validate([
+                'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ]);
 
-            if ($data) {
-                $data->name = $request->input('name');
-                $data->description = $request->input('description');
-                $data->composition = $request->input('composition');
-                $data->volume = (int)$request->input('volume');
-                $data->price = (int)$request->input('price');
-                $data->category = $request->input('group-name');
-                $data->article = 0;
-                //$data->image = $request->input('image');
-                $data->save();
+            if($request->hasFile('photo'))
+            {
+                //if ($request->file('photo')->isValid())
+                $path = 'storage/' . $request->file('photo')->store('cards', 'public');
             }
+            else
+            {
+                $path = $data->image;
+            }
+
+            $this->extracted($data, $request, $path);
         }
         catch (\Exception $e)
         {
@@ -173,6 +166,27 @@ class ProductsService
         {
             $send = 'Произошла какая-то ошибка: ' . $e->getMessage();
             dd($send);
+        }
+    }
+
+    /**
+     * @param $data
+     * @param Request $request
+     * @param string $path
+     * @return void
+     */
+    public function extracted($data, Request $request, string $path): void
+    {
+        if ($data) {
+            $data->name = $request->input('name');
+            $data->description = $request->input('description');
+            $data->composition = $request->input('composition');
+            $data->volume = (int)$request->input('volume');
+            $data->price = (int)$request->input('price');
+            $data->category = $request->input('group-name');
+            $data->article = 0;
+            $data->image = $path;
+            $data->save();
         }
     }
 }

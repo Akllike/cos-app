@@ -94,7 +94,7 @@
             </div>
             <div id="toggle-muse-{{ $item['id'] }}" style="display: none">
                 <div class="mt-2 d-flex align-items-center justify-content-between border-1">
-                    <form action="{{ url('admin/edit/') }}" method="POST" class="row g-3 needs-validation">
+                    <form action="{{ url('admin/edit/') }}" method="POST" enctype="multipart/form-data" class="row g-3 needs-validation">
                         @csrf
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1">Группа</span>
@@ -132,14 +132,12 @@
                             </div>
                         </div>
 
-                        {{--<div class="mb-3">
-                            <label for="basic-url" class="form-label">Название фото</label>
-                            <div class="input-group">
-                                --}}{{--<span class="input-group-text" id="basic-addon3">https://example.com/storage/</span>--}}{{--
-                                <input type="text" name="image" value="{{ $muse['image'] }}" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
+                        <div class="mb-3">
+                            <label for="basic-url" class="form-label">Загрузить фото карточки</label>
+                            <div class="input-group mb-3">
+                                <input type="file" name="photo" id="photo" class="form-control">
                             </div>
-                            <div class="form-text" id="basic-addon4">Пример текста справки выходит за пределы группы ввода.</div>
-                        </div>--}}
+                        </div>
                         <div class="col-12">
                             <button class="btn btn-primary" type="submit">Изменить</button>
                         </div>
@@ -172,7 +170,7 @@
             </div>
             <div id="toggle-gel-{{ $item['id'] }}" style="display: none">
                 <div class="mt-2 d-flex align-items-center justify-content-between border-1">
-                    <form action="{{ url('admin/edit/') }}" method="POST" class="row g-3 needs-validation">
+                    <form action="{{ url('admin/edit/') }}" method="POST" enctype="multipart/form-data" class="row g-3 needs-validation">
                         @csrf
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1">Группа</span>
@@ -210,14 +208,13 @@
                             </div>
                         </div>
 
-                        {{--<div class="mb-3">
-                            <label for="basic-url" class="form-label">Название фото</label>
-                            <div class="input-group">
-                                --}}{{--<span class="input-group-text" id="basic-addon3">https://example.com/storage/</span>--}}{{--
-                                <input type="text" name="image" value="{{ $gel['image'] }}" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
+                        <div class="mb-3">
+                            <label for="basic-url" class="form-label">Загрузить фото карточки</label>
+                            <div class="input-group mb-3">
+                                <input type="file" name="photo" id="photo" class="form-control">
                             </div>
                             <div class="form-text" id="basic-addon4">Пример текста справки выходит за пределы группы ввода.</div>
-                        </div>--}}
+                        </div>
                         <div class="col-12">
                             <button class="btn btn-primary" type="submit">Изменить</button>
                         </div>
@@ -250,7 +247,7 @@
             </div>
             <div id="toggle-scrab-{{ $item['id'] }}" style="display: none">
                 <div class="mt-2 d-flex align-items-center justify-content-between border-1">
-                    <form action="{{ url('admin/edit/') }}" method="POST" class="row g-3 needs-validation">
+                    <form action="{{ url('admin/edit/') }}" method="POST" enctype="multipart/form-data" class="row g-3 needs-validation">
                         @csrf
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1">Группа</span>
@@ -288,14 +285,13 @@
                             </div>
                         </div>
 
-                       {{-- <div class="mb-3">
-                            <label for="basic-url" class="form-label">Название фото</label>
-                            <div class="input-group">
-                                --}}{{--<span class="input-group-text" id="basic-addon3">https://example.com/storage/</span>--}}{{--
-                                <input type="text" name="image" value="{{ $scrab['image'] }}" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
+                        <div class="mb-3">
+                            <label for="basic-url" class="form-label">Загрузить фото карточки</label>
+                            <div class="input-group mb-3">
+                                <input type="file" name="photo" id="photo" class="form-control">
                             </div>
                             <div class="form-text" id="basic-addon4">Пример текста справки выходит за пределы группы ввода.</div>
-                        </div>--}}
+                        </div>
                         <div class="col-12">
                             <button class="btn btn-primary" type="submit">Изменить</button>
                         </div>
