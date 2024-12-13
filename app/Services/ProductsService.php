@@ -53,11 +53,18 @@ class ProductsService
             $data = new Products();
 
             $request->validate([
-                'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             ]);
 
-            if ($request->file('photo')->isValid())
+            if($request->hasFile('photo'))
+            {
+                //if ($request->file('photo')->isValid())
                 $path = 'storage/' . $request->file('photo')->store('cards', 'public');
+            }
+            else
+            {
+                $path = 'storage/img/shablon.jpg';
+            }
             //dd($path);
             if ($data) {
                 $data->name = $request->input('name');

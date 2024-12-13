@@ -45,7 +45,7 @@
                 <div class="mb-3">
                     <label for="basic-url" class="form-label">Загрузить фото карточки</label>
                     <div class="input-group mb-3">
-                        <input type="file" name="photo" id="photo" class="form-control" required>
+                        <input type="file" name="photo" id="photo" class="form-control">
                     </div>
                     <div class="form-text" id="basic-addon4">Пример текста справки выходит за пределы группы ввода.</div>
                 </div>
