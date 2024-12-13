@@ -145,6 +145,12 @@ class ProductsService
         return [ 'products' => $products ];
     }
 
+    /**
+     * Обновление Toggle Button
+     *
+     * @param Request $request
+     * @return int[]
+     */
     public function UpdateInStockProduct(Request $request): array
     {
         try
