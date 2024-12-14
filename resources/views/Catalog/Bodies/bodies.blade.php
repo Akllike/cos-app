@@ -21,7 +21,7 @@
                 @foreach($data as $item)
                     <div class="card h-100 mb-4" style="width: 19rem;" data-id="{{$item['id']}}">
                         <div class="d-flex justify-content-center">
-                            <img src="{{ url($item['image']) }}" class="card-img-top w-50" alt="...">
+                            <img src="{{ url($item['image']) }}" class="card-img-top w-75" style="height: 270px; object-fit: cover;" alt="...">
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">{{$item['name']}}</h5>

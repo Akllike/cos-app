@@ -8,8 +8,8 @@
             <form action="{{ url('admin/create/') }}" method="POST" enctype="multipart/form-data" class="row g-3 needs-validation">
                 @csrf
                 <div class="input-group mb-3">
-                    <select class="form-select m-4" name="group-name" aria-label="Пример выбора по умолчанию">
-                        <option selected>Выберите группу карточки</option>
+                    <select class="form-select m-4" name="group-name" aria-label="Пример выбора по умолчанию" required>
+                        <option value="">Выберите группу карточки</option>
                         <option value="hair">Для волос</option>
                         <option value="face">Для лица</option>
                         <option value="body">Для тела</option>
@@ -18,27 +18,27 @@
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">Заголовок</span>
-                    <input type="text" name="name" class="form-control" placeholder="Название товара" aria-label="Название товара" aria-describedby="basic-addon1">
+                    <input type="text" name="name" class="form-control" placeholder="Название товара" aria-label="Название товара" aria-describedby="basic-addon1" required>
                 </div>
 
                 <div class="input-group mb-3">
                     <span class="input-group-text">Описание</span>
-                    <input type="text" name="description" class="form-control" placeholder="Описание товара" aria-label="Описание товара">
+                    <input type="text" name="description" class="form-control" placeholder="Описание товара" aria-label="Описание товара" required>
                 </div>
 
                 <div class="input-group mb-3">
                     <span class="input-group-text">Состав</span>
-                    <input type="text" name="composition" class="form-control" placeholder="Состав товара, условия хранения" aria-label="Состав товара, условия хранения">
+                    <input type="text" name="composition" class="form-control" placeholder="Состав товара, условия хранения" aria-label="Состав товара, условия хранения" required>
                 </div>
 
                 <div class="input-group mb-3">
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">Цена</span>
-                        <input type="text" name="price" class="form-control" placeholder="Цена товара" aria-label="Цена товара" aria-describedby="basic-addon1">
+                        <input type="text" name="price" class="form-control" placeholder="Цена товара" aria-label="Цена товара" aria-describedby="basic-addon1" required>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">Объем</span>
-                        <input type="text" name="volume" class="form-control" placeholder="Объем товара" aria-label="Объем товара" aria-describedby="basic-addon1">
+                        <input type="text" name="volume" class="form-control" placeholder="Объем товара" aria-label="Объем товара" aria-describedby="basic-addon1" required>
                     </div>
                 </div>
 
