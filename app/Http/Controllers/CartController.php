@@ -44,7 +44,7 @@ class CartController extends Controller
         return json_encode($cart, true);
     }
 
-    public function sendTelegram(Request $request): JsonResponse
+    public function sendTelegram(Request $request): RedirectResponse
     {
         $send = '';
         $number = $request->input('number');
@@ -54,12 +54,10 @@ class CartController extends Controller
         if(empty($number))
         {
             $status = 'Вы не указали имя!';
-            return response()->json(['error' => $status]);
         }
         elseif(empty($name))
         {
             $status = 'Вы не указани номер телефона!';
-            return response()->json(['error' => $status]);
         }
         elseif(empty($message))
         {
@@ -88,10 +86,10 @@ class CartController extends Controller
             $this->cartService = new CartService();
             $this->telegramService->sendMessage($send);
             $this->cartService->removeProductFromAllCart();
-            return response()->json(['error' => false]);
+            return redirect()->back()->with('success', $status);
         }
         catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()]);
+            return redirect()->back()->with('error', $e->getMessage());
         }
     }
 }
