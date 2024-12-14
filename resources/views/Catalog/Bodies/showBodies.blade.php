@@ -118,7 +118,7 @@
                 @if($item['id'] <= 4)
                     <div class="col-md-3">
                         <div class="similar-product d-flex flex-column align-items-center">
-                            <img class="w-25" src="{{ url($item['image']) }}" alt="Preview">
+                            <img class="w-50" src="{{ url($item['image']) }}" style="height: 180px; object-fit: cover;" alt="Preview">
                             <p class="title">{{ $item['name'] }}</p>
                             <p class="price">{{ $item['price'] }} руб.</p>
                             <a href="{{ url('catalog/scrabs') }}/{{ $item['id'] }}" class="btn btn-outline-danger">Подробнее</a>
