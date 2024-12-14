@@ -115,6 +115,7 @@
                 @if(session('success') || session('error'))
                 $('#confirmationModal').modal('show');
                 @endif
+                localStorage.clear();
             });
         </script>
     </div>
