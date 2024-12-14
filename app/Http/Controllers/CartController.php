@@ -51,15 +51,7 @@ class CartController extends Controller
         $name = $request->input('name');
         $message = $request->input('message');
 
-        if(empty($number))
-        {
-            $status = 'Вы не указали имя!';
-        }
-        elseif(empty($name))
-        {
-            $status = 'Вы не указани номер телефона!';
-        }
-        elseif(empty($message))
+        if(empty($message))
         {
             $status = 'Ваш заказ успешно отправлен!';
             $send = "Новый заказ! \nИмя: " . $number . " \nНомер: " . $name . "\n\n";

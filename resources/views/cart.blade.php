@@ -53,9 +53,9 @@
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label class="form-label">Ваше имя</label>
-                                <input type="text" class="form-control" name="number" id="number" placeholder="Иван">
+                                <input type="text" class="form-control" name="number" id="number" placeholder="Иван" required oninvalid="this.setCustomValidity('Пожалуйста, введите свое имя!')" oninput="this.setCustomValidity('')">
                                 <label class="form-label">Ваш номер телефона</label>
-                                <input type="text" class="form-control" name="name" id="name" placeholder="+79111233321">
+                                <input type="text" class="form-control" name="name" id="name" placeholder="+79111233321" required oninvalid="this.setCustomValidity('Пожалуйста, введите свой номер телефона!')" oninput="this.setCustomValidity('')">
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">Пожелания к заказу</label>
