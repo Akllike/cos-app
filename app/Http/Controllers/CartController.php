@@ -20,6 +20,12 @@ class CartController extends Controller
         return view('cart')->with(['cart' => $cart]);
     }
 
+    public function get(Request $request): string
+    {
+        $cart = session('cart', []);
+        return json_encode($cart, true);
+    }
+
     public function add(Request $request): string
     {
         $productId  = $request->input('product_id');

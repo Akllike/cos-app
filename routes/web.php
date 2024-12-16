@@ -40,6 +40,7 @@ Route::prefix('catalog')->group(function () {
 
 Route::prefix('cart')->group(function () {
     Route::get('/', 'App\Http\Controllers\CartController@index')->name('cart.index');
+    Route::post('/get', 'App\Http\Controllers\CartController@get')->name('cart.get');
     Route::post('/add', 'App\Http\Controllers\CartController@add')->name('cart.add');
     Route::post('/remove', 'App\Http\Controllers\CartController@remove')->name('cart.remove');
     Route::post('/telegram', 'App\Http\Controllers\CartController@sendTelegram')->name('cart.tg');
