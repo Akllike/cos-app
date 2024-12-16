@@ -28,6 +28,7 @@ class CartController extends Controller
         $this->cartService = new CartService();
         $cart = $this->cartService->addProductToCart($productId, $quantity);
 
+        ksort($cart);
         session(['cart' => $cart]);
 
         return json_encode($cart, true);

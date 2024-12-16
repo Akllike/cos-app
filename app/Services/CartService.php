@@ -27,7 +27,7 @@ class CartService
             $cart[$productId]['quantity'] += $quantity;
         } else {
             $product = $this->getProductById($productId);
-            $cart[$productId] = [
+            $cart[$product->id] = [
                 'product_id' => $product->id,
                 'name' => $product->name,
                 'price' => $product->price,
@@ -62,8 +62,10 @@ class CartService
                 $cart[$productId]['quantity'] -= $quantity;
                 if($cart[$productId]['quantity'] <= 0) {
                     unset($cart[$productId]);
+                    ksort($cart);
                     session(['cart' => $cart]);
                 }
+                ksort($cart);
                 session(['cart' => $cart]);
             }
         }
@@ -80,6 +82,7 @@ class CartService
 
         if (isset($cart)) {
             array_splice($cart, 0);
+            ksort($cart);
             session(['cart' => $cart]);
         }
     }
