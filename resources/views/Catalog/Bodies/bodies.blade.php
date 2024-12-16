@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @extends('header')
-@section('title', 'Скрабы | ShaR')
+@section('title', 'Косметика для тела | ShaR')
 @section('content')
     {{--<img src="{{URL('./storage/img/itismuse.jpg')}}" style="width: 100%; height: 400px;" alt="...">--}}
     <div class="container">
@@ -19,18 +19,25 @@
         <div class="d-flex flex-wrap justify-content-around align-items-center mt-5 mb-4 wrap-md-4">
             @if(sizeof($data) != 0)
                 @foreach($data as $item)
-                    <div class="card h-100 mb-4" style="width: 19rem;" data-id="{{$item['id']}}">
+                    <div class="card h-100 mb-4 shadow" data-id="{{$item['id']}}" style="width: 17rem;">
                         <div class="d-flex justify-content-center">
                             <img src="{{ url($item['image']) }}" class="card-img-top w-75" style="height: 270px; object-fit: cover;" alt="...">
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">{{$item['name']}}</h5>
-                            <div class="text-truncate text-wrap" style="height: 5rem;">
-                                <p class="card-text">{{$item['description']}}</p>
+                            <h5 class="card-title" style="height: 4rem;">{{$item['name']}}</h5>
+                            <div class="text-truncate text-wrap" style="height:2rem;">
+                                <p class="description text-truncate" style="font-size: 12px;" data-container="body" data-toggle="popover" data-placement="top" data-content="Lorem ipsum dolor sit amet. Suscipit laboriosam, nisi ut perspiciatis.">
+                                    {{$item['description']}}</p>
                             </div>
                             <p class="card-text text-secondary mt-1">{{$item['price']}} руб. / {{ $item['volume'] }} мл</p>
                             <div class="d-flex justify-content-center">
-                                <a href="{{ url('catalog/bodies') }}/{{ $item['id'] }}" class="btn btn-dark border-2 m-1" style="font-size: 14px">Подробнее</a>
+                                @if($item['category'] === 'hair')
+                                    <a href="{{ url('catalog/hairs') }}/{{ $item['id'] }}" class="btn btn-dark border-2 m-1" style="font-size: 14px">Подробнее</a>
+                                @elseif($item['category'] === 'face')
+                                    <a href="{{ url('catalog/faces') }}/{{ $item['id'] }}" class="btn btn-dark border-2 m-1" style="font-size: 14px">Подробнее</a>
+                                @elseif($item['category'] === 'body')
+                                    <a href="{{ url('catalog/bodies') }}/{{ $item['id'] }}" class="btn btn-dark border-2 m-1" style="font-size: 14px">Подробнее</a>
+                                @endif
                                 <div class="m-1">
                                     <button type="button" class="btn btn-outline-dark border-2 add-cart" style="font-size: 14px">
                                         В корзину

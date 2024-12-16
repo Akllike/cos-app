@@ -55,7 +55,7 @@
         @foreach($data as $item)
             <div class="card h-100 mb-4 shadow" data-id="{{$item['id']}}" style="width: 17rem;">
                 <div class="d-flex justify-content-center">
-                    <img src="{{ $item['image'] }}" class="card-img-top w-75" style="height: 270px; object-fit: cover;" alt="...">
+                    <img src="{{ url($item['image']) }}" class="card-img-top w-75" style="height: 270px; object-fit: cover;" alt="...">
                 </div>
                 <div class="card-body">
                     <h5 class="card-title" style="height: 4rem;">{{$item['name']}}</h5>
