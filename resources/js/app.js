@@ -78,7 +78,7 @@ const openModal = items => {
     if(!$('#staticBackdrop').hasClass('show'))
         $('#staticBackdrop').modal('toggle');
 
-    // setStorage(ids);
+    setStorage(ids);
 };
 const updateCart = items => {
     const table = document.querySelector('.table.cart tbody');
@@ -90,7 +90,7 @@ const updateCart = items => {
     table.innerHTML = '';
 
     if(!Object.keys(items).length) {
-        // setStorage([]);
+        setStorage([]);
         table.closest('.cart').outerHTML = `<p>Корзина пуста</p>`;
         return;
     }
@@ -116,13 +116,29 @@ const updateCart = items => {
         ids.push(index);
     }
 
-    // setStorage(ids);
+    setStorage(ids);
 };
 
-const getStorage = async () => {
-    const req = await fetch('/cart/get');
-    const res = await req.json();
-    return res;
+const getStorage = () => {
+    let storage = localStorage.getItem('cart');
+    if (storage) {
+        storage = JSON.parse(storage);
+    } else {
+        storage = [];
+    }
+
+    return storage;
+};
+const setStorage = data => {
+    localStorage.setItem('cart', JSON.stringify(data));
+};
+const removeStorage = id => {
+    const storage = getStorage();
+    const index = storage.findIndex(i => i == id);
+    if (index) {
+        storage.splice(index, 1);
+        setStorage(storage);
+    }
 };
 const getElementButton = id => {
     return document.querySelector(`[data-id="${id}"] .add-cart`) || {};
@@ -146,16 +162,17 @@ const quantityToggle = (type) => {
 };
 
 // Слушатели
-document.addEventListener('DOMContentLoaded', async () => {
-    const storage = await getStorage();
-    for (const index in storage) {
-        getElementButton(index).textContent = 'Добавлено';
+document.addEventListener('DOMContentLoaded', () => {
+    const storage = getStorage();
+    for (const item of storage) {
+        getElementButton(item).textContent = 'Добавлено';
     }
 });
 // To do исправить в корзине
 document.querySelectorAll('[action="https://netmeta.ru/cart/remove"]').forEach(element => {
     element.addEventListener('submit', () => {
         const id = element.querySelector('[name="product_id"]')?.value;
+        removeStorage(id);
     });
 });
 // добавление в корзину
