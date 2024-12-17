@@ -10,12 +10,15 @@ services:
     depends_on:
       - mysql
       - php
+
   php:
     build:
       context: .docker
       dockerfile: dockerfiles/php.Dockerfile
     volumes:
       - ./:/var/www/laravel
+      - ./php/php.ini:/usr/local/etc/php/conf.d/my-php.ini
+
   mysql:
     image: mysql:8.0
     ports:
@@ -31,6 +34,7 @@ services:
       dockerfile: dockerfiles/composer.Dockerfile
     volumes:
       - db_data:/var/www/laravel
+
   artisan:
     build:
       context: .docker
