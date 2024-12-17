@@ -53,7 +53,7 @@ class ProductsService
             $data = new Products();
 
             $request->validate([
-                'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:51200',
             ]);
 
             if($request->hasFile('photo'))
