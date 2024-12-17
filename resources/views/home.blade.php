@@ -72,7 +72,7 @@
 
     <div id="list-muses" class="mt-4 d-flex flex-column">
         @foreach($hairs as $item)
-            <div class="mt-2 d-flex flex-wrap h-auto align-items-center justify-content-between border" style="height: 50px">
+            <div class="mt-2 d-flex flex-wrap h-auto align-items-center justify-content-between border" style="border-radius: 5px;">
                 <div class="d-flex flex-row">
                     <p class="m-2">id: {{ $item['id'] }}</p> <p class="m-2">{{ $item['name'] }}</p>
                     <p class="m-2">({{ $item['volume'] }} мл)</p>
@@ -149,7 +149,7 @@
 
     <div id="list-gels" class="mt-4 d-none flex-column">
         @foreach($faces as $item)
-            <div class="mt-2 d-flex flex-wrap h-auto align-items-center justify-content-between border" style="height: 50px">
+            <div class="mt-2 d-flex flex-wrap h-auto align-items-center justify-content-between border" style="border-radius: 5px;">
                 <div class="d-flex flex-row">
                     <p class="m-2">id: {{ $item['id'] }}</p> <p class="m-2">{{ $item['name'] }}</p>
                     <p class="m-2">({{ $item['volume'] }} мл)</p>
@@ -226,7 +226,7 @@
 
     <div id="list-scrabs" class="mt-4 d-none flex-column">
         @foreach($bodies as $item)
-            <div class="mt-2 d-flex flex-wrap h-auto align-items-center justify-content-between border" style="height: 50px">
+            <div class="mt-2 d-flex flex-wrap h-auto align-items-center justify-content-between border" style="border-radius: 5px;">
                 <div class="d-flex flex-row">
                     <p class="m-2">id: {{ $item['id'] }}</p> <p class="m-2">{{ $item['name'] }}</p>
                     <p class="m-2">({{ $item['volume'] }} мл)</p>
