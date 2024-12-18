@@ -148,6 +148,12 @@ const quantityToggle = (type) => {
 // Слушатели
 document.addEventListener('DOMContentLoaded', async () => {
     const storage = await getStorage();
+    for(const index in storage) {
+        const btn = getElementButton(index);
+        if(btn) {
+            btn.textContent = 'Добавлено';
+        }
+    }
 });
 // To do исправить в корзине
 document.querySelectorAll('[action="https://netmeta.ru/cart/remove"]').forEach(element => {
