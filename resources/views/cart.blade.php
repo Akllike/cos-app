@@ -23,14 +23,14 @@
                         <td>{{ $item['price'] }}</td>
                         <td>
                             <button class="btn btn-sm cart-minus">-</button>
-                            {{ $item['quantity'] }}
+                            {{ $item['quantity'] }} шт.
                             <button class="btn btn-sm cart-plus">+</button>
                         </td>
-                        <td>{{ $item['price'] * $item['quantity'] }}</td>
+                        <td>{{ $item['price'] * $item['quantity'] }} руб.</td>
                         <td>
                             <!-- <form action="{{ route('cart.remove') }}" method="post">
                                 <input type="hidden" name="product_id" value="{{ $item['product_id'] }}"> -->
-                                <button type="submit" class="btn btn-danger remove-cart" data->Удалить</button>
+                                <button type="submit" class="btn btn-danger btn-sm remove-cart" data->Удалить</button>
                             <!-- </form> -->
                         </td>
                     </tr>
@@ -109,6 +109,12 @@
                 </div>
             </div>
         </div>
+
+        <style>
+            td {
+                vertical-align: middle;
+            }
+        </style>
 
         <script>
             $(document).ready(function() {
