@@ -1,6 +1,6 @@
 DOCKER_COMPOSE := docker-compose
 
-.PHONY: build up down exec shell artisan composer test
+.PHONY: up down artisan composer migrate view-cache storage-link npm-build npm-dev
 
 up:
 	$(DOCKER_COMPOSE) up -d

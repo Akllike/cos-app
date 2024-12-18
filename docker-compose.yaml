@@ -48,7 +48,7 @@ services:
       context: .docker
       dockerfile: dockerfiles/npm.Dockerfile
     volumes:
-      - db_data:/var/www/laravel
+      - ./:/var/www/laravel
 
 volumes:
   db_data:
