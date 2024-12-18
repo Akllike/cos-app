@@ -16,6 +16,8 @@ services:
       dockerfile: dockerfiles/php.Dockerfile
     volumes:
       - ./:/var/www/laravel
+      - ./php/php.ini:/usr/local/etc/php/conf.d/custom.ini
+
   mysql:
     image: mysql:8.0
     ports:
