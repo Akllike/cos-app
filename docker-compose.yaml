@@ -10,13 +10,14 @@ services:
     depends_on:
       - mysql
       - php
+
   php:
     build:
       context: .docker
       dockerfile: dockerfiles/php.Dockerfile
     volumes:
       - ./:/var/www/laravel
-      - ./php/php.ini:/usr/local/etc/php/conf.d/custom.ini
+      - ./.docker/php/php.ini:/usr/local/etc/php/conf.d/custom.ini
 
   mysql:
     image: mysql:8.0
@@ -33,6 +34,7 @@ services:
       dockerfile: dockerfiles/composer.Dockerfile
     volumes:
       - db_data:/var/www/laravel
+
   artisan:
     build:
       context: .docker
@@ -42,11 +44,11 @@ services:
     entrypoint: ["php", "/var/www/laravel/artisan"]
 
   npm:
-    image: node:latest
+    build:
+      context: .docker
+      dockerfile: dockerfiles/npm.Dockerfile
     volumes:
-      - ./:/var/www/laravel
-    working_dir: /var/www/laravel
-    entrypoint: ['npm', '--no-bin-links']
+      - db_data:/var/www/laravel
 
 volumes:
   db_data:
