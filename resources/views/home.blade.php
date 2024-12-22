@@ -97,9 +97,14 @@
                 <div class="mt-2 d-flex align-items-center justify-content-between border-1">
                     <form action="{{ url('admin/edit/') }}" method="POST" enctype="multipart/form-data" class="row g-3 needs-validation">
                         @csrf
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">Группа</span>
-                            <input class="form-control" type="text" id="group-name" value="{{ $item['category'] }}" name="group-name"><br><br>
+                        <div class="input-group mb-3 mt-4">
+                            <label class="input-group-text" for="inputGroupSelect01">Категория</label>
+                            <select class="form-select" id="inputGroupSelect01" name="group-name" aria-label="Пример выбора по умолчанию" required>
+                                <option value="{{ $item['category'] }}">Изменить</option>
+                                <option value="hair">Для волос</option>
+                                <option value="face">Для лица</option>
+                                <option value="body">Для тела</option>
+                            </select>
                         </div>
 
                         <div class="input-group mb-3">
@@ -173,9 +178,14 @@
                 <div class="mt-2 d-flex align-items-center justify-content-between border-1">
                     <form action="{{ url('admin/edit/') }}" method="POST" enctype="multipart/form-data" class="row g-3 needs-validation">
                         @csrf
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">Группа</span>
-                            <input class="form-control" type="text" id="group-name" value="{{ $item['category'] }}" name="group-name"><br><br>
+                        <div class="input-group mb-3 mt-4">
+                            <label class="input-group-text" for="inputGroupSelect01">Категория</label>
+                            <select class="form-select" id="inputGroupSelect01" name="group-name" aria-label="Пример выбора по умолчанию" required>
+                                <option value="{{ $item['category'] }}">Изменить</option>
+                                <option value="hair">Для волос</option>
+                                <option value="face">Для лица</option>
+                                <option value="body">Для тела</option>
+                            </select>
                         </div>
 
                         <div class="input-group mb-3">
@@ -250,9 +260,14 @@
                 <div class="mt-2 d-flex align-items-center justify-content-between border-1">
                     <form action="{{ url('admin/edit/') }}" method="POST" enctype="multipart/form-data" class="row g-3 needs-validation">
                         @csrf
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">Группа</span>
-                            <input class="form-control" type="text" id="group-name" value="{{ $item['category'] }}" name="group-name"><br><br>
+                        <div class="input-group mb-3 mt-4">
+                            <label class="input-group-text" for="inputGroupSelect01">Категория</label>
+                            <select class="form-select" id="inputGroupSelect01" name="group-name" aria-label="Пример выбора по умолчанию" required>
+                                <option value="{{ $item['category'] }}">Изменить</option>
+                                <option value="hair">Для волос</option>
+                                <option value="face">Для лица</option>
+                                <option value="body">Для тела</option>
+                            </select>
                         </div>
 
                         <div class="input-group mb-3">
