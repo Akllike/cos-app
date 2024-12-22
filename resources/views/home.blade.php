@@ -3,6 +3,7 @@
 @section('content')
 <div class="container w-75">
     <button id="btn-create-card" class="btn btn-primary m-2">Добавить карточку</button>
+    <a href="{{ route('home.orders') }}" class="btn btn-primary m-2">Заказы</a>
     <div id="create-card" style="display: none;">
         <div class="mt-2 mb-4 p-2 d-flex align-items-center justify-content-between border">
             <form action="{{ url('admin/create/') }}" method="POST" enctype="multipart/form-data" class="row g-3 needs-validation">

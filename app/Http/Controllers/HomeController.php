@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Orders;
 use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -44,6 +45,13 @@ class HomeController extends Controller
         $this->productsService = new ProductsService();
         $this->productsService->DeleteProduct($request);
         return $this->index();
+    }
+
+    public function order(): View
+    {
+        $data = Orders::orderBy('id', 'DESC')->take(10)->get();
+
+        return view('orders', compact('data'));
     }
 
     public function inStock(Request $request): array

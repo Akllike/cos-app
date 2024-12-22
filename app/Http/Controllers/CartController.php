@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Orders;
 use App\Services\TelegramService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -80,10 +81,26 @@ class CartController extends Controller
             $i++;
         }
 
+        $cartsend = '';
+
+        foreach ($cart as $key => $value) {
+            $cartsend .= $value['name'] . ',' . $value['quantity'] . ';';
+        }
+
+        $data = new Orders();
+        if ($data)
+        {
+            $data->name = $number;
+            $data->number = $name;
+            $data->products = $cartsend;
+            $data->date = time();
+            $data->save();
+        }
+
         try {
-            $this->telegramService = new TelegramService();
+            //$this->telegramService = new TelegramService();
             $this->cartService = new CartService();
-            $this->telegramService->sendMessage($send);
+            //$this->telegramService->sendMessage($send);
             $this->cartService->removeProductFromAllCart();
             return redirect()->back()->with('success', $status);
         }
