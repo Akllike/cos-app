@@ -98,9 +98,9 @@ class CartController extends Controller
         }
 
         try {
-            //$this->telegramService = new TelegramService();
+            $this->telegramService = new TelegramService();
             $this->cartService = new CartService();
-            //$this->telegramService->sendMessage($send);
+            $this->telegramService->sendMessage($send);
             $this->cartService->removeProductFromAllCart();
             return redirect()->back()->with('success', $status);
         }
