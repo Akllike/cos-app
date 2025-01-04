@@ -107,21 +107,19 @@
         </div>
     </div>
 
-
-
     <div class="container similar-products my-4">
         <hr>
         <p class="display-5 mb-4" style="text-align: center">Похожие товары</p>
 
         <div class="row my-4">
-            @foreach($data['cards'] as $item)
-                @if($item['id'] <= 4)
+            @foreach($data['card'] as $item)
+                @if(count($data['card']) <= 4)
                     <div class="col-md-3">
                         <div class="similar-product d-flex flex-column align-items-center">
                             <img class="w-50" src="{{ url($item['image']) }}" style="height: 180px; object-fit: cover;" alt="Preview">
                             <p class="title">{{ $item['name'] }}</p>
                             <p class="price">{{ $item['price'] }} руб.</p>
-                            <a href="{{ url('catalog/scrabs') }}/{{ $item['id'] }}" class="btn btn-outline-danger">Подробнее</a>
+                            <a href="{{ url('catalog/bodies') }}/{{ $item['id'] }}" class="btn btn-dark border-2 m-1">Подробнее</a>
                         </div>
                     </div>
                 @endif

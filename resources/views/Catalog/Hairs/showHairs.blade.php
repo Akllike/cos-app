@@ -28,12 +28,17 @@
                 <div class="col-md-7" data-id="{{ $item['id'] }}">
                     <div class="main-description px-2">
                         <div class="category text-bold">
-                            Категория: Для волос
+                            Категория: Для тела
                         </div>
+                        @if($item['popular'] > 0)
+                            <div class="category text-bold">
+                                <img src="{{ url('storage/img/success.png') }}" width="25px" alt="">
+                                В наличии
+                            </div>
+                        @endif
                         <div class="product-title text-bold my-3">
                             <p class="display-5">{{ $item['name'] }}</p>
                         </div>
-
 
                         <div class="price-area my-4">
                             {{--<p class="old-price mb-1"><del>$100</del> <span class="old-price-discount text-danger">(20% off)</span></p>--}}
@@ -60,7 +65,7 @@
                             </div>
                             <div class="block" style="margin-right: 15px;">
                                 <a href="#" class="shadow btn btn-primary">Заказать на OZON</a>
-                             </div>
+                            </div>
                         </div>
                     </div>
 
@@ -76,7 +81,7 @@
                             <h6>Состав:</h6>
                         </div>
                         <div class="col-md-11 text">
-                            {{ $item['composition'] }}
+                            <p class="fst-bold fst-italic">{{ $item['composition'] }}</p>
                         </div>
                     </div>
 
@@ -102,22 +107,22 @@
         </div>
     </div>
 
-
-
     <div class="container similar-products my-4">
         <hr>
         <p class="display-5 mb-4" style="text-align: center">Похожие товары</p>
 
-        <div class="row">
-            @foreach($data['cards'] as $item)
-                <div class="col-md-3">
-                    <div class="similar-product d-flex flex-column align-items-center">
-                        <img class="w-50" src="{{ url($item['image']) }}" style="height: 180px; object-fit: cover;" alt="Preview">
-                        <p class="title">{{ $item['name'] }}</p>
-                        <p class="price">{{ $item['price'] }} руб.</p>
-                        <a href="{{ url('catalog/musses') }}/{{ $item['id'] }}" class="btn btn-outline-danger">Подробнее</a>
+        <div class="row my-4">
+            @foreach($data['card'] as $item)
+                @if(count($data['card']) <= 4)
+                    <div class="col-md-3">
+                        <div class="similar-product d-flex flex-column align-items-center">
+                            <img class="w-50" src="{{ url($item['image']) }}" style="height: 180px; object-fit: cover;" alt="Preview">
+                            <p class="title">{{ $item['name'] }}</p>
+                            <p class="price">{{ $item['price'] }} руб.</p>
+                            <a href="{{ url('catalog/hairs') }}/{{ $item['id'] }}" class="btn btn-dark border-2 m-1">Подробнее</a>
+                        </div>
                     </div>
-                </div>
+                @endif
             @endforeach
         </div>
     </div>
