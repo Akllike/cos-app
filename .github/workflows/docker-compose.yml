@@ -7,6 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Attest Build Provenance
+        uses: actions/attest-build-provenance@v2.1.0
       - name: Run docker-compose
         uses: hoverkraft-tech/compose-action@v2.0.1
         with:

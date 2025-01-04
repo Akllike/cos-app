@@ -16,6 +16,8 @@ jobs:
       with:
         php-version: '8.1'
     - uses: actions/checkout@v4
+    - name: Attest Build Provenance
+      uses: actions/attest-build-provenance@v2.1.0
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Install Dependencies
@@ -38,6 +40,6 @@ jobs:
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
-      run: | 
+      run: |
         php artisan migrate
         php artisan test
