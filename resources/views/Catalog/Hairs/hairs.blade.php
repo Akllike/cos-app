@@ -62,11 +62,11 @@
             width: 100%;
             height: 400px;
             border-radius: 15px;
-            background-image: url({{ url('storage/img/hairs.jpg') }}); /* Укажите ваш URL изображения */
+            background-image: url({{ url('storage/img/hairs.webp') }});
             background-size: cover;
             background-position: center;
-            display: flex; /* Используем flexbox */
-            justify-content: center; /* Центрируем по горизонтали */
+            display: flex;
+            justify-content: center;
             align-items: center;
         }
         .overlay:before {
@@ -77,14 +77,14 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Затемнение */
+            background-color: rgba(0, 0, 0, 0.5);
         }
         .text {
             position: relative;
-            color: white; /* Цвет текста */
+            color: white;
             text-align: center;
             padding: 20px;
-            z-index: 1; /* Поверхность текста над затемнением */
+            z-index: 1;
         }
     </style>
 @endsection

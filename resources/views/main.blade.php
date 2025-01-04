@@ -2,7 +2,7 @@
 @extends('header')
 @section('title', 'ShaR - Красота и Здоровье')
 @section('content')
-    <div class="container d-flex flex-column rounded-3" style="background-image: url({{ url('storage/img/bg-header.jpg') }}); background-size: cover; background-position: center;">
+    <div class="container d-flex flex-column rounded-3" style="background-image: url({{ url('storage/img/bg-header.webp') }}); background-size: cover; background-position: center;">
         <div class="container mt-4 p-1 d-flex flex-wrap justify-content-between" style="height: 50vh;">
             <div class="d-flex">
                 <a href="{{ url('catalog/hairs') }}" class="w-10 d-flex flex-column align-items-center">
