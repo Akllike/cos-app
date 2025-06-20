@@ -63,7 +63,7 @@ class ProductsService
             }
             else
             {
-                $path = 'storage/img/shablon.jpg';
+                $path = 'storage/img/logo.png';
             }
             //dd($path);
             $this->extracted($data, $request, $path);

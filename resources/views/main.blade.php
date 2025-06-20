@@ -43,7 +43,7 @@
         </div>
         <div class="d-flex flex-column m-2">
             <p class="mt-4 p-1" style="margin: 0; font-size: 14px; color: white">Мы заботимся о вас и вашей коже ❤</p>
-            <h1 class="p-1" style="color: white">КОСМЕТИКА ДЛЯ <u>ТВОЕЙ</u> ЖИЗНИ</h1>
+            <h1 class="p-1" style="color: white">КОСМЕТИКА ВО <u>БЛАГО</u> КОЖЕ</h1>
         </div>
     </div>
 

@@ -6,8 +6,8 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <a class="navbar-brand" href="{{ route('index') }}">
-                    <img src="{{ url('storage/img/navbar.jpg') }}" alt="Logo" width="36" height="32" class="d-inline-block align-text-top">
-                    <h6>ShaR</h6>
+                    <img src="{{ url('storage/img/logo.png') }}" alt="Logo" width="66" height="42" class="d-inline-block align-text-top">
+
                 </a>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
