@@ -9,12 +9,6 @@ use Illuminate\View\View;
 class FaceController extends Controller
 {
     protected ProductsService $productsService;
-    public function showCardFaces(int $id): View
-    {
-        $this->productsService = new ProductsService();
-        $data = $this->productsService->getProduct($id, 'face');
-        return view('Catalog/Faces/showFaces')->with('data', $data);
-    }
 
     public function showProductFaces(): View
     {

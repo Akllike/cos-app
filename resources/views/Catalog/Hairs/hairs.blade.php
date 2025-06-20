@@ -31,13 +31,7 @@
                             </div>
                             <p class="card-text text-secondary mt-1">{{$item['price']}} руб. / {{ $item['volume'] }} мл</p>
                             <div class="d-flex justify-content-center">
-                                @if($item['category'] === 'hair')
-                                    <a href="{{ url('catalog/hairs') }}/{{ $item['id'] }}" class="btn btn-dark border-2 m-1" style="font-size: 14px">Подробнее</a>
-                                @elseif($item['category'] === 'face')
-                                    <a href="{{ url('catalog/faces') }}/{{ $item['id'] }}" class="btn btn-dark border-2 m-1" style="font-size: 14px">Подробнее</a>
-                                @elseif($item['category'] === 'body')
-                                    <a href="{{ url('catalog/bodies') }}/{{ $item['id'] }}" class="btn btn-dark border-2 m-1" style="font-size: 14px">Подробнее</a>
-                                @endif
+                                <a href="{{ url('catalog/product') }}/{{ $item['id'] }}" class="btn btn-dark border-2 m-1" style="font-size: 14px">Подробнее</a>
                                 <div class="m-1">
                                     <button type="button" class="btn btn-outline-dark border-2 add-cart" style="font-size: 14px">
                                         В корзину

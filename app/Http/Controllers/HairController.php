@@ -9,12 +9,6 @@ use Illuminate\View\View;
 class HairController extends Controller
 {
     protected ProductsService $productsService;
-    public function showCardHairs(int $id): View
-    {
-        $this->productsService = new ProductsService();
-        $data = $this->productsService->getProduct($id, 'hair');
-        return view('Catalog/Hairs/showHairs')->with('data', $data);
-    }
 
     public function showProductHairs(): View
     {

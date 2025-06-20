@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\ProductsService;
 use Illuminate\View\View;
 
 class CatalogController extends Controller
 {
+    protected ProductsService $productsService;
     public function __invoke(): View
     {
         $products = [
@@ -26,5 +28,12 @@ class CatalogController extends Controller
             ],
         ];
         return view('Catalog/catalog')->with('products', $products);
+    }
+
+    public function showProduct(int $id): View
+    {
+        $this->productsService = new ProductsService();
+        $data = $this->productsService->getProduct($id);
+        return view('Catalog/product')->with('data', $data);
     }
 }

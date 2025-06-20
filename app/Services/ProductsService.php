@@ -22,21 +22,20 @@ class ProductsService
      * Получить одну карточку по id и получение 4-х карточек по категории
      *
      * @param int $id
-     * @param string $category
      * @return array
      */
-    public function getProduct(int $id, string $category): array
+    public function getProduct(int $id): array
     {
         $send = [];
 
-        $items = Products::where('category', $category)->get();
+        $items = Products::where('id', $id)->get();
         foreach ($items as $item) {
             if ($item->id == $id) {
                 $send = $item;
             }
         }
 
-        $items = Products::where('category', $category)->take(4)->get();
+        $items = Products::where('id', $id)->take(4)->get();
         return [ 'card' => [ $send ], 'cards' => $items ];
     }
 

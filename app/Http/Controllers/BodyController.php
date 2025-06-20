@@ -9,12 +9,6 @@ use Illuminate\View\View;
 class BodyController extends Controller
 {
     protected ProductsService $productsService;
-    public function showCardBodies(int $id): View
-    {
-        $this->productsService = new ProductsService();
-        $data = $this->productsService->getProduct($id, 'body');
-        return view('Catalog/Bodies/showBodies')->with('data', $data);
-    }
 
     public function showProductBodies(): View
     {
