@@ -10,7 +10,7 @@
                     <p>{{ $item['name'] }} </p>
                     <p>{{ $item['number'] }} </p>
                     <p>
-                        @foreach(explode(";", (int)$item['products']) as $key)
+                        @foreach(explode(";", $item['products']) as $key)
                             {{ $key }}<br>
                         @endforeach
                     </p><br>
