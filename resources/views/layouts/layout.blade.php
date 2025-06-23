@@ -9,7 +9,7 @@
     <meta name="description" content="Косметика для твоей жизни ❤">
     <meta property="og:title" content="@yield('title')" />
     <meta property="og:description" content="Косметика для твоей жизни ❤" />
-    <meta property="og:image" content="{{ url('storage/img/navbar.jpg') }}" />
+    <meta property="og:image" content="{{ url('storage/img/logo.png') }}" />
     <meta property="og:url" content="{{ route('index') }}" />
     <meta name="yandex-verification" content="5d5fe7f3aca75c71" />
 
@@ -26,10 +26,10 @@
     @yield('content')
     @yield('modals')
     @yield('footer')
-    <div id="cookie-notice" style="display:none; position: fixed; bottom: 0; background: white; width: 100%; padding: 10px; text-align: center; border-top: 1px solid black;">
+    <!-- <div id="cookie-notice" style="display:none; position: fixed; bottom: 0; background: white; width: 100%; padding: 10px; text-align: center; border-top: 1px solid black;">
         <h6>Мы используем файлы cookie!<br></h6><p>Используя наш сайт, вы соглашаетесь на использование файлов cookie. Нажимая "Принимаю", вы соглашаетесь на использование файлов cookie. Вы можете в любой момент изменить настройки файлов cookie в своем браузере.</p>
         <button class="btn btn-outline-dark border-2 add-cart" id="accept-cookies">Принимаю</button>
-    </div>
+    </div> -->
 </body>
 <style>
     body {
