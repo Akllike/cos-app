@@ -58,7 +58,7 @@
                     <img src="{{ url($item['image']) }}" class="card-img-top w-75" style="height: 270px; object-fit: cover;" alt="...">
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title" style="height: 4rem;">{{$item['name']}}</h5>
+                    <h5 class="card-title" style="height: 4rem;"><a style="text-decoration: none; color: inherit;" href="{{ url('catalog/product') }}/{{ $item['id'] }}">{{$item['name']}}</a></h5>
                     <div class="text-truncate text-wrap" style="height:2rem;">
                         <p class="description text-truncate" style="font-size: 12px;" data-container="body" data-toggle="popover" data-placement="top" data-content="Lorem ipsum dolor sit amet. Suscipit laboriosam, nisi ut perspiciatis.">
                             {{$item['description']}}</p>

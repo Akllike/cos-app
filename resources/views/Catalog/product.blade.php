@@ -123,7 +123,7 @@
                     <div class="col-md-3">
                         <div class="similar-product d-flex flex-column align-items-center">
                             <img class="w-50" src="{{ url($item['image']) }}" style="height: 180px; object-fit: cover;" alt="Preview">
-                            <p class="title">{{ $item['name'] }}</p>
+                            <p class="title"><a style="text-decoration: none; color: inherit;" href="{{ url('catalog/product') }}/{{ $item['id'] }}">{{$item['name']}}</a></p>
                             <p class="price">{{ $item['price'] }} руб.</p>
                             <a href="{{ url('catalog/product') }}/{{ $item['id'] }}" class="btn btn-dark border-2 m-1">Подробнее</a>
                         </div>

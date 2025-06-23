@@ -24,12 +24,12 @@
 
                 <div class="input-group mb-3">
                     <span class="input-group-text">Описание</span>
-                    <input type="text" name="description" class="form-control" placeholder="Описание товара" aria-label="Описание товара" required>
+                    <textarea name="description" class="form-control" placeholder="Описание товара" aria-label="Описание товара" required></textarea>
                 </div>
 
                 <div class="input-group mb-3">
                     <span class="input-group-text">Состав</span>
-                    <input type="text" name="composition" class="form-control" placeholder="Состав товара, условия хранения" aria-label="Состав товара, условия хранения" required>
+                    <textarea name="composition" class="form-control" placeholder="Состав товара, условия хранения" aria-label="Состав товара, условия хранения" required></textarea>
                 </div>
 
                 <div class="input-group mb-3">
@@ -119,12 +119,12 @@
 
                         <div class="input-group mb-3">
                             <span class="input-group-text">Описание</span>
-                            <input type="text" name="description" value="{{ $item['description'] }}" class="form-control" placeholder="Описание товара" aria-label="Описание товара">
+                            <textarea name="description" class="form-control" placeholder="Описание товара" aria-label="Описание товара">{{ $item['description'] }}</textarea>
                         </div>
 
                         <div class="input-group mb-3">
                             <span class="input-group-text">Состав</span>
-                            <input type="text" name="composition" value="{{ $item['composition'] }}" class="form-control" placeholder="Состав товара, условия хранения" aria-label="Состав товара, условия хранения">
+                            <textarea name="composition" class="form-control" placeholder="Состав товара, условия хранения" aria-label="Состав товара, условия хранения">{{ $item['composition'] }}</textarea>
                         </div>
 
                         <div class="input-group mb-3">
@@ -200,12 +200,12 @@
 
                         <div class="input-group mb-3">
                             <span class="input-group-text">Описание</span>
-                            <input type="text" name="description" value="{{ $item['description'] }}" class="form-control" placeholder="Описание товара" aria-label="Описание товара">
+                            <textarea name="description" class="form-control" placeholder="Описание товара" aria-label="Описание товара">{{ $item['description'] }}</textarea>
                         </div>
 
                         <div class="input-group mb-3">
                             <span class="input-group-text">Состав</span>
-                            <input type="text" name="composition" value="{{ $item['composition'] }}" class="form-control" placeholder="Состав товара, условия хранения" aria-label="Состав товара, условия хранения">
+                            <textarea name="composition" class="form-control" placeholder="Состав товара, условия хранения" aria-label="Состав товара, условия хранения">{{ $item['composition'] }}</textarea>
                         </div>
 
                         <div class="input-group mb-3">
@@ -282,12 +282,12 @@
 
                         <div class="input-group mb-3">
                             <span class="input-group-text">Описание</span>
-                            <input type="text" name="description" value="{{ $item['description'] }}" class="form-control" placeholder="Описание товара" aria-label="Описание товара">
+                            <textarea name="description" class="form-control" placeholder="Описание товара" aria-label="Описание товара">{{ $item['description'] }}</textarea>
                         </div>
 
                         <div class="input-group mb-3">
                             <span class="input-group-text">Состав</span>
-                            <input type="text" name="composition" value="{{ $item['composition'] }}" class="form-control" placeholder="Состав товара, условия хранения" aria-label="Состав товара, условия хранения">
+                            <textarea name="composition" class="form-control" placeholder="Состав товара, условия хранения" aria-label="Состав товара, условия хранения">{{ $item['composition'] }}</textarea>
                         </div>
 
                         <div class="input-group mb-3">
