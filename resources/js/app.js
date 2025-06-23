@@ -50,6 +50,11 @@ const openModal = items => {
     }
     modal.innerHTML = '';
 
+    if(!Object.keys(items).length) {
+        document.querySelector('#staticBackdrop .btn-close')?.click();
+        return;
+    }
+
     const ids = [];
     for (const index in items) {
         const tr = document.createElement('tr');
@@ -81,7 +86,7 @@ const openModal = items => {
     // setStorage(ids);
 };
 const updateCart = items => {
-    const table = document.querySelector('.table.cart tbody');
+    const table = document.querySelector('.table tbody');
 
     if(!table) {
         return;
@@ -89,9 +94,18 @@ const updateCart = items => {
 
     table.innerHTML = '';
 
-    if(!Object.keys(items).length) {
+    const cartList = table.closest('.cart-list');
+
+    if(!Object.keys(items).length && cartList) {
         // setStorage([]);
-        table.closest('.cart').outerHTML = `<p>Корзина пуста</p>`;
+        cartList.outerHTML = `
+            <div class="text-center py-5">
+                <div class="mb-4">
+                    <i class="bi bi-cart-x text-muted" style="font-size: 3rem;"></i>
+                </div>
+                <h3 class="text-dark mb-3">Ваша корзина пуста</h3>
+                <a href="/" class="btn btn-dark px-4">Вернуться к покупкам</a>
+            </div>`;
         return;
     }
 
@@ -103,13 +117,15 @@ const updateCart = items => {
             <td>${items[index].name}</td>
             <td>${items[index].price}</td>
             <td>
-                <button class="btn btn-sm cart-minus">-</button>
-                ${items[index].quantity} шт.
-                <button class="btn btn-sm cart-plus">+</button>
+                <div class="d-flex align-items-center">
+                    <button class="btn btn-outline-dark btn-sm cart-minus px-3">-</button>
+                    <span class="mx-2 text-dark">${items[index].quantity} шт.</span>
+                    <button class="btn btn-outline-dark btn-sm cart-plus px-3">+</button>
+                </div>
             </td>
             <td>${items[index].price * items[index].quantity} руб.</td>
             <td>
-                <button class="btn btn-danger btn-sm remove-cart">Удалить</button>
+                <button class="btn btn-outline-danger btn-sm remove-cart">Удалить</button>
             </td>
         `;
         table.append(tr);

@@ -6,59 +6,63 @@
         <h1 class="text-dark mb-4 font-weight-bold">Корзина</h1>
 
         @if(count($cart) > 0)
-            <div class="table-responsive">
-                <table class="table table-hover rounded border">
-                    <thead class="bg-dark text-white">
-                    <tr>
-                        <th class="py-3">Название</th>
-                        <th class="py-3">Цена</th>
-                        <th class="py-3">Кол-во</th>
-                        <th class="py-3">Сумма</th>
-                        <th class="py-3"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($cart as $item)
-                        <tr data-id="{{$item['product_id']}}" class="align-middle">
-                            <td class="text-dark">{{ $item['name'] }}</td>
-                            <td class="text-dark">{{ number_format($item['price'], 0, '', ' ') }} руб.</td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <button class="btn btn-outline-dark btn-sm cart-minus px-3">-</button>
-                                    <span class="mx-2 text-dark">{{ $item['quantity'] }} шт.</span>
-                                    <button class="btn btn-outline-dark btn-sm cart-plus px-3">+</button>
-                                </div>
-                            </td>
-                            <td class="text-dark">{{ number_format($item['price'] * $item['quantity'], 0, '', ' ') }} руб.</td>
-                            <td class="text-end">
-                                <button class="btn btn-outline-danger btn-sm remove-cart">
-                                    <i class="bi bi-trash"></i> Удалить
-                                </button>
-                            </td>
+            <div class="cart-list">
+                <div class="table-responsive">
+                    <table class="table table-hover rounded border">
+                        <thead class="bg-dark text-white">
+                        <tr>
+                            <th class="py-3">Название</th>
+                            <th class="py-3">Цена</th>
+                            <th class="py-3">Кол-во</th>
+                            <th class="py-3">Сумма</th>
+                            <th class="py-3"></th>
                         </tr>
-                    @endforeach
-                    </tbody>
-                    <tfoot class="bg-light">
-                    <tr>
-                        <td colspan="3" class="text-end fw-bold">Итого:</td>
-                        <td class="fw-bold">{{ number_format(array_sum(array_map(fn($item) => $item['price'] * $item['quantity'], $cart)), 0, '', ' ') }} руб.</td>
-                        <td></td>
-                    </tr>
-                    </tfoot>
-                </table>
-            </div>
+                        </thead>
+                        <tbody>
+                        @foreach($cart as $item)
+                            <tr data-id="{{$item['product_id']}}" class="align-middle">
+                                <td class="text-dark">{{ $item['name'] }}</td>
+                                <td class="text-dark">{{ number_format($item['price'], 0, '', ' ') }} руб.</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <button class="btn btn-outline-dark btn-sm cart-minus px-3">-</button>
+                                        <span class="mx-2 text-dark">{{ $item['quantity'] }} шт.</span>
+                                        <button class="btn btn-outline-dark btn-sm cart-plus px-3">+</button>
+                                    </div>
+                                </td>
+                                <td class="text-dark">{{ number_format($item['price'] * $item['quantity'], 0, '', ' ') }} руб.</td>
+                                <td class="text-end">
+                                    <button class="btn btn-outline-danger btn-sm remove-cart">
+                                        <i class="bi bi-trash"></i> Удалить
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                        <tfoot class="bg-light">
+                        <tr>
+                            <td colspan="3" class="text-end fw-bold">Итого:</td>
+                            <td class="fw-bold">{{ number_format(array_sum(array_map(fn($item) => $item['price'] * $item['quantity'], $cart)), 0, '', ' ') }} руб.</td>
+                            <td></td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
 
-            <div class="d-flex justify-content-end mt-4">
-                <a href="/" class="btn btn-outline-dark px-4 py-2 me-3">Продолжить покупки</a>
-                <button class="btn btn-dark px-4 py-2" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Оформить заказ</button>
+                <div class="d-flex justify-content-end mt-4">
+                    <a href="/" class="btn btn-outline-dark px-4 py-2 me-3">Продолжить покупки</a>
+                    <button class="btn btn-dark px-4 py-2" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Оформить заказ</button>
+                </div>
             </div>
         @else
-            <div class="text-center py-5">
-                <div class="mb-4">
-                    <i class="bi bi-cart-x text-muted" style="font-size: 3rem;"></i>
+            <div class="cart-list">
+                <div class="text-center py-5">
+                    <div class="mb-4">
+                        <i class="bi bi-cart-x text-muted" style="font-size: 3rem;"></i>
+                    </div>
+                    <h3 class="text-dark mb-3">Ваша корзина пуста</h3>
+                    <a href="/" class="btn btn-dark px-4">Вернуться к покупкам</a>
                 </div>
-                <h3 class="text-dark mb-3">Ваша корзина пуста</h3>
-                <a href="/" class="btn btn-dark px-4">Вернуться к покупкам</a>
             </div>
         @endif
     </div>

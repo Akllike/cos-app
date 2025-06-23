@@ -7,12 +7,12 @@ use Illuminate\Support\Facades\Http;
 class TelegramService
 {
     protected string $token;
-    protected int $chatId;
+    protected ?int $chatId;
 
     public function __construct()
     {
         $this->token = env('TELEGRAM_BOT_TOKEN');
-        $this->chatId = env('TELEGRAM_CHAT_ID');
+        $this->chatId = (int)env('TELEGRAM_CHAT_ID');
     }
 
     /**
