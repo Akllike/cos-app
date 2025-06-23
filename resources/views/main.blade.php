@@ -5,10 +5,10 @@
     <div class="container d-flex flex-column rounded-3" style="background-image: url({{ url('storage/img/bg-header.webp') }}); background-size: cover; background-position: center;">
         <div class="container mt-4 p-1 d-flex flex-wrap justify-content-between" style="height: 50vh;">
             <div class="d-flex">
-                <a href="{{ url('catalog/hairs') }}" class="w-10 d-flex flex-column align-items-center">
+                <!--<a href="{{ url('catalog/hairs') }}" class="w-10 d-flex flex-column align-items-center">
                     <img class="m-2 rounded-circle" style="width: 75px" src="{{ url('storage/img/11.jpg') }}" alt="">
                     <p class="badge" style="color: white">Волосы</p>
-                </a>
+                </a>-->
                 <a href="{{ url('catalog/faces') }}" class="w-10 d-flex flex-column align-items-center">
                     <img class="m-2 rounded-circle" style="width: 75px" src="{{ url('storage/img/22.jpg') }}" alt="">
                     <p class="badge" style="color: white">Лицо</p>
@@ -17,28 +17,40 @@
                     <img class="m-2 rounded-circle" style="width: 75px" src="{{ url('storage/img/33.jpg') }}" alt="">
                     <p class="badge" style="color: white">Тело</p>
                 </a>
-                <a class="w-10 d-flex flex-column align-items-center">
+                <!-- <a class="w-10 d-flex flex-column align-items-center">
                     <img class="m-2 rounded-circle" style="width: 75px" src="{{ url('storage/img/44.webp') }}" alt="">
                     <p class="badge" style="color: white">Подборки</p>
-                </a>
+                </a> -->
             </div>
             <div class="d-flex">
                 <div class="w-10 d-flex flex-column align-items-center">
-                    <img class="m-2 rounded-circle" style="width: 75px" src="{{ url('storage/img/55.webp') }}" alt="">
-                    <p class="badge" style="color: white">Скрабы</p>
+                    <form action="{{ url('search/result') }}" method="POST" class="w-10 d-flex flex-column align-items-center" style="cursor: pointer;">
+                        @csrf
+                        <input type="hidden" name="name" value="Скраб">
+                        <button class="d-flex flex-column" type="submit" style="background: none; border: none; padding: 0; cursor: pointer;">
+                            <img class="m-2 rounded-circle" style="width: 75px" src="{{ url('storage/img/55.webp') }}" alt="">
+                            <p class="badge" style="color: white">Скрабы</p>
+                        </button>
+                    </form>
                 </div>
-                <div class="w-10 d-flex flex-column align-items-center">
+                <!-- <div class="w-10 d-flex flex-column align-items-center">
                     <img class="m-2 rounded-circle" style="width: 75px" src="{{ url('storage/img/66.jpg') }}" alt="">
                     <p class="badge" style="color: white">Масла</p>
-                </div>
+                </div> -->
                 <div class="w-10 d-flex flex-column align-items-center">
-                    <img class="m-2 rounded-circle" style="width: 75px" src="{{ url('storage/img/77.webp') }}" alt="">
-                    <p class="badge" style="color: white">Гели</p>
+                    <form action="{{ url('search/result') }}" method="POST" class="w-10 d-flex flex-column align-items-center" style="cursor: pointer;">
+                        @csrf
+                        <input type="hidden" name="name" value="Гель">
+                        <button class="d-flex flex-column" type="submit" style="background: none; border: none; padding: 0; cursor: pointer;">
+                            <img class="m-2 rounded-circle" style="width: 75px" src="{{ url('storage/img/77.webp') }}" alt="">
+                            <p class="badge" style="color: white">Гели</p>
+                        </button>
+                    </form>
                 </div>
-                <div class="w-10 d-flex flex-column align-items-center">
+                <!-- <div class="w-10 d-flex flex-column align-items-center">
                     <img class="m-2 rounded-circle" style="width: 75px" src="{{ url('storage/img/88.png') }}" alt="">
                     <p class="badge" style="color: white">Муссы</p>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="d-flex flex-column m-2">
