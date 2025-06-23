@@ -2,44 +2,66 @@
 @extends('header')
 @section('title', 'Корзина | ShaR')
 @section('content')
-    <div class="container">
-        <h1>Корзина</h1>
+    <div class="container py-4 bg-white">
+        <h1 class="text-dark mb-4 font-weight-bold">Корзина</h1>
 
         @if(count($cart) > 0)
-            <table class="table cart">
-                <thead>
-                <tr>
-                    <th>Название</th>
-                    <th>Цена</th>
-                    <th>Кол-во</th>
-                    <th>Сумма</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($cart as $item)
-                    <tr data-id="{{$item['product_id']}}">
-                        <td>{{ $item['name'] }}</td>
-                        <td>{{ $item['price'] }}</td>
-                        <td>
-                            <button class="btn btn-sm cart-minus">-</button>
-                            {{ $item['quantity'] }} шт.
-                            <button class="btn btn-sm cart-plus">+</button>
-                        </td>
-                        <td>{{ $item['price'] * $item['quantity'] }} руб.</td>
-                        <td>
-                            <!-- <form action="{{ route('cart.remove') }}" method="post">
-                                <input type="hidden" name="product_id" value="{{ $item['product_id'] }}"> -->
-                                <button type="submit" class="btn btn-danger btn-sm remove-cart" data->Удалить</button>
-                            <!-- </form> -->
-                        </td>
+            <div class="table-responsive">
+                <table class="table table-hover rounded border">
+                    <thead class="bg-dark text-white">
+                    <tr>
+                        <th class="py-3">Название</th>
+                        <th class="py-3">Цена</th>
+                        <th class="py-3">Кол-во</th>
+                        <th class="py-3">Сумма</th>
+                        <th class="py-3"></th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    @foreach($cart as $item)
+                        <tr data-id="{{$item['product_id']}}" class="align-middle">
+                            <td class="text-dark">{{ $item['name'] }}</td>
+                            <td class="text-dark">{{ number_format($item['price'], 0, '', ' ') }} руб.</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <button class="btn btn-outline-dark btn-sm cart-minus px-3">-</button>
+                                    <span class="mx-2 text-dark">{{ $item['quantity'] }} шт.</span>
+                                    <button class="btn btn-outline-dark btn-sm cart-plus px-3">+</button>
+                                </div>
+                            </td>
+                            <td class="text-dark">{{ number_format($item['price'] * $item['quantity'], 0, '', ' ') }} руб.</td>
+                            <td class="text-end">
+                                <button class="btn btn-outline-danger btn-sm remove-cart">
+                                    <i class="bi bi-trash"></i> Удалить
+                                </button>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                    <tfoot class="bg-light">
+                    <tr>
+                        <td colspan="3" class="text-end fw-bold">Итого:</td>
+                        <td class="fw-bold">{{ number_format(array_sum(array_map(fn($item) => $item['price'] * $item['quantity'], $cart)), 0, '', ' ') }} руб.</td>
+                        <td></td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <div class="d-flex justify-content-end mt-4">
+                <a href="/" class="btn btn-outline-dark px-4 py-2 me-3">Продолжить покупки</a>
+                <button class="btn btn-dark px-4 py-2" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Оформить заказ</button>
+            </div>
         @else
-            <p>Корзина пуста</p>
+            <div class="text-center py-5">
+                <div class="mb-4">
+                    <i class="bi bi-cart-x text-muted" style="font-size: 3rem;"></i>
+                </div>
+                <h3 class="text-dark mb-3">Ваша корзина пуста</h3>
+                <a href="/" class="btn btn-dark px-4">Вернуться к покупкам</a>
+            </div>
         @endif
+    </div>
 
         <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
@@ -85,11 +107,6 @@
                 </div>
             </div>
         </div>
-        @if(count($cart) > 0)
-            <button class="btn btn-outline-dark border-2 remove-cart" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Заказать</button>
-        @else
-            <button class="btn btn-outline-dark disabled border-2 remove-cart" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Заказать</button>
-        @endif
 
         <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -112,7 +129,26 @@
 
         <style>
             td {
-                vertical-align: middle;
+                body {
+                    background-color: white;
+                }
+                .table {
+                    background-color: white;
+                    border-color: #dee2e6;
+                }
+                .table-hover tbody tr:hover {
+                    background-color: rgba(0, 0, 0, 0.02);
+                }
+                .rounded {
+                    border-radius: 8px !important;
+                    overflow: hidden;
+                }
+                .btn-outline-dark:hover {
+                    background-color: rgba(0, 0, 0, 0.05);
+                }
+                .bg-light {
+                    background-color: #f8f9fa !important;
+                }
             }
         </style>
 
@@ -124,6 +160,6 @@
                 localStorage.clear();
             });
         </script>
-    </div>
+
     @csrf
 @endsection
