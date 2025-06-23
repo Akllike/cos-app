@@ -10,12 +10,6 @@
                 <li class="breadcrumb-item active" aria-current="page">Для волос</li>
             </ol>
         </nav>
-        <div class="overlay" style="border-radius: 15px;">
-            <div class="text" style="text-align: center">
-                <h1 style="margin: 10px">Косметика для волос</h1>
-                <p>Косметика для волос предназначена для ухода и защиты волос и кожи головы. Она увлажняет, питает и укрепляет волосы, предотвращая ломкость и секущиеся кончики. Продукты также помогают защищать волосы от внешних факторов и улучшают состояние кожи головы, устраняя проблемы, такие как перхоть. Кроме того, косметика для укладки позволяет создавать и фиксировать стильные прически.</p>
-            </div>
-        </div>
         <div class="d-flex flex-wrap justify-content-around align-items-center mt-5 mb-4 wrap-md-4">
             @if(sizeof($data) != 0)
                 @foreach($data as $item)

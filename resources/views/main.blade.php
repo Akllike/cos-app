@@ -80,11 +80,11 @@
         @endforeach
     </div>
 
-    <div class="container d-flex flex-wrap mt-4">
+    <!-- <div class="container d-flex flex-wrap mt-4">
         <h2>⚫ Наши подборки по типу кожи</h2>
-    </div>
+    </div> -->
 
-    <div class="container d-flex flex-wrap justify-content-around align-items-center mt-4 mb-4 wrap-md-4">
+    <!-- <div class="container d-flex flex-wrap justify-content-around align-items-center mt-4 mb-4 wrap-md-4">
         <div class="card mb-4 p-2 border-0 d-flex flex-column justify-content-end shadow" style="width: 17rem; height: 21rem; background-image: url('{{ url('storage/img/111.jpg') }}'); background-size: cover; background-position: center;">
             <h5 style="color: white">Проблемная кожа</h5>
             <a href="#" class="btn btn-light btn-sm border-1 w-50">Подробнее</a>
@@ -101,7 +101,7 @@
             <h5 style="color: white">Пигменция</h5>
             <a href="#" class="btn btn-light btn-sm border-1 w-50">Подробнее</a>
         </div>
-    </div>
+    </div> -->
 
     <div class="container d-flex flex-wrap mt-4">
         <h2>⚫ О нас</h2>
@@ -170,14 +170,14 @@
                     </div>
                 </div>
             </div>
-            <div>
+            <!-- <div>
                 <div class="card text-center gradient-advanced shadow" style="height: 458px; width: 350px">
                     <div class="card-body d-flex flex-column justify-content-center">
                         <h5 class="card-title">Улучшаем качество жизни через уход и любовь к себе</h5>
                         <p class="card-text">Это пространство эффективных средств широкого действия, которые могут решить эстетичные проблемы кожи лица , тела и волос. Мы всей командой тестируем все средства: состав, сочетаемость, текстуры и эффективность, которая подтверждена клиническими испытаниями.</p>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 

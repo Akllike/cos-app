@@ -10,12 +10,6 @@
                 <li class="breadcrumb-item active" aria-current="page">Для лица</li>
             </ol>
         </nav>
-        <div class="overlay" style="border-radius: 15px;">
-            <div class="text" style="text-align: center">
-                <h1 style="margin: 10px">Косметика для лица</h1>
-                <p>Косметика для лица способствует улучшению внешнего вида и здоровья кожи, решая множество проблем, таких как сухость, жирность и воспаления. Увлажняющие средства помогают поддерживать оптимальный уровень влаги, а кремы с SPF защищают от вредного воздействия ультрафиолетовых лучей. Пилинги и маски способствуют удалению мертвых клеток и улучшают текстуру кожи, делая ее более гладкой и сияющей.</p>
-            </div>
-        </div>
         <div class="d-flex flex-wrap justify-content-around align-items-center mt-5 mb-4 wrap-md-4">
             @if(sizeof($data) != 0)
                 @foreach($data as $item)

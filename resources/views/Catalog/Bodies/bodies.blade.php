@@ -10,12 +10,6 @@
                 <li class="breadcrumb-item active" aria-current="page">Для тела</li>
             </ol>
         </nav>
-        <div class="overlay" style="border-radius: 15px;">
-            <div class="text" style="text-align: center">
-                <h1 style="margin: 10px">Косметика для тела</h1>
-                <p>Косметика для тела играет ключевую роль в поддержке здоровья и красоты кожи, обеспечивая необходимое увлажнение и питание. Лосьоны и кремы помогают предотвращать сухость и шелушение, создавая барьер, который защищает кожу от негативных внешних факторов. Ск scrub'ы и пилинги удаляют омертвевшие клетки, улучшая текстуру и внешний вид кожи. Специальные средства, такие как кремы для массажа или антицеллюлитные продукты, помогают улучшить кровообращение и тонус кожи.</p>
-            </div>
-        </div>
         <div class="d-flex flex-wrap justify-content-around align-items-center mt-5 mb-4 wrap-md-4">
             @if(sizeof($data) != 0)
                 @foreach($data as $item)
