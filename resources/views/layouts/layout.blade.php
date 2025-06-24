@@ -10,7 +10,7 @@
     <meta name="description" content="@yield('meta_description', 'Косметика во благо коже ❤')">
     <meta property="og:title" content="@yield('title')" />
     <meta property="og:description" content="@yield('meta_description', 'Косметика во благо коже ❤')" />
-    <meta property="og:image" content=""@yield('meta_image', url('storage/img/logo.png'))" />
+    <meta property="og:image" content="@yield('meta_image', url('storage/img/logo.png'))" />
     <meta property="og:url" content="@yield('meta_url', route('index'))" />
     <meta name="yandex-verification" content="5d5fe7f3aca75c71" />
 
