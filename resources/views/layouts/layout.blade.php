@@ -12,6 +12,11 @@
     <meta property="og:description" content="@yield('meta_description', 'Косметика во благо коже ❤')" />
     <meta property="og:image" content="@yield('meta_image', url('storage/img/logo.png'))" />
     <meta property="og:url" content="@yield('meta_url', route('index'))" />
+    <!-- VK.com -->
+    <meta property="og:product:price:amount" content="@yield('meta_product_price')">
+    <meta property="og:product:price:currency" content="@yield('meta_product_currency')">
+    <meta property="vk:image" content="@yield('meta_product_image', url('storage/img/logo.png'))">
+
     <meta name="yandex-verification" content="5d5fe7f3aca75c71" />
 
     <link rel="canonical" href="@yield('link_canonical', url('/'))">
