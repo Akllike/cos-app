@@ -7,7 +7,7 @@
             @foreach($data['card'] as $item)
                 @section('title', $item['name'] . ' | ShaR')
                 @section('meta_description', $item['description'])
-                @section('meta_image', $item['image'])
+                @section('meta_image', url($item['image']))
                 @section('meta_url', url('catalog/product') . '/' . $item['id'])
                 <div class="col-md-5">
                     <div class="main-img d-flex justify-content-center mb-5">
