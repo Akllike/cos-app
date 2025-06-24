@@ -11,7 +11,7 @@
                 @section('meta_url', url('catalog/product') . '/' . $item['id'])
                 @section('meta_product_price', $item['price'])
                 @section('meta_product_currency', 'RUB')
-                @section('meta_product_image', url('catalog/product') . '/' . $item['id'])
+                @section('meta_product_image', url($item['image']))
                 @section('link_canonical', url('catalog/product') . '/' . $item['id'])
                 <div class="col-md-5">
                     <div class="main-img d-flex justify-content-center mb-5">
