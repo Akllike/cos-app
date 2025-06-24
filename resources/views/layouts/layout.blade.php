@@ -14,6 +14,8 @@
     <meta property="og:url" content="@yield('meta_url', route('index'))" />
     <meta name="yandex-verification" content="5d5fe7f3aca75c71" />
 
+    <link rel="canonical" href="@yield('link_canonical', url('/'))">
+
     @vite(['resources/js/app.js', 'resources/css/app.css'])
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 

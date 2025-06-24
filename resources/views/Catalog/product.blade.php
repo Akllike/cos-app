@@ -9,6 +9,7 @@
                 @section('meta_description', $item['description'])
                 @section('meta_image', url($item['image']))
                 @section('meta_url', url('catalog/product') . '/' . $item['id'])
+                @section('link_canonical', url('catalog/product') . '/' . $item['id'])
                 <div class="col-md-5">
                     <div class="main-img d-flex justify-content-center mb-5">
                         <img class="img-fluid w-50" src="{{ url($item['image']) }}" alt="ProductS">

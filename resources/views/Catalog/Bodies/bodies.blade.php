@@ -3,6 +3,7 @@
 @section('title', 'Косметика для тела | ShaR')
 @section('meta_description', 'Линейки косметики для вашей кожи тела.')
 @section('meta_url', route('body.show'))
+@section('link_canonical', route('body.show'))
 @section('content')
     {{--<img src="{{URL('./storage/img/itismuse.jpg')}}" style="width: 100%; height: 400px;" alt="...">--}}
     <div class="container">
