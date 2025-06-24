@@ -1,6 +1,8 @@
 @extends('layouts.layout')
 @extends('header')
 @section('title', 'Косметика для волос | ShaR')
+@section('meta_description', 'Линейки косметики для ухаживания за волосами.')
+@section('meta_url', route('hair.show'))
 @section('content')
     {{--<img src="{{URL('./storage/img/itismuse.jpg')}}" style="width: 100%; height: 400px;" alt="...">--}}
     <div class="container">

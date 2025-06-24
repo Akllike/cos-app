@@ -5,10 +5,6 @@
     <div class="container d-flex flex-column rounded-3" style="background-image: url({{ url('storage/img/bg-header.webp') }}); background-size: cover; background-position: center;">
         <div class="container mt-4 p-1 d-flex flex-wrap justify-content-between" style="height: 50vh;">
             <div class="d-flex">
-                <!--<a href="{{ url('catalog/hairs') }}" class="w-10 d-flex flex-column align-items-center">
-                    <img class="m-2 rounded-circle" style="width: 75px" src="{{ url('storage/img/11.jpg') }}" alt="">
-                    <p class="badge" style="color: white">Волосы</p>
-                </a>-->
                 <a href="{{ url('catalog/faces') }}" class="w-10 d-flex flex-column align-items-center">
                     <img class="m-2 rounded-circle" style="width: 75px" src="{{ url('storage/img/22.jpg') }}" alt="">
                     <p class="badge" style="color: white">Лицо</p>
@@ -17,10 +13,6 @@
                     <img class="m-2 rounded-circle" style="width: 75px" src="{{ url('storage/img/33.jpg') }}" alt="">
                     <p class="badge" style="color: white">Тело</p>
                 </a>
-                <!-- <a class="w-10 d-flex flex-column align-items-center">
-                    <img class="m-2 rounded-circle" style="width: 75px" src="{{ url('storage/img/44.webp') }}" alt="">
-                    <p class="badge" style="color: white">Подборки</p>
-                </a> -->
             </div>
             <div class="d-flex">
                 <div class="w-10 d-flex flex-column align-items-center">
@@ -33,10 +25,6 @@
                         </button>
                     </form>
                 </div>
-                <!-- <div class="w-10 d-flex flex-column align-items-center">
-                    <img class="m-2 rounded-circle" style="width: 75px" src="{{ url('storage/img/66.jpg') }}" alt="">
-                    <p class="badge" style="color: white">Масла</p>
-                </div> -->
                 <div class="w-10 d-flex flex-column align-items-center">
                     <form action="{{ url('search/result') }}" method="POST" class="w-10 d-flex flex-column align-items-center" style="cursor: pointer;">
                         @csrf
@@ -47,10 +35,6 @@
                         </button>
                     </form>
                 </div>
-                <!-- <div class="w-10 d-flex flex-column align-items-center">
-                    <img class="m-2 rounded-circle" style="width: 75px" src="{{ url('storage/img/88.png') }}" alt="">
-                    <p class="badge" style="color: white">Муссы</p>
-                </div> -->
             </div>
         </div>
         <div class="d-flex flex-column m-2">
@@ -91,29 +75,6 @@
             </div>
         @endforeach
     </div>
-
-    <!-- <div class="container d-flex flex-wrap mt-4">
-        <h2>⚫ Наши подборки по типу кожи</h2>
-    </div> -->
-
-    <!-- <div class="container d-flex flex-wrap justify-content-around align-items-center mt-4 mb-4 wrap-md-4">
-        <div class="card mb-4 p-2 border-0 d-flex flex-column justify-content-end shadow" style="width: 17rem; height: 21rem; background-image: url('{{ url('storage/img/111.jpg') }}'); background-size: cover; background-position: center;">
-            <h5 style="color: white">Проблемная кожа</h5>
-            <a href="#" class="btn btn-light btn-sm border-1 w-50">Подробнее</a>
-        </div>
-        <div class="card mb-4 p-2 border-0 d-flex flex-column justify-content-end shadow" style="width: 17rem; height: 19rem;  background-image: url('{{ url('storage/img/222.jpg') }}'); background-size: cover; background-position: center;">
-            <h5 style="color: white">Сухая кожа</h5>
-            <a href="#" class="btn btn-light btn-sm border-1 w-50">Подробнее</a>
-        </div>
-        <div class="card mb-4 p-2 border-0 d-flex flex-column justify-content-end shadow" style="width: 17rem; height: 21rem;  background-image: url('{{ url('storage/img/333.webp') }}'); background-size: cover; background-position: center;">
-            <h5 style="color: white">Возрастная кожа</h5>
-            <a href="#" class="btn btn-light btn-sm border-1 w-50">Подробнее</a>
-        </div>
-        <div class="card mb-4 p-2 border-0 d-flex flex-column justify-content-end shadow" style="width: 17rem; height: 19rem;  background-image: url('{{ url('storage/img/444.jpg') }}'); background-size: cover; background-position: center;">
-            <h5 style="color: white">Пигменция</h5>
-            <a href="#" class="btn btn-light btn-sm border-1 w-50">Подробнее</a>
-        </div>
-    </div> -->
 
     <div class="container d-flex flex-wrap mt-4">
         <h2>⚫ О нас</h2>
@@ -182,14 +143,6 @@
                     </div>
                 </div>
             </div>
-            <!-- <div>
-                <div class="card text-center gradient-advanced shadow" style="height: 458px; width: 350px">
-                    <div class="card-body d-flex flex-column justify-content-center">
-                        <h5 class="card-title">Улучшаем качество жизни через уход и любовь к себе</h5>
-                        <p class="card-text">Это пространство эффективных средств широкого действия, которые могут решить эстетичные проблемы кожи лица , тела и волос. Мы всей командой тестируем все средства: состав, сочетаемость, текстуры и эффективность, которая подтверждена клиническими испытаниями.</p>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </div>
 
@@ -229,20 +182,6 @@
         }
     </style>
 
-    {{--<script type="text/javascript">
-        $(window).on('load',function() {
-
-            let delayMs = 1;
-            setTimeout(function(){
-                $('#myModal').modal('show');
-            }, delayMs);
-        });
-
-        setTimeout(function() {
-            $('#myModal').modal('toggle');
-        }, 1000);
-        $('#myModal').css("display", "block");
-    </script>--}}
 @endsection
 @extends('modals')
 @extends('footer')

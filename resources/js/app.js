@@ -5,22 +5,21 @@ import toastr from 'toastr';
 const addToCart = async (id, quantity) => {
     let data = {
         product_id: id,
-        quantity: quantity
+        quantity: quantity,
+        _token: document.querySelector('[name="_token"]').value,
     };
 
     const req = await fetch('/cart/add', {
-        method: 'post',
+        method: 'POST',
         body: JSON.stringify(data),
         headers: {
-            'content-type': 'application/json'
+            'Content-Type': 'application/json',
         }
     });
     const res = await req.json();
 
     getElementButton(id).textContent = 'Добавлено';
-
     openModal(res);
-
     updateCart(res);
 };
 
