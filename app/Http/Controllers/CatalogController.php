@@ -6,6 +6,7 @@ use App\Models\Comments\CommentsService;
 use App\Services\ProductsService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use \Illuminate\Http\RedirectResponse;
 
 class CatalogController extends Controller
 {
@@ -43,10 +44,10 @@ class CatalogController extends Controller
         return view('Catalog/product')->with('data', $data)->with('comments', $comments);
     }
 
-    public function createComment(int $id, Request $request): View
+    public function createComment(int $id, Request $request): RedirectResponse
     {
         $this->commentsService = new CommentsService();
         $this->commentsService->createComment($request);
-        return $this->showProduct($id);
+        return redirect()->route('product.card', ['id' => $id]);
     }
 }
