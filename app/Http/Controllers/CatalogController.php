@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comments\CommentsService;
 use App\Services\ProductsService;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class CatalogController extends Controller
 {
     protected ProductsService $productsService;
+    protected CommentsService $commentsService;
     public function __invoke(): View
     {
         $products = [
@@ -33,7 +36,17 @@ class CatalogController extends Controller
     public function showProduct(int $id): View
     {
         $this->productsService = new ProductsService();
+        $this->commentsService = new CommentsService();
         $data = $this->productsService->getProduct($id);
-        return view('Catalog/product')->with('data', $data);
+        $comments = $this->commentsService->getComments($id);
+
+        return view('Catalog/product')->with('data', $data)->with('comments', $comments);
+    }
+
+    public function createComment(int $id, Request $request): View
+    {
+        $this->commentsService = new CommentsService();
+        $this->commentsService->createComment($request);
+        return $this->showProduct($id);
     }
 }

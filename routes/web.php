@@ -32,6 +32,7 @@ Route::prefix('catalog')->group(function () {
     Route::get('/bodies', 'App\Http\Controllers\BodyController@showProductBodies')->name('body.show');
 
     Route::get('/product/{id}', 'App\Http\Controllers\CatalogController@showProduct')->name('product.card');
+    route::post('/product/{id}/add', 'App\Http\Controllers\CatalogController@createComment')->name('product.comment.add');
 });
 
 Route::prefix('cart')->group(function () {

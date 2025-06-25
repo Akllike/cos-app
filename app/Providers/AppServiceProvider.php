@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Comments\CommentsService;
 use App\Services\CartService;
 use App\Services\TelegramService;
 use Illuminate\Support\Facades\URL;
@@ -25,6 +26,10 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton(CartService::class, function ($app) {
             return new CartService();
+        });
+
+        $this->app->singleton(CommentsService::class, function ($app) {
+            return new CommentsService();
         });
     }
 
