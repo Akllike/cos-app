@@ -5,7 +5,7 @@
     <a href="{{ route('home.orders') }}" class="btn btn-primary m-2">Заказы</a>
     <div id="create-card" class="d-none">
         <div class="mt-2 mb-4 p-2 d-flex align-items-center justify-content-between border">
-            <form action="{{ url('admin/create/') }}" method="POST" enctype="multipart/form-data" class="row g-3 needs-validation">
+            <form action="{{ route('home.create') }}" method="POST" enctype="multipart/form-data" class="row g-3 needs-validation">
                 @csrf
                 <div class="input-group mb-3">
                     <select class="form-select m-4" name="group-name" aria-label="Пример выбора по умолчанию" required>
@@ -84,7 +84,7 @@
                         <label for="toggle-btn-{{ $item['id'] }}" class="toggle-label"></label>
                     </div>
                     <button id="btn-edit-muse-{{ $item['id'] }}" class="btn btn-primary m-1">Редактировать</button>
-                    <form action="{{ url('admin/delete/') }}" method="POST" class="m-1">
+                    <form action="{{ route('home.delete') }}" method="POST" class="m-1">
                         @csrf
                         <input type="hidden" name="group-name" value="1">
                         <input type="hidden" name="id" value="{{ $item['id'] }}">
@@ -94,7 +94,7 @@
             </div>
             <div id="toggle-muse-{{ $item['id'] }}" class="d-none">
                 <div class="mt-2 d-flex align-items-center justify-content-between border-1">
-                    <form action="{{ url('admin/edit/') }}" method="POST" enctype="multipart/form-data" class="row g-3 needs-validation">
+                    <form action="{{ route('home.edit') }}" method="POST" enctype="multipart/form-data" class="row g-3 needs-validation">
                         @csrf
                         <div class="input-group mb-3 mt-4">
                             <label class="input-group-text" for="inputGroupSelect01">Категория</label>
@@ -165,7 +165,7 @@
                         <label for="toggle-btn-{{ $item['id'] }}" class="toggle-label"></label>
                     </div>
                     <button id="btn-edit-gel-{{ $item['id'] }}" class="btn btn-primary m-1">Редактировать</button>
-                    <form action="{{ url('admin/delete/') }}" method="POST" class="m-1">
+                    <form action="{{ route('home.delete') }}" method="POST" class="m-1">
                         @csrf
                         <input type="hidden" name="group-name" value="2">
                         <input type="hidden" name="id" value="{{ $item['id'] }}">
@@ -175,7 +175,7 @@
             </div>
             <div id="toggle-gel-{{ $item['id'] }}" class="d-none">
                 <div class="mt-2 d-flex align-items-center justify-content-between border-1">
-                    <form action="{{ url('admin/edit/') }}" method="POST" enctype="multipart/form-data" class="row g-3 needs-validation">
+                    <form action="{{ route('home.edit') }}" method="POST" enctype="multipart/form-data" class="row g-3 needs-validation">
                         @csrf
                         <div class="input-group mb-3 mt-4">
                             <label class="input-group-text" for="inputGroupSelect01">Категория</label>
@@ -247,7 +247,7 @@
                         <label for="toggle-btn-{{ $item['id'] }}" class="toggle-label"></label>
                     </div>
                     <button id="btn-edit-scrab-{{ $item['id'] }}" class="btn btn-primary m-1">Редактировать</button>
-                    <form action="{{ url('admin/delete/') }}" method="POST" class="m-1">
+                    <form action="{{ route('home.delete') }}" method="POST" class="m-1">
                         @csrf
                         <input type="hidden" name="group-name" value="3">
                         <input type="hidden" name="id" value="{{ $item['id'] }}">
@@ -257,7 +257,7 @@
             </div>
             <div id="toggle-scrab-{{ $item['id'] }}" class="d-none">
                 <div class="mt-2 d-flex align-items-center justify-content-between border-1">
-                    <form action="{{ url('admin/edit/') }}" method="POST" enctype="multipart/form-data" class="row g-3 needs-validation">
+                    <form action="{{ route('home.edit') }}" method="POST" enctype="multipart/form-data" class="row g-3 needs-validation">
                         @csrf
                         <div class="input-group mb-3 mt-4">
                             <label class="input-group-text" for="inputGroupSelect01">Категория</label>
@@ -454,7 +454,7 @@
             btn.addEventListener('change', function() {
                 const id = this.dataset.id;
 
-                fetch('{{ url('admin/instock') }}', {
+                fetch('{{ route('home.instock') }}', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

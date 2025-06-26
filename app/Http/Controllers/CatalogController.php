@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comments\CommentsService;
-use App\Services\ProductsService;
+use App\Interfaces\CommentsServiceInterface;
+use App\Interfaces\ProductsServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use \Illuminate\Http\RedirectResponse;
 
 class CatalogController extends Controller
 {
-    protected ProductsService $productsService;
-    protected CommentsService $commentsService;
+    public function __construct(
+        protected CommentsServiceInterface $commentsService,
+        protected ProductsServiceInterface $productsService
+    ) {}
+
     public function __invoke(): View
     {
         $products = [
@@ -36,8 +39,6 @@ class CatalogController extends Controller
 
     public function showProduct(int $id): View
     {
-        $this->productsService = new ProductsService();
-        $this->commentsService = new CommentsService();
         $data = $this->productsService->getProduct($id);
         $comments = $this->commentsService->getComments($id);
 
@@ -46,7 +47,6 @@ class CatalogController extends Controller
 
     public function createComment(int $id, Request $request): RedirectResponse
     {
-        $this->commentsService = new CommentsService();
         $this->commentsService->createComment($request);
         return redirect()->route('product.card', ['id' => $id]);
     }

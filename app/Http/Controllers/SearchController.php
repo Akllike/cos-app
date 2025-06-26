@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\ProductsService;
+use App\Interfaces\ProductsServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class SearchController extends Controller
 {
-    protected ProductsService $productsService;
+    public function __construct(
+        protected ProductsServiceInterface $productsService
+    ) {}
 
     public function __invoke(): View
     {
@@ -17,7 +19,6 @@ class SearchController extends Controller
 
     public function viewSearch(Request $request): View
     {
-        $this->productsService = new ProductsService();
         $data = $this->productsService->SearchProduct($request);
         $products = $data['products'];
 

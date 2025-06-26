@@ -8,11 +8,11 @@
                 @section('title', $item['name'] . ' | ShaR')
                 @section('meta_description', $item['description'])
                 @section('meta_image', url($item['image']))
-                @section('meta_url', url('catalog/product') . '/' . $item['id'])
+                @section('meta_url', route('product.card', $item['id']))
                 @section('meta_product_price', $item['price'])
                 @section('meta_product_currency', 'RUB')
                 @section('meta_product_image', url($item['image']))
-                @section('link_canonical', url('catalog/product') . '/' . $item['id'])
+                @section('link_canonical', route('product.card', $item['id']))
                 <div class="col-md-5">
                     <div class="main-img d-flex justify-content-center mb-5">
                         <img class="img-fluid w-50" src="{{ url($item['image']) }}" alt="ProductS">
@@ -187,26 +187,6 @@
                     </div>
                 </div>
             @endif
-        </div>
-    </div>
-
-    <div class="container similar-products my-4">
-        <hr>
-        <p class="display-5 mb-4" style="text-align: center">Похожие товары</p>
-
-        <div class="row my-4">
-            @foreach($data['card'] as $item)
-                @if(count($data['card']) <= 4)
-                    <div class="col-md-3">
-                        <div class="similar-product d-flex flex-column align-items-center">
-                            <img class="w-50" src="{{ url($item['image']) }}" style="height: 180px; object-fit: cover;" alt="Preview">
-                            <p class="title"><a style="text-decoration: none; color: inherit;" href="{{ url('catalog/product') }}/{{ $item['id'] }}">{{$item['name']}}</a></p>
-                            <p class="price">{{ $item['price'] }} руб.</p>
-                            <a href="{{ url('catalog/product') }}/{{ $item['id'] }}" class="btn btn-dark border-2 m-1">Подробнее</a>
-                        </div>
-                    </div>
-                @endif
-            @endforeach
         </div>
     </div>
 

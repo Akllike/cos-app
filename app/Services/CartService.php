@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Interfaces\CartServiceInterface;
 use App\Models\Orders;
 use App\Models\Products;
 
@@ -11,7 +12,7 @@ use App\Models\Products;
  * - Удалить с корзины одну позицию
  * - Удалить с корзины все позиции
  */
-class CartService
+class CartService implements CartServiceInterface
 {
     /**
      * Добавление карточки продукта в сессию

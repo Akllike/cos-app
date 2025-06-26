@@ -42,7 +42,7 @@
                             </a>
                         </li>
                     </ul>
-                    <form action="{{ url('search/result') }}" method="POST" class="d-flex">
+                    <form action="{{ route('search.view') }}" method="POST" class="d-flex">
                         @csrf
                         <input class="form-control me-2" type="text" name="name" placeholder="Поиск" aria-label="Поиск">
                         <button class="btn btn-outline-dark border-2" type="submit">Поиск</button>

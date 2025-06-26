@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Interfaces\CartServiceInterface;
 use App\Models\Orders;
 use App\Services\TelegramService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use \Illuminate\Http\RedirectResponse;
-use App\Services\CartService;
-use Illuminate\Http\JsonResponse;
 
 class CartController extends Controller
 {
-    protected CartService $cartService;
     protected TelegramService $telegramService;
 
+    public function __construct(
+        protected CartServiceInterface $cartService
+    ) {}
     public function index(): View
     {
         $cart = session('cart', []);
@@ -32,7 +33,6 @@ class CartController extends Controller
         $productId  = $request->input('product_id');
         $quantity   = $request->input('quantity', 1);
 
-        $this->cartService = new CartService();
         $cart = $this->cartService->addProductToCart($productId, $quantity);
 
         ksort($cart);
@@ -46,7 +46,6 @@ class CartController extends Controller
         $productId  = $request->input('product_id');
         $quantity   = $request->input('quantity');
 
-        $this->cartService = new CartService();
         $cart = $this->cartService->removeProductFromCart($productId, $quantity);
 
         return json_encode($cart, true);
@@ -99,7 +98,6 @@ class CartController extends Controller
 
         try {
             $this->telegramService = new TelegramService();
-            $this->cartService = new CartService();
             $this->telegramService->sendMessage($send);
             $this->cartService->removeProductFromAllCart();
             return redirect()->back()->with('success', $status);

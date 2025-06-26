@@ -5,18 +5,18 @@
     <div class="container d-flex flex-column rounded-3" style="background-image: url({{ url('storage/img/bg-header.webp') }}); background-size: cover; background-position: center;">
         <div class="container mt-4 p-1 d-flex flex-wrap justify-content-between" style="height: 50vh;">
             <div class="d-flex">
-                <a href="{{ url('catalog/faces') }}" class="w-10 d-flex flex-column align-items-center">
+                <a href="{{ route('face.show') }}" class="w-10 d-flex flex-column align-items-center">
                     <img class="m-2 rounded-circle" style="width: 75px" src="{{ url('storage/img/22.jpg') }}" alt="">
                     <p class="badge" style="color: white">Лицо</p>
                 </a>
-                <a href="{{ url('catalog/bodies') }}" class="w-10 d-flex flex-column align-items-center">
+                <a href="{{ route('body.show') }}" class="w-10 d-flex flex-column align-items-center">
                     <img class="m-2 rounded-circle" style="width: 75px" src="{{ url('storage/img/33.jpg') }}" alt="">
                     <p class="badge" style="color: white">Тело</p>
                 </a>
             </div>
             <div class="d-flex">
                 <div class="w-10 d-flex flex-column align-items-center">
-                    <form action="{{ url('search/result') }}" method="POST" class="w-10 d-flex flex-column align-items-center" style="cursor: pointer;">
+                    <form action="{{ route('search.view') }}" method="POST" class="w-10 d-flex flex-column align-items-center" style="cursor: pointer;">
                         @csrf
                         <input type="hidden" name="name" value="Скраб">
                         <button class="d-flex flex-column" type="submit" style="background: none; border: none; padding: 0; cursor: pointer;">
@@ -26,7 +26,7 @@
                     </form>
                 </div>
                 <div class="w-10 d-flex flex-column align-items-center">
-                    <form action="{{ url('search/result') }}" method="POST" class="w-10 d-flex flex-column align-items-center" style="cursor: pointer;">
+                    <form action="{{ route('search.view') }}" method="POST" class="w-10 d-flex flex-column align-items-center" style="cursor: pointer;">
                         @csrf
                         <input type="hidden" name="name" value="Гель">
                         <button class="d-flex flex-column" type="submit" style="background: none; border: none; padding: 0; cursor: pointer;">
@@ -54,14 +54,14 @@
                     <img src="{{ url($item['image']) }}" class="card-img-top w-75" style="height: 270px; object-fit: cover;" alt="...">
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title" style="height: 4rem;"><a style="text-decoration: none; color: inherit;" href="{{ url('catalog/product') }}/{{ $item['id'] }}">{{$item['name']}}</a></h5>
+                    <h5 class="card-title" style="height: 4rem;"><a style="text-decoration: none; color: inherit;" href="{{ route('product.card', $item['id']) }}">{{$item['name']}}</a></h5>
                     <div class="text-truncate text-wrap" style="height:2rem;">
                         <p class="description text-truncate" style="font-size: 12px;" data-container="body" data-toggle="popover" data-placement="top" data-content="Lorem ipsum dolor sit amet. Suscipit laboriosam, nisi ut perspiciatis.">
                             {{$item['description']}}</p>
                     </div>
                     <p class="card-text text-secondary mt-1">{{$item['price']}} руб. / {{ $item['volume'] }} мл</p>
                     <div class="d-flex justify-content-center">
-                        <a href="{{ url('catalog/product') }}/{{ $item['id'] }}" class="btn btn-dark border-2 m-1" style="font-size: 14px">Подробнее</a>
+                        <a href="{{ route('product.card', $item['id']) }}" class="btn btn-dark border-2 m-1" style="font-size: 14px">Подробнее</a>
                         <div class="m-1">
                             <button type="button" class="btn btn-outline-dark border-2 add-cart" style="font-size: 14px">
                                 В корзину
@@ -109,7 +109,7 @@
         <div class="d-flex justify-content-around flex-wrap">
             <div class="d-flex flex-column">
                 <div class="mb-sm-2">
-                    <div class="card text-center shadow mb-2" style="height: 200px; width: 350px;">
+                    <div class="card text-center shadow mb-2" style="height: 200px; width: 370px;">
                         <div class="card-body d-flex flex-column justify-content-center">
                             <h5 class="card-title">Натуральные ингредиенты</h5>
                             <p class="card-text">Продукция изготовлена из высококачественных натуральных веществ, что обеспечивает безопасность и здоровье как для кожи, так и для волос.</p>
@@ -117,7 +117,7 @@
                     </div>
                 </div>
                 <div class="mb-sm-2">
-                    <div class="card text-center shadow mb-2" style="height: 250px; width: 350px;">
+                    <div class="card text-center shadow mb-2" style="height: 250px; width: 370px;">
                         <div class="card-body d-flex flex-column justify-content-center">
                             <h5 class="card-title">Широкий ассортимент</h5>
                             <p class="card-text">С более чем 100 единицами продукции, ваша компания предлагает разнообразие товаров для ухода за волосами, лицом и телом.</p>
@@ -127,7 +127,7 @@
             </div>
             <div class="d-flex flex-column">
                 <div class="mb-sm-2">
-                    <div class="card text-center shadow mb-2" style="height: 250px; width: 350px;">
+                    <div class="card text-center shadow mb-2" style="height: 250px; width: 370px;">
                         <div class="card-body d-flex flex-column justify-content-center">
                             <h5 class="card-title">Экологическая устойчивость и этика</h5>
                             <p class="card-text">Использование натуральных компонентов способствует сохранению окружающей среды, так как такие ингредиенты, как правило, поддаются биологическому разложению и не наносят вреда экосистеме.</p>
@@ -135,7 +135,7 @@
                     </div>
                 </div>
                 <div class="mb-sm-2">
-                    <div class="card text-center shadow mb-2" style="height: 200px; width: 350px;">
+                    <div class="card text-center shadow mb-2" style="height: 200px; width: 370px;">
                         <div class="card-body d-flex flex-column justify-content-center">
                             <h5 class="card-title">Поддержка здоровья кожи и волос</h5>
                             <p class="card-text">Натуральная косметика обеспечивает глубокое питание и увлажнение, помогает улучшить состояние кожи и волос, сохраняя их красоту и здоровье.</p>

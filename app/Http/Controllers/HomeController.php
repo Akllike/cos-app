@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Interfaces\ProductsServiceInterface;
+use \Illuminate\Http\RedirectResponse;
 use App\Models\Orders;
 use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use App\Services\ProductsService;
 
 class HomeController extends Controller
 {
-    protected ProductsService $productsService;
-
-    public function __construct()
+    public function __construct(protected ProductsServiceInterface $productsService)
     {
         $this->middleware('auth');
     }
@@ -26,25 +25,22 @@ class HomeController extends Controller
         return view('home', compact('hairs', 'faces', 'bodies'));
     }
 
-    public function create(Request $request): View
+    public function create(Request $request): RedirectResponse
     {
-        $this->productsService = new ProductsService();
         $this->productsService->CreateProduct($request);
-        return $this->index();
+        return redirect()->route('home');
     }
 
-    public function edit(Request $request): View
+    public function edit(Request $request): RedirectResponse
     {
-        $this->productsService = new ProductsService();
         $this->productsService->UpdateProduct($request);
-        return $this->index();
+        return redirect()->route('home');
     }
 
-    public function delete(Request $request): View
+    public function delete(Request $request): RedirectResponse
     {
-        $this->productsService = new ProductsService();
         $this->productsService->DeleteProduct($request);
-        return $this->index();
+        return redirect()->route('home');
     }
 
     public function order(): View
@@ -56,7 +52,6 @@ class HomeController extends Controller
 
     public function inStock(Request $request): array
     {
-        $this->productsService = new ProductsService();
         return $this->productsService->UpdateInStockProduct($request);
     }
 }

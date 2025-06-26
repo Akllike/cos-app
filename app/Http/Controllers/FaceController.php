@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\ProductsService;
-use Illuminate\Http\Request;
+use App\Interfaces\ProductsServiceInterface;
 use Illuminate\View\View;
 
 class FaceController extends Controller
 {
-    protected ProductsService $productsService;
-
+    public function __construct(
+        protected ProductsServiceInterface $productsService
+    ) {}
     public function showProductFaces(): View
     {
-        $this->productsService = new ProductsService();
         $data = $this->productsService->getProducts('face');
         return view('Catalog/Faces/faces', compact('data'));
     }

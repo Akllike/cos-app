@@ -2,8 +2,11 @@
 
 namespace App\Providers;
 
-use App\Models\Comments\CommentsService;
+use App\Interfaces\CartServiceInterface;
+use App\Interfaces\CommentsServiceInterface;
+use App\Interfaces\ProductsServiceInterface;
 use App\Services\CartService;
+use App\Services\CommentsService;
 use App\Services\TelegramService;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
@@ -16,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(ProductsService::class, function ($app) {
+        $this->app->singleton(ProductsServiceInterface::class, function ($app) {
             return new ProductsService();
         });
 
@@ -24,11 +27,11 @@ class AppServiceProvider extends ServiceProvider
             return new TelegramService();
         });
 
-        $this->app->singleton(CartService::class, function ($app) {
+        $this->app->singleton(CartServiceInterface::class, function ($app) {
             return new CartService();
         });
 
-        $this->app->singleton(CommentsService::class, function ($app) {
+        $this->app->singleton(CommentsServiceInterface::class, function ($app) {
             return new CommentsService();
         });
     }

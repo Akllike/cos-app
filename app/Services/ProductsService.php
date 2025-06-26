@@ -2,10 +2,11 @@
 
 namespace App\Services;
 
+use App\Interfaces\ProductsServiceInterface;
 use App\Models\Products;
 use Illuminate\Http\Request;
 
-class ProductsService
+class ProductsService implements ProductsServiceInterface
 {
     /**
      * Получить все карточки по категории

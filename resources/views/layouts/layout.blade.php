@@ -52,20 +52,6 @@
             }, 1000);
         });
     </script>
-
-    <!-- <script>
-        window.addEventListener('load', function() {
-            const loader = document.getElementById('page-loader');
-
-            setTimeout(() => {
-                loader.classList.add('hidden');
-
-                loader.addEventListener('transitionend', () => {
-                    loader.remove();
-                });
-            }, 500);
-        });
-    </script> -->
 </body>
 <style>
     body {
