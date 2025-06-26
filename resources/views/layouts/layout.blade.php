@@ -38,7 +38,7 @@
 
     <div id="page-loader" class="page-loader">
         <div class="loader-content">
-            <img src="{{ url('/storage/img/loader.gif') }}" alt="Loading" class="loader-gif">
+            <!-- <img src="{{ url('/storage/img/loader.gif') }}" alt="Loading" class="loader-gif"> -->
             <div class="loading-text">Загружаем <span class="heart">❤️</span></div>
         </div>
     </div>
