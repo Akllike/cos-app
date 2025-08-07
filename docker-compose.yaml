@@ -18,6 +18,7 @@ services:
     volumes:
       - ./:/var/www/laravel
       - ./.docker/php/php.ini:/usr/local/etc/php/conf.d/custom.ini
+    command: sh -c "composer install && php-fpm"
 
   mysql:
     image: mysql:8.0
