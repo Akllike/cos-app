@@ -30,6 +30,8 @@ Route::prefix('catalog')->group(function () {
     Route::get('/hairs', 'App\Http\Controllers\HairController@showProductHairs')->name('hair.show');
     Route::get('/faces', 'App\Http\Controllers\FaceController@showProductFaces')->name('face.show');
     Route::get('/bodies', 'App\Http\Controllers\BodyController@showProductBodies')->name('body.show');
+    Route::get('/oils', 'App\Http\Controllers\OilController@showProductOils')->name('oil.show');
+    Route::get('/certificates', 'App\Http\Controllers\CertificateController@showProductCertificates')->name('certificate.show');
 
     Route::get('/product/{id}', 'App\Http\Controllers\CatalogController@showProduct')->name('product.card');
     route::post('/product/{id}/add', 'App\Http\Controllers\CatalogController@createComment')->name('product.comment.add');

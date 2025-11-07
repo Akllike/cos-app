@@ -13,6 +13,8 @@
                         <option value="hair">Для волос</option>
                         <option value="face">Для лица</option>
                         <option value="body">Для тела</option>
+                        <option value="oil">Масла</option>
+                        <option value="certificate">Сертификаты</option>
                     </select>
                 </div>
 
@@ -64,6 +66,12 @@
         </li>
         <li id="tag-scrab" class="nav-item">
             <a id="src-scrab" class="nav-link" href="#">Для тела</a>
+        </li>
+        <li id="tag-oil" class="nav-item">
+            <a id="src-oil" class="nav-link" href="#">Масла</a>
+        </li>
+        <li id="tag-certificate" class="nav-item">
+            <a id="src-certificate" class="nav-link" href="#">Сертификаты</a>
         </li>
         <li class="nav-item">
             <a id="src-muse" class="nav-link disabled" href="#">Другое</a>
@@ -315,6 +323,170 @@
             </div>
         @endforeach
     </div>
+
+    <div id="list-oils" class="mt-4 d-none flex-column">
+        @foreach($oils as $item)
+            <div class="mt-2 d-flex flex-wrap h-auto align-items-center justify-content-between border" style="border-radius: 5px;">
+                <div class="d-flex flex-row">
+                    <p class="m-2">id: {{ $item['id'] }}</p> <p class="m-2">{{ $item['name'] }}</p>
+                    <p class="m-2">({{ $item['volume'] }} мл)</p>
+                </div>
+                <div class="d-flex flex-wrap align-items-center">
+                    <div class="toggle-container">
+                        <input type="checkbox" id="toggle-btn-{{ $item['id'] }}" data-id="{{ $item['id'] }}" class="toggle-btn">
+                        <label for="toggle-btn-{{ $item['id'] }}" class="toggle-label"></label>
+                    </div>
+                    <button id="btn-edit-oil-{{ $item['id'] }}" class="btn btn-primary m-1">Редактировать</button>
+                    <form action="{{ route('home.delete') }}" method="POST" class="m-1">
+                        @csrf
+                        <input type="hidden" name="group-name" value="3">
+                        <input type="hidden" name="id" value="{{ $item['id'] }}">
+                        <button class="btn btn-danger">Удалить</button>
+                    </form>
+                </div>
+            </div>
+            <div id="toggle-oil-{{ $item['id'] }}" class="d-none">
+                <div class="mt-2 d-flex align-items-center justify-content-between border-1">
+                    <form action="{{ route('home.edit') }}" method="POST" enctype="multipart/form-data" class="row g-3 needs-validation">
+                        @csrf
+                        <div class="input-group mb-3 mt-4">
+                            <label class="input-group-text" for="inputGroupSelect01">Категория</label>
+                            <select class="form-select" id="inputGroupSelect01" name="group-name" aria-label="Пример выбора по умолчанию" required>
+                                <option value="{{ $item['category'] }}">Изменить</option>
+                                <option value="hair">Для волос</option>
+                                <option value="face">Для лица</option>
+                                <option value="body">Для тела</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">id</span>
+                            <input class="form-control" type="text" id="group-name" value="{{ $item['id'] }}" name="id"><br><br>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Заголовок</span>
+                            <input type="text" name="name" value="{{ $item['name'] }}" class="form-control" placeholder="Название товара" aria-label="Название товара" aria-describedby="basic-addon1">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Описание</span>
+                            <textarea name="description" class="form-control" placeholder="Описание товара" aria-label="Описание товара">{{ $item['description'] }}</textarea>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Состав</span>
+                            <textarea name="composition" class="form-control" placeholder="Состав товара, условия хранения" aria-label="Состав товара, условия хранения">{{ $item['composition'] }}</textarea>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Цена</span>
+                                <input type="text" name="price" value="{{ $item['price'] }}" class="form-control" placeholder="Цена товара" aria-label="Цена товара" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Объем</span>
+                                <input type="text" name="volume" value="{{ $item['volume'] }}" class="form-control" placeholder="Объем товара" aria-label="Объем товара" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="basic-url" class="form-label">Загрузить фото карточки</label>
+                            <div class="input-group mb-3">
+                                <input type="file" name="photo" id="photo" class="form-control">
+                            </div>
+                            <div class="form-text" id="basic-addon4">Пример текста справки выходит за пределы группы ввода.</div>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="submit">Изменить</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        @endforeach
+    </div>
+
+    <div id="list-certificates" class="mt-4 d-none flex-column">
+        @foreach($certificates as $item)
+            <div class="mt-2 d-flex flex-wrap h-auto align-items-center justify-content-between border" style="border-radius: 5px;">
+                <div class="d-flex flex-row">
+                    <p class="m-2">id: {{ $item['id'] }}</p> <p class="m-2">{{ $item['name'] }}</p>
+                    <p class="m-2">({{ $item['volume'] }} мл)</p>
+                </div>
+                <div class="d-flex flex-wrap align-items-center">
+                    <div class="toggle-container">
+                        <input type="checkbox" id="toggle-btn-{{ $item['id'] }}" data-id="{{ $item['id'] }}" class="toggle-btn">
+                        <label for="toggle-btn-{{ $item['id'] }}" class="toggle-label"></label>
+                    </div>
+                    <button id="btn-edit-certificate-{{ $item['id'] }}" class="btn btn-primary m-1">Редактировать</button>
+                    <form action="{{ route('home.delete') }}" method="POST" class="m-1">
+                        @csrf
+                        <input type="hidden" name="group-name" value="3">
+                        <input type="hidden" name="id" value="{{ $item['id'] }}">
+                        <button class="btn btn-danger">Удалить</button>
+                    </form>
+                </div>
+            </div>
+            <div id="toggle-certificate-{{ $item['id'] }}" class="d-none">
+                <div class="mt-2 d-flex align-items-center justify-content-between border-1">
+                    <form action="{{ route('home.edit') }}" method="POST" enctype="multipart/form-data" class="row g-3 needs-validation">
+                        @csrf
+                        <div class="input-group mb-3 mt-4">
+                            <label class="input-group-text" for="inputGroupSelect01">Категория</label>
+                            <select class="form-select" id="inputGroupSelect01" name="group-name" aria-label="Пример выбора по умолчанию" required>
+                                <option value="{{ $item['category'] }}">Изменить</option>
+                                <option value="hair">Для волос</option>
+                                <option value="face">Для лица</option>
+                                <option value="body">Для тела</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">id</span>
+                            <input class="form-control" type="text" id="group-name" value="{{ $item['id'] }}" name="id"><br><br>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Заголовок</span>
+                            <input type="text" name="name" value="{{ $item['name'] }}" class="form-control" placeholder="Название товара" aria-label="Название товара" aria-describedby="basic-addon1">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Описание</span>
+                            <textarea name="description" class="form-control" placeholder="Описание товара" aria-label="Описание товара">{{ $item['description'] }}</textarea>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Состав</span>
+                            <textarea name="composition" class="form-control" placeholder="Состав товара, условия хранения" aria-label="Состав товара, условия хранения">{{ $item['composition'] }}</textarea>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Цена</span>
+                                <input type="text" name="price" value="{{ $item['price'] }}" class="form-control" placeholder="Цена товара" aria-label="Цена товара" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Объем</span>
+                                <input type="text" name="volume" value="{{ $item['volume'] }}" class="form-control" placeholder="Объем товара" aria-label="Объем товара" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="basic-url" class="form-label">Загрузить фото карточки</label>
+                            <div class="input-group mb-3">
+                                <input type="file" name="photo" id="photo" class="form-control">
+                            </div>
+                            <div class="form-text" id="basic-addon4">Пример текста справки выходит за пределы группы ввода.</div>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="submit">Изменить</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        @endforeach
+    </div>
 </div>
 
 <style>
@@ -374,7 +546,7 @@
             });
         }
 
-        @foreach(['hairs', 'faces', 'bodies'] as $collection)
+        @foreach(['hairs', 'faces', 'bodies', 'oils', 'certificates'] as $collection)
         initToggles(@json($$collection->toArray()));
         @endforeach
 
@@ -404,26 +576,40 @@
         setupEditHandlers('list-muses', 'btn-edit-muse-', 'toggle-muse-');
         setupEditHandlers('list-gels', 'btn-edit-gel-', 'toggle-gel-');
         setupEditHandlers('list-scrabs', 'btn-edit-scrab-', 'toggle-scrab-');
+        setupEditHandlers('list-oils', 'btn-edit-oil-', 'toggle-oil-');
+        setupEditHandlers('list-certificates', 'btn-edit-certificate-', 'toggle-certificate-');
 
         // 4. Переключение между вкладками (оптимизированная версия)
         const tabs = {
             'tag-muse': {
                 list: 'list-muses',
                 link: 'src-muse',
-                inactiveLists: ['list-gels', 'list-scrabs'],
-                inactiveLinks: ['src-gel', 'src-scrab']
+                inactiveLists: ['list-gels', 'list-scrabs', 'list-oils', 'list-certificates'],
+                inactiveLinks: ['src-gel', 'src-scrab', 'src-oil', 'src-certificate']
             },
             'tag-gel': {
                 list: 'list-gels',
                 link: 'src-gel',
-                inactiveLists: ['list-muses', 'list-scrabs'],
-                inactiveLinks: ['src-muse', 'src-scrab']
+                inactiveLists: ['list-muses', 'list-scrabs', 'list-oils', 'list-certificates'],
+                inactiveLinks: ['src-muse', 'src-scrab', 'src-oil', 'src-certificate']
             },
             'tag-scrab': {
                 list: 'list-scrabs',
                 link: 'src-scrab',
-                inactiveLists: ['list-muses', 'list-gels'],
-                inactiveLinks: ['src-muse', 'src-gel']
+                inactiveLists: ['list-muses', 'list-gels', 'list-oils', 'list-certificates'],
+                inactiveLinks: ['src-muse', 'src-gel', 'src-oil', 'src-certificate']
+            },
+            'tag-oil': {
+                list: 'list-oils',
+                link: 'src-oil',
+                inactiveLists: ['list-muses', 'list-gels', 'list-scrabs', 'list-certificates'],
+                inactiveLinks: ['src-muse', 'src-gel', 'src-scrab', 'src-certificate']
+            },
+            'tag-certificate': {
+                list: 'list-certificates',
+                link: 'src-certificate',
+                inactiveLists: ['list-muses', 'list-gels', 'list-scrabs', 'list-oils'],
+                inactiveLinks: ['src-muse', 'src-gel', 'src-scrab', 'src-oil']
             }
         };
 

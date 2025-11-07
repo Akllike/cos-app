@@ -21,8 +21,10 @@ class HomeController extends Controller
         $hairs = Products::where('category', 'hair')->get();
         $faces = Products::where('category', 'face')->get();
         $bodies = Products::where('category', 'body')->get();
+        $oils = Products::where('category', 'oil')->get();
+        $certificates = Products::where('category', 'certificate')->get();
 
-        return view('home', compact('hairs', 'faces', 'bodies'));
+        return view('home', compact('hairs', 'faces', 'bodies', 'oils', 'certificates'));
     }
 
     public function create(Request $request): RedirectResponse
