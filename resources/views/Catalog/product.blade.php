@@ -15,7 +15,8 @@
                 @section('link_canonical', route('product.card', $item['id']))
                 <div class="col-md-5">
                     <div class="main-img d-flex justify-content-center mb-5">
-                        <img class="img-fluid w-50" src="{{ url($item['image']) }}" alt="ProductS">
+                        <img class="img-fluid w-50 zoomable-image" src="{{ url($item['image']) }}" alt="ProductS"
+                             onclick="openImageModal('{{ url($item['image']) }}', '{{ $item['name'] }}')">
                     </div>
                 </div>
                 <div class="col-md-7" data-id="{{ $item['id'] }}">
@@ -27,6 +28,10 @@
                                 Категория: Для лица
                             @elseif(strcmp($item['category'], 'body') == 0)
                                 Категория: Для тела
+                            @elseif(strcmp($item['category'], 'oil') == 0)
+                                Категория: Масла
+                            @elseif(strcmp($item['category'], 'certificate') == 0)
+                                Категория: Сертификаты
                             @endif
                         </div>
                         @if($item['popular'] > 0)
@@ -190,6 +195,39 @@
         </div>
     </div>
 
+    <!-- Модалка для изображений -->
+    <div class="modal fade" id="imageModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="imageModalLabel">Просмотр изображения</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <!-- Основное изображение -->
+                    <div class="main-image-container mb-4">
+                        <img id="modalMainImage" src="" alt="Увеличенное изображение" class="img-fluid" style="max-height: 70vh; object-fit: contain;">
+                    </div>
+
+                    <!-- Миниатюры (если нужно) -->
+                    <div class="thumbnails-container d-flex justify-content-center flex-wrap gap-2">
+                        <!-- Миниатюры будут добавляться через JavaScript -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                    <button type="button" class="btn btn-primary" onclick="downloadImage()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                        </svg>
+                        Скачать
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         $(document).ready(function() {
             $('#desc-button').click(function(e) {
@@ -205,6 +243,46 @@
             ratingStars.forEach(star => {
                 star.addEventListener('change', function() {
                     ratingValue.value = this.value;
+                });
+            });
+        });
+
+        // Функция для открытия модалки с изображением
+        function openImageModal(imageSrc, altText = 'Изображение товара') {
+            const modal = new bootstrap.Modal(document.getElementById('imageModal'));
+            const mainImage = document.getElementById('modalMainImage');
+
+            // Устанавливаем основное изображение
+            mainImage.src = imageSrc;
+            mainImage.alt = altText;
+
+            // Обновляем заголовок модалки
+            document.getElementById('imageModalLabel').textContent = altText;
+
+            // Открываем модалку
+            modal.show();
+        }
+
+        // Функция для загрузки изображения
+        function downloadImage() {
+            const imageSrc = document.getElementById('modalMainImage').src;
+            const link = document.createElement('a');
+            link.href = imageSrc;
+            link.download = 'product-image.jpg'; // Имя файла для скачивания
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Добавляем обработчики на все изображения товаров
+        document.addEventListener('DOMContentLoaded', function() {
+            // Находим все изображения товаров
+            const productImages = document.querySelectorAll('.product-image, .zoomable-image, .main-img img');
+
+            productImages.forEach(img => {
+                img.style.cursor = 'pointer';
+                img.addEventListener('click', function() {
+                    openImageModal(this.src, this.alt);
                 });
             });
         });
@@ -242,6 +320,39 @@
         .rating-stars label:hover,
         .rating-stars label:hover ~ label {
             color: #ffc107;
+        }
+
+        .zoomable-image {
+            transition: transform 0.3s ease-in-out;
+            cursor: zoom-in;
+            transform-origin: center;
+        }
+
+        .zoomable-image:hover {
+            transform: scale(1.35);
+        }
+
+        /* Стили для миниатюр */
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .thumbnail:hover {
+            transform: scale(1.05);
+        }
+
+        .thumbnail.active {
+            border-color: #007bff;
+        }
+
+        /* Анимация для смены изображений */
+        .main-image-container img {
+            transition: opacity 0.3s ease;
         }
     </style>
 @endsection
