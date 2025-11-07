@@ -32,6 +32,18 @@ class MultiPageTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function test_visit_oils_page(): void
+    {
+        $response = $this->get('/catalog/oils');
+        $response->assertStatus(200);
+    }
+
+    public function test_visit_certificates_page(): void
+    {
+        $response = $this->get('/catalog/certificates');
+        $response->assertStatus(200);
+    }
+
     public function test_visit_admin_page(): void
     {
         $response = $this->get('/admin');
