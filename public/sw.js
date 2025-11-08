@@ -1,11 +1,36 @@
-const CACHE_NAME = 'shar-app-minimal-v1';
+// Безопасный Service Worker с кешированием
+const CACHE_NAME = 'shar-app-safe-v1';
 
-console.log('🛠 Service Worker: Загружен');
+// Только гарантированно рабочие URL
+const safeUrlsToCache = [
+    '/',
+    '/manifest.json'
+    // НЕ добавляем картинки и другие ресурсы пока
+];
 
 self.addEventListener('install', event => {
-    console.log('✅ Service Worker: Установлен');
-    // НИКАКОГО кеширования при установке - только активация
-    event.waitUntil(self.skipWaiting());
+    console.log('🛠 Service Worker: Установка');
+
+    event.waitUntil(
+        caches.open(CACHE_NAME)
+            .then(cache => {
+                console.log('📦 Пробуем кешировать безопасные ресурсы...');
+
+                // Кешируем только гарантированно рабочие URL
+                return cache.addAll(safeUrlsToCache)
+                    .then(() => {
+                        console.log('✅ Безопасные ресурсы закешированы');
+                    })
+                    .catch(error => {
+                        console.log('⚠️ Ошибка кеширования, но продолжаем:', error);
+                        // Продолжаем даже при ошибке
+                    });
+            })
+            .then(() => {
+                console.log('🚀 Активируем Service Worker');
+                return self.skipWaiting();
+            })
+    );
 });
 
 self.addEventListener('activate', event => {
@@ -14,7 +39,6 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
-    // Пока просто пропускаем все запросы
-    // Позже добавим кеширование
+    // Для начала просто пропускаем все запросы
     return fetch(event.request);
 });
