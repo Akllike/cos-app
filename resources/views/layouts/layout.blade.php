@@ -65,64 +65,36 @@
         });
     </script>
 
-    {{-- PWA функциональность --}}
+    {{-- PWA Service Worker Registration --}}
     <script>
-        // Регистрация Service Worker
-        if ('serviceWorker' in navigator) {
-            // В разработке не регистрируем SW для избежания конфликтов с Vite HMR
-            const isLocalhost = window.location.hostname === 'localhost' ||
-                window.location.hostname === '127.0.0.1';
+        document.addEventListener('DOMContentLoaded', function() {
+            if ('serviceWorker' in navigator) {
+                console.log('🔍 Регистрируем Service Worker...');
 
-            if (!isLocalhost) {
-                window.addEventListener('load', function() {
-                    navigator.serviceWorker.register('/sw.js')
-                        .then(function(registration) {
-                            console.log('ServiceWorker зарегистрирован успешно: ', registration.scope);
-                        })
-                        .catch(function(error) {
-                            console.log('Ошибка регистрации ServiceWorker: ', error);
-                        });
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                        console.log('✅ Service Worker зарегистрирован:', registration);
+                        console.log('Scope:', registration.scope);
+
+                        // Проверяем статус
+                        if (registration.installing) {
+                            console.log('Status: installing');
+                        } else if (registration.waiting) {
+                            console.log('Status: waiting');
+                        } else if (registration.active) {
+                            console.log('Status: active');
+                        }
+                    })
+                    .catch(function(error) {
+                        console.error('❌ Ошибка регистрации:', error);
+                    });
+
+                // Прослушиваем изменения
+                navigator.serviceWorker.addEventListener('controllerchange', function() {
+                    console.log('🔄 Controller changed');
                 });
-            }
-        }
-
-        // Функциональность установки PWA
-        let deferredPrompt;
-        const installButton = document.getElementById('installButton');
-
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-
-            if (installButton) {
-                installButton.style.display = 'block';
-
-                installButton.addEventListener('click', async () => {
-                    if (deferredPrompt) {
-                        deferredPrompt.prompt();
-                        const { outcome } = await deferredPrompt.userChoice;
-                        console.log(`Пользователь ${outcome} установку`);
-                        deferredPrompt = null;
-                        installButton.style.display = 'none';
-                    }
-                });
-            }
-        });
-
-        window.addEventListener('appinstalled', () => {
-            console.log('PWA успешно установлено');
-            if (installButton) {
-                installButton.style.display = 'none';
-            }
-            deferredPrompt = null;
-        });
-
-        // Показать кнопку установки если приложение не установлено
-        window.addEventListener('load', () => {
-            if (window.matchMedia('(display-mode: standalone)').matches ||
-                window.navigator.standalone === true) {
-                // Приложение уже установлено
-                if (installButton) installButton.style.display = 'none';
+            } else {
+                console.log('❌ Service Worker не поддерживается');
             }
         });
     </script>
