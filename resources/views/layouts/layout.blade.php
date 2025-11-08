@@ -44,6 +44,12 @@
 <body>
     @yield('sidebar')
     @yield('header')
+    {{-- Кнопка управления уведомлениями --}}
+    <button id="pushToggle"
+            onclick="window.pushManager.isSubscribed ? window.pushManager.unsubscribe() : window.pushManager.subscribe()"
+            class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded transition">
+        🔕 Включить уведомления
+    </button>
     @yield('content')
     @yield('modals')
     @yield('footer')
@@ -133,6 +139,162 @@
             // Проверка display mode
             if (window.matchMedia('(display-mode: standalone)').matches) {
                 console.log('📱 Запущено как PWA');
+            }
+        });
+    </script>
+
+    {{-- Push Notifications --}}
+    <script>
+        class PushManager {
+            constructor() {
+                this.publicKey = null;
+                this.isSubscribed = false;
+            }
+
+            async init() {
+                if (!this.isPushSupported()) {
+                    console.log('❌ Push уведомления не поддерживаются');
+                    return false;
+                }
+
+                try {
+                    // Получаем public key
+                    const response = await fetch('/push/vapid-public-key');
+                    const data = await response.json();
+                    this.publicKey = data.publicKey;
+
+                    await this.checkSubscription();
+                    console.log('✅ Push Manager инициализирован');
+                    return true;
+                } catch (error) {
+                    console.error('❌ Ошибка инициализации:', error);
+                    return false;
+                }
+            }
+
+            isPushSupported() {
+                return 'serviceWorker' in navigator &&
+                    'PushManager' in window &&
+                    'Notification' in window;
+            }
+
+            async checkSubscription() {
+                const registration = await navigator.serviceWorker.ready;
+                const subscription = await registration.pushManager.getSubscription();
+                this.isSubscribed = !(subscription === null);
+                this.updateUI();
+                return this.isSubscribed;
+            }
+
+            async subscribe() {
+                try {
+                    // Запрашиваем разрешение
+                    const permission = await Notification.requestPermission();
+
+                    if (permission !== 'granted') {
+                        throw new Error('Разрешение не получено');
+                    }
+
+                    const registration = await navigator.serviceWorker.ready;
+                    const subscription = await registration.pushManager.subscribe({
+                        userVisibleOnly: true,
+                        applicationServerKey: this.urlBase64ToUint8Array(this.publicKey)
+                    });
+
+                    // Отправляем подписку на сервер
+                    await this.sendSubscriptionToServer(subscription);
+
+                    this.isSubscribed = true;
+                    this.updateUI();
+
+                    console.log('✅ Подписка активирована');
+                    this.showNotification('Уведомления включены', 'Вы будете получать уведомления от ShaR');
+
+                } catch (error) {
+                    console.error('❌ Ошибка подписки:', error);
+                    this.showError('Не удалось включить уведомления: ' + error.message);
+                }
+            }
+
+            async unsubscribe() {
+                try {
+                    const registration = await navigator.serviceWorker.ready;
+                    const subscription = await registration.pushManager.getSubscription();
+
+                    if (subscription) {
+                        await subscription.unsubscribe();
+                        this.isSubscribed = false;
+                        this.updateUI();
+                        console.log('❌ Подписка отменена');
+                    }
+                } catch (error) {
+                    console.error('❌ Ошибка отмены подписки:', error);
+                }
+            }
+
+            async sendSubscriptionToServer(subscription) {
+                return fetch('/push/subscribe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify(subscription)
+                });
+            }
+
+            urlBase64ToUint8Array(base64String) {
+                const padding = '='.repeat((4 - base64String.length % 4) % 4);
+                const base64 = (base64String + padding)
+                    .replace(/\-/g, '+')
+                    .replace(/_/g, '/');
+
+                const rawData = window.atob(base64);
+                const outputArray = new Uint8Array(rawData.length);
+
+                for (let i = 0; i < rawData.length; ++i) {
+                    outputArray[i] = rawData.charCodeAt(i);
+                }
+                return outputArray;
+            }
+
+            updateUI() {
+                const btn = document.getElementById('pushToggle');
+                if (btn) {
+                    btn.textContent = this.isSubscribed ?
+                        '🔔 Уведомления включены' :
+                        '🔕 Включить уведомления';
+                    btn.className = this.isSubscribed ?
+                        'bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition' :
+                        'bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded transition';
+                }
+            }
+
+            showNotification(title, body) {
+                if (Notification.permission === 'granted') {
+                    const registration = navigator.serviceWorker.ready;
+                    registration.then(reg => {
+                        reg.showNotification(title, {
+                            body,
+                            icon: '/storage/img/icon.png'
+                        });
+                    });
+                }
+            }
+
+            showError(message) {
+                // Можно заменить на красивый toast
+                alert(message);
+            }
+        }
+
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', async function() {
+            window.pushManager = new PushManager();
+            const pushSupported = await window.pushManager.init();
+
+            if (pushSupported) {
+                console.log('🚀 Push уведомления доступны');
             }
         });
     </script>

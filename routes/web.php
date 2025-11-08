@@ -46,9 +46,25 @@ Route::prefix('cart')->group(function () {
 });
 
 Route::prefix('push')->group(function () {
-    Route::post('/subscribe', [PushNotificationController::class, 'subscribe']);
-    Route::post('/send', [PushNotificationController::class, 'sendNotification']);
-    Route::get('/vapid-public-key', [PushNotificationController::class, 'getVapidPublicKey']);
+    Route::post('/subscribe', 'App\Http\Controllers\PushNotificationController@subscribe');
+    Route::post('/send', 'App\Http\Controllers\PushNotificationController@sendNotification');
+    Route::get('/vapid-public-key', 'App\Http\Controllers\PushNotificationController@getVapidPublicKey');
+
+    // Тестовый маршрут для отправки уведомления
+    Route::get('/test', function () {
+        try {
+            app()->make('App\Http\Controllers\PushNotificationController')
+                ->sendNotification(new Illuminate\Http\Request([
+                    'title' => 'Тест от ShaR! 🎉',
+                    'body' => 'Это тестовое push-уведомление!',
+                    'url' => url('/')
+                ]));
+
+            return response()->json(['message' => 'Тестовое уведомление отправлено!']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    });
 });
 
 Auth::routes();

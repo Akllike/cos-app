@@ -37,21 +37,36 @@ self.addEventListener('activate', event => {
 
 // Обработка полученных push-уведомлений
 self.addEventListener('push', event => {
-    console.log('📨 Push уведомление получено');
+    console.log('📨 Push уведомление получено', event);
+
+    let data = {
+        title: 'ShaR - Косметика во благо коже',
+        body: 'У вас новое уведомление!',
+        icon: '/storage/img/icon.png',
+        badge: '/storage/img/icon.png',
+        url: '/'
+    };
+
+    try {
+        if (event.data) {
+            data = { ...data, ...event.data.json() };
+        }
+    } catch (error) {
+        console.log('Ошибка парсинга данных:', error);
+    }
 
     const options = {
-        body: event.data ? event.data.text() : 'Новое уведомление от ShaR!',
-        icon: '/storage/img/icon128.png',
-        badge: '/storage/img/icon.png',
-        vibrate: [200, 100, 200],
+        body: data.body,
+        icon: data.icon,
+        badge: data.badge,
         data: {
-            url: '/',
-            dateOfArrival: Date.now()
+            url: data.url
         },
+        vibrate: [200, 100, 200],
         actions: [
             {
                 action: 'open',
-                title: 'Открыть приложение'
+                title: 'Открыть'
             },
             {
                 action: 'close',
@@ -61,13 +76,12 @@ self.addEventListener('push', event => {
     };
 
     event.waitUntil(
-        self.registration.showNotification('ShaR - Косметика во благо коже', options)
+        self.registration.showNotification(data.title, options)
     );
 });
 
-// Обработка кликов по уведомлениям
 self.addEventListener('notificationclick', event => {
-    console.log('🖱 Notification click', event);
+    console.log('🖱 Клик по уведомлению', event);
 
     event.notification.close();
 
@@ -78,14 +92,12 @@ self.addEventListener('notificationclick', event => {
             type: 'window',
             includeUncontrolled: true
         }).then(windowClients => {
-            // Ищем открытую вкладку
             for (let client of windowClients) {
                 if (client.url.includes(self.location.origin) && 'focus' in client) {
                     return client.focus();
                 }
             }
 
-            // Открываем новую вкладку
             if (clients.openWindow) {
                 return clients.openWindow(urlToOpen);
             }
