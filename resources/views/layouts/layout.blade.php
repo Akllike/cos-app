@@ -44,22 +44,11 @@
 <body>
     @yield('sidebar')
     @yield('header')
+    {{-- Кнопки управления уведомлениями --}}
     <div class="flex space-x-4 mb-4">
-        <button id="pushToggle"
-                onclick="window.pushManager.isSubscribed ? window.pushManager.unsubscribe() : window.pushManager.subscribe()"
-                class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded transition">
-            🔕 Включить уведомления
-        </button>
-
-        <button onclick="window.pushManager.testVAPID()"
-                class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition">
-            🧪 Тест VAPID
-        </button>
-
-        <button onclick="window.pushManager.getStats()"
-                class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">
-            📊 Статистика
-        </button>
+        <button id="pushToggle">🔕 Загрузка...</button>
+        <button id="testVAPIDBtn">🧪 Тест VAPID</button>
+        <button id="statsBtn">📊 Статистика</button>
     </div>
     @yield('content')
     @yield('modals')
@@ -160,6 +149,7 @@
             constructor() {
                 this.publicKey = null;
                 this.isSubscribed = false;
+                this.initialized = false;
             }
 
             // Функция конвертации ключа
@@ -186,6 +176,7 @@
             async init() {
                 if (!this.isPushSupported()) {
                     console.log('❌ Push уведомления не поддерживаются');
+                    this.disableButtons();
                     return false;
                 }
 
@@ -197,12 +188,50 @@
 
                     await this.checkSubscription();
                     console.log('✅ Push Manager инициализирован');
-                    console.log('Public Key:', this.publicKey);
+
+                    this.setupEventListeners();
+                    this.initialized = true;
                     return true;
                 } catch (error) {
                     console.error('❌ Ошибка инициализации:', error);
+                    this.disableButtons();
                     return false;
                 }
+            }
+
+            setupEventListeners() {
+                const pushToggle = document.getElementById('pushToggle');
+                const testVAPIDBtn = document.getElementById('testVAPIDBtn');
+                const statsBtn = document.getElementById('statsBtn');
+
+                if (pushToggle) {
+                    pushToggle.onclick = () => {
+                        if (this.isSubscribed) {
+                            this.unsubscribe();
+                        } else {
+                            this.subscribe();
+                        }
+                    };
+                }
+
+                if (testVAPIDBtn) {
+                    testVAPIDBtn.onclick = () => this.testVAPID();
+                }
+
+                if (statsBtn) {
+                    statsBtn.onclick = () => this.getStats();
+                }
+            }
+
+            disableButtons() {
+                const buttons = ['pushToggle', 'testVAPIDBtn', 'statsBtn'];
+                buttons.forEach(id => {
+                    const btn = document.getElementById(id);
+                    if (btn) {
+                        btn.disabled = true;
+                        btn.classList.add('opacity-50', 'cursor-not-allowed');
+                    }
+                });
             }
 
             isPushSupported() {
@@ -212,11 +241,16 @@
             }
 
             async checkSubscription() {
-                const registration = await navigator.serviceWorker.ready;
-                const subscription = await registration.pushManager.getSubscription();
-                this.isSubscribed = !(subscription === null);
-                this.updateUI();
-                return this.isSubscribed;
+                try {
+                    const registration = await navigator.serviceWorker.ready;
+                    const subscription = await registration.pushManager.getSubscription();
+                    this.isSubscribed = !(subscription === null);
+                    this.updateUI();
+                    return this.isSubscribed;
+                } catch (error) {
+                    console.error('❌ Ошибка проверки подписки:', error);
+                    return false;
+                }
             }
 
             async subscribe() {
@@ -282,6 +316,7 @@
                         this.isSubscribed = false;
                         this.updateUI();
                         console.log('❌ Подписка отменена');
+                        alert('Уведомления отключены');
                     }
                 } catch (error) {
                     console.error('❌ Ошибка отмены подписки:', error);
@@ -289,7 +324,7 @@
             }
 
             async sendSubscriptionToServer(subscription) {
-                console.log('📤 Отправляем подписку на сервер...', subscription);
+                console.log('📤 Отправляем подписку на сервер...');
 
                 const response = await fetch('/push/subscribe', {
                     method: 'POST',
@@ -343,7 +378,7 @@
                     console.error('❌ Ошибка VAPID теста:', error);
                     alert('Ошибка теста VAPID: ' + error.message);
                 }
-            },
+            }
 
             // Получение статистики
             async getStats() {
@@ -361,13 +396,42 @@
 
         // Инициализация при загрузке
         document.addEventListener('DOMContentLoaded', async function() {
+            // Создаем глобальную переменную ДО инициализации
             window.pushManager = new PushManager();
+
+            // Показываем состояние загрузки
+            const pushToggle = document.getElementById('pushToggle');
+            if (pushToggle) {
+                pushToggle.textContent = '⏳ Инициализация...';
+                pushToggle.disabled = true;
+            }
+
             const pushSupported = await window.pushManager.init();
 
             if (pushSupported) {
                 console.log('🚀 Push уведомления доступны');
+            } else {
+                const pushToggle = document.getElementById('pushToggle');
+                if (pushToggle) {
+                    pushToggle.textContent = '❌ Не поддерживается';
+                    pushToggle.disabled = true;
+                }
             }
         });
+
+        setTimeout(() => {
+            if (!window.pushManager || !window.pushManager.initialized) {
+                console.warn('⚠️ PushManager не инициализирован');
+                const buttons = ['pushToggle', 'testVAPIDBtn', 'statsBtn'];
+                buttons.forEach(id => {
+                    const btn = document.getElementById(id);
+                    if (btn) {
+                        btn.textContent = '❌ Ошибка';
+                        btn.disabled = true;
+                    }
+                });
+            }
+        }, 5000);
     </script>
 
     {{-- Кнопка установки PWA --}}
