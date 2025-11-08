@@ -361,10 +361,10 @@
     </script>
 
     {{-- Кнопка установки PWA --}}
-    <button id="installButton"
+    <!-- <button id="installButton"
             style="display: none; position: fixed; bottom: 20px; right: 20px; z-index: 1000;"
             class="bg-indigo-600 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-indigo-700">
         📲 Установить приложение
-    </button>
+    </button> -->
 </body>
 </html>
