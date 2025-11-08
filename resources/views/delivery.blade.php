@@ -4,7 +4,12 @@
 @section('content')
     <div class="container">
         <div class="container d-flex flex-wrap mt-4">
-            <h2>⚫ Оплата и доставка</h2>
+            <nav class="mt-4" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a style="text-decoration: none; color: black;" href="#">Главная</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Оплата и доставка</li>
+                </ol>
+            </nav>
         </div>
         <div class="container d-flex flex-column mt-4">
             <p>Добро пожаловать на страницу, посвященную вопросам оплаты и доставки наших товаров! Мы стремимся сделать процесс покупки для вас максимально удобным и прозрачным. Ниже вы найдете всю необходимую информацию.</p>
