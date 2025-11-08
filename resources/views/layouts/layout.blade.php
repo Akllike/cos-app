@@ -211,44 +211,40 @@
             async subscribe() {
                 try {
                     console.log('🔔 Запрашиваем разрешение...');
-
-                    // Сначала проверяем текущий статус
-                    if (Notification.permission === 'denied') {
-                        throw new Error('Вы ранее запретили уведомления. Разрешите их в настройках браузера.');
-                    }
-
-                    if (Notification.permission === 'granted') {
-                        console.log('✅ Разрешение уже есть');
-                        await this.proceedWithSubscription();
-                        return;
-                    }
-
-                    // Запрашиваем разрешение с понятным объяснением
-                    const shouldProceed = await this.showPermissionRequest();
-
-                    if (!shouldProceed) {
-                        throw new Error('Вы отменили запрос разрешения');
-                    }
-
-                    // Ждем немного перед запросом (лучший UX)
-                    await new Promise(resolve => setTimeout(resolve, 500));
-
                     const permission = await Notification.requestPermission();
 
                     if (permission !== 'granted') {
-                        if (permission === 'denied') {
-                            throw new Error('Вы запретили уведомления. Вы можете разрешить их позже в настройках браузера.');
-                        } else {
-                            throw new Error('Разрешение не получено');
-                        }
+                        throw new Error('Разрешение не получено');
                     }
 
-                    console.log('✅ Разрешение получено');
-                    await this.proceedWithSubscription();
+                    const registration = await navigator.serviceWorker.ready;
+
+                    if (!this.publicKey) {
+                        throw new Error('VAPID ключ не настроен');
+                    }
+
+                    // Конвертируем ключ
+                    const applicationServerKey = this.urlBase64ToUint8Array(this.publicKey);
+
+                    console.log('📝 Создаем подписку...');
+                    const subscription = await registration.pushManager.subscribe({
+                        userVisibleOnly: true,
+                        applicationServerKey: applicationServerKey
+                    });
+
+                    console.log('✅ Подписка создана');
+
+                    // Отправляем на сервер
+                    await this.sendSubscriptionToServer(subscription);
+
+                    this.isSubscribed = true;
+                    this.updateUI();
+
+                    this.showTestNotification('Уведомления включены! 🎉', 'Теперь вы будете получать push-уведомления.');
 
                 } catch (error) {
                     console.error('❌ Ошибка подписки:', error);
-                    this.showError(error.message);
+                    alert('Ошибка: ' + error.message);
                 }
             }
 
