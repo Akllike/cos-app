@@ -44,12 +44,19 @@
 <body>
     @yield('sidebar')
     @yield('header')
-    {{-- Кнопка управления уведомлениями --}}
-    <button id="pushToggle"
-            onclick="window.pushManager.isSubscribed ? window.pushManager.unsubscribe() : window.pushManager.subscribe()"
-            class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded transition">
-        🔕 Включить уведомления
-    </button>
+    {{-- Кнопки управления уведомлениями --}}
+    <div class="flex space-x-4 mb-4">
+        <button id="pushToggle"
+                onclick="window.pushManager.isSubscribed ? window.pushManager.unsubscribe() : window.pushManager.subscribe()"
+                class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded transition">
+            🔕 Включить уведомления
+        </button>
+
+        <button onclick="window.pushManager.testNotification()"
+                class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">
+            🧪 Тест уведомления
+        </button>
+    </div>
     @yield('content')
     @yield('modals')
     @yield('footer')
@@ -165,6 +172,7 @@
 
                     await this.checkSubscription();
                     console.log('✅ Push Manager инициализирован');
+                    console.log('Public Key:', this.publicKey);
                     return true;
                 } catch (error) {
                     console.error('❌ Ошибка инициализации:', error);
@@ -189,17 +197,24 @@
             async subscribe() {
                 try {
                     // Запрашиваем разрешение
+                    console.log('🔔 Запрашиваем разрешение на уведомления...');
                     const permission = await Notification.requestPermission();
 
                     if (permission !== 'granted') {
                         throw new Error('Разрешение не получено');
                     }
 
+                    console.log('✅ Разрешение получено, создаем подписку...');
+
                     const registration = await navigator.serviceWorker.ready;
+
+                    // Используем упрощенный метод без applicationServerKey
                     const subscription = await registration.pushManager.subscribe({
-                        userVisibleOnly: true,
-                        applicationServerKey: this.urlBase64ToUint8Array(this.publicKey)
+                        userVisibleOnly: true
+                        // Пока не передаем applicationServerKey для тестирования
                     });
+
+                    console.log('📝 Подписка создана:', subscription);
 
                     // Отправляем подписку на сервер
                     await this.sendSubscriptionToServer(subscription);
@@ -208,7 +223,7 @@
                     this.updateUI();
 
                     console.log('✅ Подписка активирована');
-                    this.showNotification('Уведомления включены', 'Вы будете получать уведомления от ShaR');
+                    this.showTestNotification();
 
                 } catch (error) {
                     console.error('❌ Ошибка подписки:', error);
@@ -233,7 +248,9 @@
             }
 
             async sendSubscriptionToServer(subscription) {
-                return fetch('/push/subscribe', {
+                console.log('📤 Отправляем подписку на сервер...', subscription);
+
+                const response = await fetch('/push/subscribe', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -241,21 +258,25 @@
                     },
                     body: JSON.stringify(subscription)
                 });
+
+                const result = await response.json();
+                console.log('📥 Ответ сервера:', result);
+                return result;
             }
 
-            urlBase64ToUint8Array(base64String) {
-                const padding = '='.repeat((4 - base64String.length % 4) % 4);
-                const base64 = (base64String + padding)
-                    .replace(/\-/g, '+')
-                    .replace(/_/g, '/');
-
-                const rawData = window.atob(base64);
-                const outputArray = new Uint8Array(rawData.length);
-
-                for (let i = 0; i < rawData.length; ++i) {
-                    outputArray[i] = rawData.charCodeAt(i);
+            showTestNotification() {
+                if (Notification.permission === 'granted') {
+                    // Показываем тестовое уведомление сразу
+                    navigator.serviceWorker.ready.then(registration => {
+                        registration.showNotification('ShaR - Уведомления включены! 🎉', {
+                            body: 'Теперь вы будете получать уведомления о новых акциях и продуктах.',
+                            icon: '/storage/img/icon.png',
+                            badge: '/storage/img/icon.png',
+                            vibrate: [200, 100, 200],
+                            data: { url: '/' }
+                        });
+                    });
                 }
-                return outputArray;
             }
 
             updateUI() {
@@ -270,21 +291,22 @@
                 }
             }
 
-            showNotification(title, body) {
-                if (Notification.permission === 'granted') {
-                    const registration = navigator.serviceWorker.ready;
-                    registration.then(reg => {
-                        reg.showNotification(title, {
-                            body,
-                            icon: '/storage/img/icon.png'
-                        });
-                    });
-                }
-            }
-
             showError(message) {
                 // Можно заменить на красивый toast
                 alert(message);
+            }
+
+            // Тестовая функция для отправки уведомления
+            async testNotification() {
+                try {
+                    const response = await fetch('/push/test');
+                    const result = await response.json();
+                    console.log('🧪 Тестовое уведомление:', result);
+                    alert('Тестовое уведомление отправлено!');
+                } catch (error) {
+                    console.error('❌ Ошибка теста:', error);
+                    alert('Ошибка отправки тестового уведомления');
+                }
             }
         }
 
@@ -295,6 +317,15 @@
 
             if (pushSupported) {
                 console.log('🚀 Push уведомления доступны');
+
+                // Автоматически предлагаем подписку через 5 секунд
+                setTimeout(() => {
+                    if (!window.pushManager.isSubscribed && Notification.permission === 'default') {
+                        if (confirm('Хотите получать уведомления от ShaR о новых акциях и продуктах?')) {
+                            window.pushManager.subscribe();
+                        }
+                    }
+                }, 5000);
             }
         });
     </script>
