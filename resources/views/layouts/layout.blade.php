@@ -44,7 +44,6 @@
 <body>
     @yield('sidebar')
     @yield('header')
-    {{-- Кнопки управления уведомлениями --}}
     <div class="flex space-x-4 mb-4">
         <button id="pushToggle"
                 onclick="window.pushManager.isSubscribed ? window.pushManager.unsubscribe() : window.pushManager.subscribe()"
@@ -52,9 +51,14 @@
             🔕 Включить уведомления
         </button>
 
-        <button onclick="window.pushManager.testNotification()"
+        <button onclick="window.pushManager.testVAPID()"
+                class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition">
+            🧪 Тест VAPID
+        </button>
+
+        <button onclick="window.pushManager.getStats()"
                 class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">
-            🧪 Тест уведомления
+            📊 Статистика
         </button>
     </div>
     @yield('content')
@@ -196,7 +200,6 @@
 
             async subscribe() {
                 try {
-                    // Запрашиваем разрешение
                     console.log('🔔 Запрашиваем разрешение на уведомления...');
                     const permission = await Notification.requestPermission();
 
@@ -204,17 +207,27 @@
                         throw new Error('Разрешение не получено');
                     }
 
-                    console.log('✅ Разрешение получено, создаем подписку...');
+                    console.log('✅ Разрешение получено');
 
                     const registration = await navigator.serviceWorker.ready;
 
-                    // Используем упрощенный метод без applicationServerKey
+                    // Проверяем VAPID ключ
+                    if (!this.publicKey || this.publicKey.length < 10) {
+                        throw new Error('VAPID ключ не настроен на сервере');
+                    }
+
+                    console.log('🔑 Используем VAPID key:', this.publicKey.substring(0, 20) + '...');
+
+                    // Конвертируем ключ
+                    const applicationServerKey = this.urlBase64ToUint8Array(this.publicKey);
+
+                    console.log('📝 Создаем подписку с VAPID...');
                     const subscription = await registration.pushManager.subscribe({
-                        userVisibleOnly: true
-                        // Пока не передаем applicationServerKey для тестирования
+                        userVisibleOnly: true,
+                        applicationServerKey: applicationServerKey
                     });
 
-                    console.log('📝 Подписка создана:', subscription);
+                    console.log('✅ Подписка с VAPID создана:', subscription);
 
                     // Отправляем подписку на сервер
                     await this.sendSubscriptionToServer(subscription);
@@ -222,12 +235,19 @@
                     this.isSubscribed = true;
                     this.updateUI();
 
-                    console.log('✅ Подписка активирована');
-                    this.showTestNotification();
+                    console.log('🎉 Push-уведомления активированы с VAPID');
+                    this.showTestNotification('VAPID подключен! 🚀', 'Теперь вы будете получать уведомления даже когда сайт закрыт.');
 
                 } catch (error) {
                     console.error('❌ Ошибка подписки:', error);
-                    this.showError('Не удалось включить уведомления: ' + error.message);
+
+                    if (error.name === 'AbortError') {
+                        this.showError('Браузер не поддерживает push-уведомления с VAPID.');
+                    } else if (error.message.includes('VAPID')) {
+                        this.showError('Проблема с VAPID ключами: ' + error.message);
+                    } else {
+                        this.showError('Ошибка: ' + error.message);
+                    }
                 }
             }
 
@@ -308,6 +328,30 @@
                     alert('Ошибка отправки тестового уведомления');
                 }
             }
+
+            async testVAPID() {
+                try {
+                    const response = await fetch('/push/test');
+                    const result = await response.json();
+                    console.log('🧪 VAPID тест:', result);
+                    alert(result.message + '\nVAPID настроен: ' + result.vapid_configured);
+                } catch (error) {
+                    console.error('❌ Ошибка VAPID теста:', error);
+                    alert('Ошибка теста VAPID: ' + error.message);
+                }
+            }
+
+// Получение статистики
+            async getStats() {
+                try {
+                    const response = await fetch('/push/stats');
+                    const result = await response.json();
+                    console.log('📊 Статистика:', result);
+                    alert(`Подписчиков: ${result.total_subscriptions}\nVAPID: ${result.vapid_configured ? '✅' : '❌'}`);
+                } catch (error) {
+                    console.error('❌ Ошибка получения статистики:', error);
+                }
+            }
         }
 
         // Инициализация при загрузке
@@ -328,6 +372,7 @@
                 }, 5000);
             }
         });
+
     </script>
 
     {{-- Кнопка установки PWA --}}
