@@ -14,7 +14,9 @@ const staticAssets = [
     '/storage/img/icon128.png',
     '/storage/img/icon144.png',
     '/storage/img/icon192.png',
-    '/storage/img/icon384.png'
+    '/storage/img/icon384.png',
+    '/storage/img/wide-1.png',
+    '/storage/img/narrow-1.jpg'
 ];
 
 // Установка Service Worker
