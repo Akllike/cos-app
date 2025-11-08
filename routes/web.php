@@ -45,6 +45,12 @@ Route::prefix('cart')->group(function () {
     Route::post('/telegram', 'App\Http\Controllers\CartController@sendTelegram')->name('cart.tg');
 });
 
+Route::prefix('push')->group(function () {
+    Route::post('/subscribe', [PushNotificationController::class, 'subscribe']);
+    Route::post('/send', [PushNotificationController::class, 'sendNotification']);
+    Route::get('/vapid-public-key', [PushNotificationController::class, 'getVapidPublicKey']);
+});
+
 Auth::routes();
 
 Route::get('/admin', 'App\Http\Controllers\HomeController@index')->name('home');
