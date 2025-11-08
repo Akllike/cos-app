@@ -45,7 +45,7 @@
     @yield('sidebar')
     @yield('header')
     {{-- Кнопки управления уведомлениями --}}
-    <div class="flex space-x-4 mb-4">
+    <!-- <div class="flex space-x-4 mb-4">
         <button id="pushToggle" class="bg-indigo-600 text-white px-4 py-2 rounded">
             🔕 Загрузка...
         </button>
@@ -57,7 +57,7 @@
         <button id="statsBtn" class="bg-blue-500 text-white px-4 py-2 rounded">
             📊 Статистика
         </button>
-    </div>
+    </div> -->
     @yield('content')
     @yield('modals')
     @yield('footer')
