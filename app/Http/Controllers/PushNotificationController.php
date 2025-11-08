@@ -218,7 +218,7 @@ class PushNotificationController extends Controller
             'subscriptions' => array_map(function($sub) {
                 return [
                     'endpoint' => $sub['endpoint'],
-                    'created' => 'unknown' // Можно добавить дату создания
+                    'created' => 'unknown'
                 ];
             }, $subscriptions)
         ]);

@@ -162,6 +162,27 @@
                 this.isSubscribed = false;
             }
 
+            // Функция конвертации ключа
+            urlBase64ToUint8Array(base64String) {
+                try {
+                    const padding = '='.repeat((4 - base64String.length % 4) % 4);
+                    const base64 = (base64String + padding)
+                        .replace(/-/g, '+')
+                        .replace(/_/g, '/');
+
+                    const rawData = window.atob(base64);
+                    const outputArray = new Uint8Array(rawData.length);
+
+                    for (let i = 0; i < rawData.length; ++i) {
+                        outputArray[i] = rawData.charCodeAt(i);
+                    }
+                    return outputArray;
+                } catch (error) {
+                    console.error('❌ Ошибка конвертации ключа:', error);
+                    throw new Error('Неверный формат VAPID ключа');
+                }
+            }
+
             async init() {
                 if (!this.isPushSupported()) {
                     console.log('❌ Push уведомления не поддерживаются');
@@ -284,21 +305,6 @@
                 return result;
             }
 
-            showTestNotification() {
-                if (Notification.permission === 'granted') {
-                    // Показываем тестовое уведомление сразу
-                    navigator.serviceWorker.ready.then(registration => {
-                        registration.showNotification('ShaR - Уведомления включены! 🎉', {
-                            body: 'Теперь вы будете получать уведомления о новых акциях и продуктах.',
-                            icon: '/storage/img/icon.png',
-                            badge: '/storage/img/icon.png',
-                            vibrate: [200, 100, 200],
-                            data: { url: '/' }
-                        });
-                    });
-                }
-            }
-
             updateUI() {
                 const btn = document.getElementById('pushToggle');
                 if (btn) {
@@ -311,24 +317,22 @@
                 }
             }
 
-            showError(message) {
-                // Можно заменить на красивый toast
-                alert(message);
-            }
-
-            // Тестовая функция для отправки уведомления
-            async testNotification() {
-                try {
-                    const response = await fetch('/push/test');
-                    const result = await response.json();
-                    console.log('🧪 Тестовое уведомление:', result);
-                    alert('Тестовое уведомление отправлено!');
-                } catch (error) {
-                    console.error('❌ Ошибка теста:', error);
-                    alert('Ошибка отправки тестового уведомления');
+            showTestNotification(title, body) {
+                if (Notification.permission === 'granted') {
+                    navigator.serviceWorker.ready.then(registration => {
+                        registration.showNotification(title, {
+                            body,
+                            icon: '/storage/img/icon.png'
+                        });
+                    });
                 }
             }
 
+            showError(message) {
+                alert(message);
+            }
+
+            // Тестирование VAPID
             async testVAPID() {
                 try {
                     const response = await fetch('/push/test');
@@ -339,9 +343,9 @@
                     console.error('❌ Ошибка VAPID теста:', error);
                     alert('Ошибка теста VAPID: ' + error.message);
                 }
-            }
+            },
 
-// Получение статистики
+            // Получение статистики
             async getStats() {
                 try {
                     const response = await fetch('/push/stats');
@@ -350,6 +354,7 @@
                     alert(`Подписчиков: ${result.total_subscriptions}\nVAPID: ${result.vapid_configured ? '✅' : '❌'}`);
                 } catch (error) {
                     console.error('❌ Ошибка получения статистики:', error);
+                    alert('Ошибка получения статистики. Проверьте маршрут /push/stats');
                 }
             }
         }
@@ -361,18 +366,8 @@
 
             if (pushSupported) {
                 console.log('🚀 Push уведомления доступны');
-
-                // Автоматически предлагаем подписку через 5 секунд
-                setTimeout(() => {
-                    if (!window.pushManager.isSubscribed && Notification.permission === 'default') {
-                        if (confirm('Хотите получать уведомления от ShaR о новых акциях и продуктах?')) {
-                            window.pushManager.subscribe();
-                        }
-                    }
-                }, 5000);
             }
         });
-
     </script>
 
     {{-- Кнопка установки PWA --}}
