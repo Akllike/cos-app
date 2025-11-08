@@ -46,9 +46,17 @@
     @yield('header')
     {{-- Кнопки управления уведомлениями --}}
     <div class="flex space-x-4 mb-4">
-        <button id="pushToggle">🔕 Загрузка...</button>
-        <button id="testVAPIDBtn">🧪 Тест VAPID</button>
-        <button id="statsBtn">📊 Статистика</button>
+        <button id="pushToggle" class="bg-indigo-600 text-white px-4 py-2 rounded">
+            🔕 Загрузка...
+        </button>
+
+        <button id="testVAPIDBtn" class="bg-green-500 text-white px-4 py-2 rounded">
+            🧪 Тест VAPID
+        </button>
+
+        <button id="statsBtn" class="bg-blue-500 text-white px-4 py-2 rounded">
+            📊 Статистика
+        </button>
     </div>
     @yield('content')
     @yield('modals')
@@ -149,34 +157,17 @@
             constructor() {
                 this.publicKey = null;
                 this.isSubscribed = false;
-                this.initialized = false;
-            }
-
-            // Функция конвертации ключа
-            urlBase64ToUint8Array(base64String) {
-                try {
-                    const padding = '='.repeat((4 - base64String.length % 4) % 4);
-                    const base64 = (base64String + padding)
-                        .replace(/-/g, '+')
-                        .replace(/_/g, '/');
-
-                    const rawData = window.atob(base64);
-                    const outputArray = new Uint8Array(rawData.length);
-
-                    for (let i = 0; i < rawData.length; ++i) {
-                        outputArray[i] = rawData.charCodeAt(i);
-                    }
-                    return outputArray;
-                } catch (error) {
-                    console.error('❌ Ошибка конвертации ключа:', error);
-                    throw new Error('Неверный формат VAPID ключа');
-                }
             }
 
             async init() {
+                console.log('🚀 Инициализация PushManager...');
+
+                // Обновляем кнопку сразу
+                this.updateButton('⏳ Загрузка...', true);
+
                 if (!this.isPushSupported()) {
                     console.log('❌ Push уведомления не поддерживаются');
-                    this.disableButtons();
+                    this.updateButton('❌ Не поддерживается', true);
                     return false;
                 }
 
@@ -188,50 +179,13 @@
 
                     await this.checkSubscription();
                     console.log('✅ Push Manager инициализирован');
-
-                    this.setupEventListeners();
-                    this.initialized = true;
                     return true;
+
                 } catch (error) {
                     console.error('❌ Ошибка инициализации:', error);
-                    this.disableButtons();
+                    this.updateButton('❌ Ошибка', true);
                     return false;
                 }
-            }
-
-            setupEventListeners() {
-                const pushToggle = document.getElementById('pushToggle');
-                const testVAPIDBtn = document.getElementById('testVAPIDBtn');
-                const statsBtn = document.getElementById('statsBtn');
-
-                if (pushToggle) {
-                    pushToggle.onclick = () => {
-                        if (this.isSubscribed) {
-                            this.unsubscribe();
-                        } else {
-                            this.subscribe();
-                        }
-                    };
-                }
-
-                if (testVAPIDBtn) {
-                    testVAPIDBtn.onclick = () => this.testVAPID();
-                }
-
-                if (statsBtn) {
-                    statsBtn.onclick = () => this.getStats();
-                }
-            }
-
-            disableButtons() {
-                const buttons = ['pushToggle', 'testVAPIDBtn', 'statsBtn'];
-                buttons.forEach(id => {
-                    const btn = document.getElementById(id);
-                    if (btn) {
-                        btn.disabled = true;
-                        btn.classList.add('opacity-50', 'cursor-not-allowed');
-                    }
-                });
             }
 
             isPushSupported() {
@@ -249,60 +203,48 @@
                     return this.isSubscribed;
                 } catch (error) {
                     console.error('❌ Ошибка проверки подписки:', error);
+                    this.updateButton('❌ Ошибка', true);
                     return false;
                 }
             }
 
             async subscribe() {
                 try {
-                    console.log('🔔 Запрашиваем разрешение на уведомления...');
+                    console.log('🔔 Запрашиваем разрешение...');
                     const permission = await Notification.requestPermission();
 
                     if (permission !== 'granted') {
                         throw new Error('Разрешение не получено');
                     }
 
-                    console.log('✅ Разрешение получено');
-
                     const registration = await navigator.serviceWorker.ready;
 
-                    // Проверяем VAPID ключ
-                    if (!this.publicKey || this.publicKey.length < 10) {
-                        throw new Error('VAPID ключ не настроен на сервере');
+                    if (!this.publicKey) {
+                        throw new Error('VAPID ключ не настроен');
                     }
-
-                    console.log('🔑 Используем VAPID key:', this.publicKey.substring(0, 20) + '...');
 
                     // Конвертируем ключ
                     const applicationServerKey = this.urlBase64ToUint8Array(this.publicKey);
 
-                    console.log('📝 Создаем подписку с VAPID...');
+                    console.log('📝 Создаем подписку...');
                     const subscription = await registration.pushManager.subscribe({
                         userVisibleOnly: true,
                         applicationServerKey: applicationServerKey
                     });
 
-                    console.log('✅ Подписка с VAPID создана:', subscription);
+                    console.log('✅ Подписка создана');
 
-                    // Отправляем подписку на сервер
+                    // Отправляем на сервер
                     await this.sendSubscriptionToServer(subscription);
 
                     this.isSubscribed = true;
                     this.updateUI();
 
-                    console.log('🎉 Push-уведомления активированы с VAPID');
-                    this.showTestNotification('VAPID подключен! 🚀', 'Теперь вы будете получать уведомления даже когда сайт закрыт.');
+                    this.showTestNotification('Уведомления включены! 🎉', 'Теперь вы будете получать push-уведомления.');
 
                 } catch (error) {
                     console.error('❌ Ошибка подписки:', error);
-
-                    if (error.name === 'AbortError') {
-                        this.showError('Браузер не поддерживает push-уведомления с VAPID.');
-                    } else if (error.message.includes('VAPID')) {
-                        this.showError('Проблема с VAPID ключами: ' + error.message);
-                    } else {
-                        this.showError('Ошибка: ' + error.message);
-                    }
+                    alert('Ошибка: ' + error.message);
                 }
             }
 
@@ -315,17 +257,14 @@
                         await subscription.unsubscribe();
                         this.isSubscribed = false;
                         this.updateUI();
-                        console.log('❌ Подписка отменена');
                         alert('Уведомления отключены');
                     }
                 } catch (error) {
-                    console.error('❌ Ошибка отмены подписки:', error);
+                    console.error('❌ Ошибка отписки:', error);
                 }
             }
 
             async sendSubscriptionToServer(subscription) {
-                console.log('📤 Отправляем подписку на сервер...');
-
                 const response = await fetch('/push/subscribe', {
                     method: 'POST',
                     headers: {
@@ -334,22 +273,35 @@
                     },
                     body: JSON.stringify(subscription)
                 });
-
-                const result = await response.json();
-                console.log('📥 Ответ сервера:', result);
-                return result;
+                return await response.json();
             }
 
             updateUI() {
+                this.updateButton(
+                    this.isSubscribed ? '🔔 Уведомления включены' : '🔕 Включить уведомления',
+                    false
+                );
+            }
+
+            updateButton(text, disabled) {
                 const btn = document.getElementById('pushToggle');
                 if (btn) {
-                    btn.textContent = this.isSubscribed ?
-                        '🔔 Уведомления включены' :
-                        '🔕 Включить уведомления';
-                    btn.className = this.isSubscribed ?
-                        'bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition' :
-                        'bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded transition';
+                    btn.textContent = text;
+                    btn.disabled = disabled;
+                    btn.style.opacity = disabled ? '0.5' : '1';
+                    btn.style.cursor = disabled ? 'not-allowed' : 'pointer';
                 }
+            }
+
+            urlBase64ToUint8Array(base64String) {
+                const padding = '='.repeat((4 - base64String.length % 4) % 4);
+                const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+                const rawData = window.atob(base64);
+                const outputArray = new Uint8Array(rawData.length);
+                for (let i = 0; i < rawData.length; ++i) {
+                    outputArray[i] = rawData.charCodeAt(i);
+                }
+                return outputArray;
             }
 
             showTestNotification(title, body) {
@@ -363,75 +315,49 @@
                 }
             }
 
-            showError(message) {
-                alert(message);
-            }
-
-            // Тестирование VAPID
             async testVAPID() {
                 try {
                     const response = await fetch('/push/test');
                     const result = await response.json();
-                    console.log('🧪 VAPID тест:', result);
-                    alert(result.message + '\nVAPID настроен: ' + result.vapid_configured);
+                    alert(result.message + '\nVAPID: ' + (result.vapid_configured ? '✅' : '❌'));
                 } catch (error) {
-                    console.error('❌ Ошибка VAPID теста:', error);
-                    alert('Ошибка теста VAPID: ' + error.message);
+                    alert('Ошибка: ' + error.message);
                 }
             }
 
-            // Получение статистики
             async getStats() {
                 try {
                     const response = await fetch('/push/stats');
                     const result = await response.json();
-                    console.log('📊 Статистика:', result);
                     alert(`Подписчиков: ${result.total_subscriptions}\nVAPID: ${result.vapid_configured ? '✅' : '❌'}`);
                 } catch (error) {
-                    console.error('❌ Ошибка получения статистики:', error);
-                    alert('Ошибка получения статистики. Проверьте маршрут /push/stats');
+                    alert('Ошибка статистики: ' + error.message);
                 }
             }
         }
 
         // Инициализация при загрузке
         document.addEventListener('DOMContentLoaded', async function() {
-            // Создаем глобальную переменную ДО инициализации
             window.pushManager = new PushManager();
+            await window.pushManager.init();
 
-            // Показываем состояние загрузки
-            const pushToggle = document.getElementById('pushToggle');
-            if (pushToggle) {
-                pushToggle.textContent = '⏳ Инициализация...';
-                pushToggle.disabled = true;
-            }
-
-            const pushSupported = await window.pushManager.init();
-
-            if (pushSupported) {
-                console.log('🚀 Push уведомления доступны');
-            } else {
-                const pushToggle = document.getElementById('pushToggle');
-                if (pushToggle) {
-                    pushToggle.textContent = '❌ Не поддерживается';
-                    pushToggle.disabled = true;
+            // Назначаем обработчики после инициализации
+            document.getElementById('pushToggle').onclick = function() {
+                if (window.pushManager.isSubscribed) {
+                    window.pushManager.unsubscribe();
+                } else {
+                    window.pushManager.subscribe();
                 }
-            }
-        });
+            };
 
-        setTimeout(() => {
-            if (!window.pushManager || !window.pushManager.initialized) {
-                console.warn('⚠️ PushManager не инициализирован');
-                const buttons = ['pushToggle', 'testVAPIDBtn', 'statsBtn'];
-                buttons.forEach(id => {
-                    const btn = document.getElementById(id);
-                    if (btn) {
-                        btn.textContent = '❌ Ошибка';
-                        btn.disabled = true;
-                    }
-                });
-            }
-        }, 5000);
+            document.getElementById('testVAPIDBtn').onclick = function() {
+                window.pushManager.testVAPID();
+            };
+
+            document.getElementById('statsBtn').onclick = function() {
+                window.pushManager.getStats();
+            };
+        });
     </script>
 
     {{-- Кнопка установки PWA --}}
