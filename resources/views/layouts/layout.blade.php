@@ -99,16 +99,49 @@
         });
     </script>
 
+    {{-- Проверка PWA функциональности --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Проверка возможности установки
+            let deferredPrompt;
+
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                console.log('✅ PWA можно установить');
+
+                // Показываем кнопку установки
+                const installBtn = document.getElementById('installButton');
+                if (installBtn) {
+                    installBtn.style.display = 'block';
+                    installBtn.onclick = () => {
+                        deferredPrompt.prompt();
+                        deferredPrompt.userChoice.then((choiceResult) => {
+                            console.log('Пользователь выбрал:', choiceResult.outcome);
+                            deferredPrompt = null;
+                            installBtn.style.display = 'none';
+                        });
+                    };
+                }
+            });
+
+            // Проверка если уже установлено
+            window.addEventListener('appinstalled', (evt) => {
+                console.log('🎉 PWA установлено!');
+            });
+
+            // Проверка display mode
+            if (window.matchMedia('(display-mode: standalone)').matches) {
+                console.log('📱 Запущено как PWA');
+            }
+        });
+    </script>
+
     {{-- Кнопка установки PWA --}}
-    @if(!request()->is('login') && !request()->is('register'))
-        <button id="installButton"
-                style="display: none;"
-                class="fixed bottom-4 right-4 bg-indigo-600 text-white p-3 rounded-full shadow-lg hover:bg-indigo-700 transition-colors z-50"
-                title="Установить приложение">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-            </svg>
-        </button>
-    @endif
+    <button id="installButton"
+            style="display: none; position: fixed; bottom: 20px; right: 20px; z-index: 1000;"
+            class="bg-indigo-600 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-indigo-700">
+        📲 Установить приложение
+    </button>
 </body>
 </html>

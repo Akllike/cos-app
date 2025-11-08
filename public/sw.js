@@ -1,33 +1,33 @@
-// Безопасный Service Worker с кешированием
-const CACHE_NAME = 'shar-app-safe-v1';
+// Безопасный Service Worker с диагностикой
+const CACHE_NAME = 'shar-app-v1.1';
 
-// Только гарантированно рабочие URL
+// Только проверенные рабочие URL
 const safeUrlsToCache = [
     '/',
     '/manifest.json'
-    // НЕ добавляем картинки и другие ресурсы пока
+    // Картинки и другие ресурсы добавим ПОСЛЕ проверки
 ];
 
 self.addEventListener('install', event => {
-    console.log('🛠 Service Worker: Установка');
+    console.log('🛠 Service Worker: Установка началась');
 
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then(cache => {
-                console.log('📦 Пробуем кешировать безопасные ресурсы...');
+                console.log('📦 Кешируем безопасные ресурсы...');
 
                 // Кешируем только гарантированно рабочие URL
                 return cache.addAll(safeUrlsToCache)
                     .then(() => {
-                        console.log('✅ Безопасные ресурсы закешированы');
+                        console.log('✅ Базовые ресурсы успешно закешированы');
                     })
                     .catch(error => {
-                        console.log('⚠️ Ошибка кеширования, но продолжаем:', error);
-                        // Продолжаем даже при ошибке
+                        console.warn('⚠️ Частичная ошибка кеширования:', error);
+                        // Продолжаем работу даже при ошибках
                     });
             })
             .then(() => {
-                console.log('🚀 Активируем Service Worker');
+                console.log('🚀 Пропускаем ожидание и активируем');
                 return self.skipWaiting();
             })
     );
@@ -35,10 +35,61 @@ self.addEventListener('install', event => {
 
 self.addEventListener('activate', event => {
     console.log('✅ Service Worker: Активирован');
-    event.waitUntil(self.clients.claim());
+
+    event.waitUntil(
+        caches.keys().then(cacheNames => {
+            return Promise.all(
+                cacheNames.map(cacheName => {
+                    if (cacheName !== CACHE_NAME) {
+                        console.log('🗑 Удаляем старый кеш:', cacheName);
+                        return caches.delete(cacheName);
+                    }
+                })
+            );
+        }).then(() => {
+            console.log('🎯 Активация завершена, берем контроль');
+            return self.clients.claim();
+        })
+    );
 });
 
+// Базовая стратегия кеширования - Network First
 self.addEventListener('fetch', event => {
-    // Для начала просто пропускаем все запросы
-    return fetch(event.request);
+    // Для API запросов и динамического контента - всегда сеть
+    if (event.request.url.includes('/api/') ||
+        event.request.method !== 'GET') {
+        return fetch(event.request);
+    }
+
+    event.respondWith(
+        fetch(event.request)
+            .then(response => {
+                // Если запрос успешен - клонируем и кешируем
+                if (response.status === 200) {
+                    const responseClone = response.clone();
+                    caches.open(CACHE_NAME)
+                        .then(cache => {
+                            cache.put(event.request, responseClone);
+                        });
+                }
+                return response;
+            })
+            .catch(error => {
+                // Если сеть недоступна - пробуем кеш
+                console.log('📡 Сеть недоступна, пробуем кеш:', event.request.url);
+                return caches.match(event.request)
+                    .then(cachedResponse => {
+                        if (cachedResponse) {
+                            return cachedResponse;
+                        }
+                        // Можно вернуть offline страницу
+                        return new Response('Оффлайн режим', {
+                            status: 503,
+                            statusText: 'Service Unavailable'
+                        });
+                    });
+            })
+    );
 });
+
+console.log('🛠 Service Worker v1.1 загружен');
