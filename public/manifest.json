@@ -10,6 +10,7 @@
     "scope": "/",
     "description": "Косметика во благо коже ❤",
     "categories": ["beauty", "health", "lifestyle"],
+    "gcm_sender_id": "103953800507",
     "icons": [
         {
             "src": "/storage/img/icon72.png",
