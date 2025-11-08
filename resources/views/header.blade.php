@@ -25,8 +25,8 @@
                                 <li><a class="dropdown-item" href="{{ route('hair.show') }}"><img style="margin-right: 5px;" width="18" height="18" src="https://img.icons8.com/carbon-copy/100/womans-hair.png" alt="womans-hair"/>Для волос</a></li>
                                 <li><a class="dropdown-item" href="{{ route('face.show') }}"><img style="margin-right: 5px;" width="18" height="18" src="https://img.icons8.com/ios/50/bavarian-girl.png" alt="bavarian-girl"/>Для лица</a></li>
                                 <li><a class="dropdown-item" href="{{ route('body.show') }}"><img style="margin-right: 5px;" width="18" height="18" src="https://img.icons8.com/ios/50/female-back.png" alt="female-back"/>Для тела</a></li>
-                                <li><a class="dropdown-item" href="{{ route('oil.show') }}"><img style="margin-right: 5px;" width="18" height="18" src="https://img.icons8.com/ios/50/female-back.png" alt="female-back"/>Масла</a></li>
-                                <li><a class="dropdown-item" href="{{ route('certificate.show') }}"><img style="margin-right: 5px;" width="18" height="18" src="https://img.icons8.com/ios/50/female-back.png" alt="female-back"/>Сертификаты</a></li>
+                                <li><a class="dropdown-item" href="{{ route('oil.show') }}"><img style="margin-right: 5px;" width="18" height="18" src="https://img.icons8.com/ios-glyphs/30/oil-massage.png" alt="female-back"/>Масла</a></li>
+                                <li><a class="dropdown-item" href="{{ route('certificate.show') }}"><img style="margin-right: 5px;" width="18" height="18" src="https://img.icons8.com/windows/32/diploma.png" alt="female-back"/>Сертификаты</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">

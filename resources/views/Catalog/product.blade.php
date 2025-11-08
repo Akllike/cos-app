@@ -46,7 +46,11 @@
                         <div class="price-area my-4">
                             {{--<p class="old-price mb-1"><del>$100</del> <span class="old-price-discount text-danger">(20% off)</span></p>--}}
                             <h4 class="new-price text-bold mb-1">{{ $item['price'] }} руб.</h4>
-                            <p class="text-secondary mb-1">Объем: {{ $item['volume'] }} мл</p>
+                            @if($item['category'] == 'certificate')
+                                <p class="text-secondary mb-1">Количество: {{ $item['volume'] }} шт</p>
+                            @else
+                                <p class="text-secondary mb-1">Объем: {{ $item['volume'] }} мл</p>
+                            @endif
                         </div>
 
                         <div class="quantity-block" style="display: flex">

@@ -26,7 +26,7 @@
                                 <p class="description text-truncate" style="font-size: 12px;" data-container="body" data-toggle="popover" data-placement="top" data-content="Lorem ipsum dolor sit amet. Suscipit laboriosam, nisi ut perspiciatis.">
                                     {{$item['description']}}</p>
                             </div>
-                            <p class="card-text text-secondary mt-1">{{$item['price']}} руб. / {{ $item['volume'] }} мл</p>
+                            <p class="card-text text-secondary mt-1">{{$item['price']}} руб. / {{ $item['volume'] }} шт</p>
                             <div class="d-flex justify-content-center">
                                 <a href="{{ url('catalog/product') }}/{{ $item['id'] }}" class="btn btn-dark border-2 m-1" style="font-size: 14px">Подробнее</a>
                                 <div class="m-1">
