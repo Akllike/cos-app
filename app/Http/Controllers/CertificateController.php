@@ -14,6 +14,6 @@ class CertificateController extends Controller
     public function showProductCertificates(): View
     {
         $data = $this->productsService->getProducts('certificate');
-        return view('Catalog/Faces/faces', compact('data'));
+        return view('Catalog/Certificates/certificates', compact('data'));
     }
 }

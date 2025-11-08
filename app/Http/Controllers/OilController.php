@@ -14,6 +14,6 @@ class OilController extends Controller
     public function showProductOils(): View
     {
         $data = $this->productsService->getProducts('oil');
-        return view('Catalog/Faces/faces', compact('data'));
+        return view('Catalog/Oils/oils', compact('data'));
     }
 }
