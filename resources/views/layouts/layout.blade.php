@@ -114,7 +114,7 @@
     </script>
 
     {{-- Проверка PWA функциональности --}}
-    <script>
+    <!-- <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Проверка возможности установки
             let deferredPrompt;
@@ -149,7 +149,7 @@
                 console.log('📱 Запущено как PWA');
             }
         });
-    </script>
+    </script> -->
 
     {{-- Push Notifications --}}
     <script>

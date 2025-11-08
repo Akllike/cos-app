@@ -36,9 +36,6 @@
                             <a class="nav-link " href="{{ route('delivery') }}">Оплата и доставка</a>
                         </li>
                         <li class="nav-item">
-                            <a id="pushToggle" class="nav-link " href="#">🔕 Уведомления</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link active" href="{{ route('cart.index') }}">
                                 Корзина
                                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-basket" viewBox="0 0 16 16">
