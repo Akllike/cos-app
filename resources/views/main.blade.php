@@ -13,6 +13,10 @@
                     <img class="m-2 rounded-circle" style="width: 75px" src="{{ url('storage/img/33.jpg') }}" alt="">
                     <p class="badge" style="color: white">Тело</p>
                 </a>
+                <a href="{{ route('oil.show') }}" class="w-10 d-flex flex-column align-items-center">
+                    <img class="m-2 rounded-circle" style="width: 75px; height: 75px" src="{{ url('storage/img/orig.webp') }}" alt="">
+                    <p class="badge" style="color: white">Масла</p>
+                </a>
             </div>
             <div class="d-flex">
                 <div class="w-10 d-flex flex-column align-items-center">
@@ -35,6 +39,10 @@
                         </button>
                     </form>
                 </div>
+                <a href="{{ route('certificate.show') }}" class="w-10 d-flex flex-column align-items-center">
+                    <img class="m-2 rounded-circle" style="width: 75px; height: 75px" src="{{ url('storage/img/4a2549e8a76263512e1405fcdbd8ea9c.jpg') }}" alt="">
+                    <p class="badge" style="color: white">Сертификаты</p>
+                </a>
             </div>
         </div>
         <div class="d-flex flex-column m-2">
