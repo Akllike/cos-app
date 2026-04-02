@@ -2,98 +2,93 @@
 @extends('header')
 @section('title', 'О нас | ShaR')
 @section('content')
-    <div class="container">
-        <div class="container d-flex flex-wrap mt-4">
-            <nav class="mt-4" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a style="text-decoration: none; color: black;" href="/">Главная</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">О нас</li>
-                </ol>
-            </nav>
-        </div>
-
-        <div class="d-flex justify-content-around flex-wrap">
-            <div class="d-flex flex-column">
-                <div class="mb-sm-2">
-                    <div class="card text-center shadow overlay" style="height: 400px; width: 340px; background-image: url('https://sun9-27.userapi.com/impg/H8enJKgtDVZZ5PsU6e41avkne2er6qGOjWhyQw/ztJX1mPMrrM.jpg?size=403x604&quality=96&sign=83af092981807bd19cd5cbf6c3e0527c&c_uniq_tag=nFpLM_4476gcrG7xvXFdp-ifra2JDMs-mJzTZgLtNXE&type=album'); background-size: cover; background-position: center;">
-                        <div class="card-body d-flex flex-column justify-content-center text">
-                            <h5 class="card-title">Натуральные ингредиенты</h5>
-                            <p class="card-text">Продукция изготовлена из высококачественных натуральных веществ, что обеспечивает безопасность и здоровье как для кожи, так и для волос.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="mb-sm-2">
-                    <div class="card text-center shadow overlay" style="height: 550px; width: 340px; background-image: url('https://i.pinimg.com/originals/e0/29/2d/e0292d0d6dd24be7d241a972e2543b40.jpg'); background-size: cover; background-position: center;">
-                        <div class="card-body d-flex flex-column justify-content-center text">
-                            <h5 class="card-title">Широкий ассортимент</h5>
-                            <p class="card-text">С более чем 100 единицами продукции, ваша компания предлагает разнообразие товаров для ухода за волосами, лицом и телом.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="d-flex flex-column">
-                <div class="mb-sm-2">
-                    <div class="card text-center shadow overlay" style="height: 550px; width: 340px; background-image: url('https://miro.medium.com/v2/resize:fit:2400/1*O5grueT3VW8Pyj4e-houUQ.jpeg'); background-size: cover; background-position: center;">
-                        <div class="card-body d-flex flex-column justify-content-center text">
-                            <h5 class="card-title">Экологическая устойчивость и этика</h5>
-                            <p class="card-text">Использование натуральных компонентов способствует сохранению окружающей среды, так как такие ингредиенты, как правило, поддаются биологическому разложению и не наносят вреда экосистеме.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="mb-sm-2">
-                    <div class="card text-center shadow overlay" style="height: 400px; width: 340px; background-image: url('https://i.pinimg.com/736x/b0/bb/0e/b0bb0e173a53080aab35fd87935a27fc.jpg'); background-size: cover; background-position: center;">
-                        <div class="card-body d-flex flex-column justify-content-center text">
-                            <h5 class="card-title">Поддержка здоровья кожи и волос</h5>
-                            <p class="card-text">Натуральная косметика обеспечивает глубокое питание и увлажнение, помогает улучшить состояние кожи и волос, сохраняя их красоту и здоровье.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <div class="card text-center gradient-advanced shadow overlay" style="height: 957px; width: 390px; background-image: url('https://i.pinimg.com/736x/ef/6b/7c/ef6b7c60605a8e32c500401f007b5dcc.jpg'); background-size: cover; background-position: center;">
-                    <div class="card-body d-flex flex-column justify-content-center text">
-                        <h5 class="card-title">Улучшаем качество жизни через уход и любовь к себе</h5>
-                        <p class="card-text">Это пространство эффективных средств широкого действия, которые могут решить эстетичные проблемы кожи лица , тела и волос. Мы всей командой тестируем все средства: состав, сочетаемость, текстуры и эффективность, которая подтверждена клиническими испытаниями.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <style>
-        h2 {
-            font-size: 16px;
-        }
-
-        .overlay {
+        .about-hero {
             position: relative;
             width: 100%;
-            height: 400px;
-            border-radius: 15px;
-            background-image: url({{ url('storage/img/bodies.jpg') }}); /* Укажите ваш URL изображения */
-            background-size: cover;
-            background-position: center;
-            display: flex; /* Используем flexbox */
-            justify-content: center; /* Центрируем по горизонтали */
-            align-items: center;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 10px;
         }
-        .overlay:before {
-            content: '';
-            border-radius: 15px;
+
+        .about-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 50% 50%;
+        }
+
+        .about-hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Затемнение */
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        .text {
-            position: relative;
-            color: white; /* Цвет текста */
-            text-align: center;
-            padding: 20px;
-            z-index: 1; /* Поверхность текста над затемнением */
+
+        .about-hero-title {
+            color: white;
+            font-size: 48px;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        .zoomable {
+            transition: transform 0.3s;
+        }
+
+        .zoomable:hover {
+            transform: scale(1.05);
         }
     </style>
+
+    <div class="container">
+        <div class="about-hero">
+            <img src="{{ url('storage/img/orig.webp') }}" alt="" />
+            <div class="about-hero-overlay">
+                <h1 class="about-hero-title">О Нас</h1>
+            </div>
+        </div>
+        <div class="about-info" style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 30px;">
+            <div class="about-block" style="flex: 1 1 300px; min-width: 280px;">
+                <img src="{{ url('storage/img/navbar.jpg') }}" alt="Уход за лицом" style="width:100%; border-radius:10px; object-fit:cover; height:180px; margin-bottom: 20px;" />
+                <p>Наша компания разрабатывает уходовую косметику в собственной профессиональной лаборатории. Каждый продукт проходит строгий контроль качества и тестирование на эффективность.</p>
+            </div>
+            <div class="about-block" style="flex: 1 1 300px; min-width: 280px;">
+                <img src="{{ url('storage/img/navbar.jpg') }}" alt="Уход за телом" style="width:100%; border-radius:10px; object-fit:cover; height:180px; margin-bottom: 20px;" />
+                <p>Мы производим косметику для лица, тела, волос, а также масла и скрабы. Формулы учитывают разные типы кожи и волосы, чтобы подарить комфорт и здоровье.</p>
+            </div>
+            <div class="about-block" style="flex: 1 1 300px; min-width: 280px;">
+                <img src="{{ url('storage/img/navbar.jpg') }}" alt="Уход за волосами" style="width:100%; border-radius:10px; object-fit:cover; height:180px; margin-bottom: 20px;" />
+                <p>Мы уделяем внимание натуральным компонентам и лабораторным исследованиям. Наша продукция помогает восстановить волосы и укрепить кожу с первого использования.</p>
+            </div>
+            <div class="about-block" style="flex: 1 1 300px; min-width: 280px;">
+                <img src="{{ url('storage/img/navbar.jpg') }}" alt="Масла и скрабы" style="width:100%; border-radius:10px; object-fit:cover; height:180px; margin-bottom: 20px;" />
+                <p>В ассортименте есть масла и скрабы с мягкой текстурой, которые идеально сочетаются с профессиональными процедурами. Мы стремимся к гармонии природных ингредиентов и современных технологий.</p>
+            </div>
+        </div>
+        <div class="about-section" style="display: flex; align-items: center; gap: 20px; margin-top: 30px;">
+            <div class="text" style="flex: 1;">
+                <p style="font-size: 20px;">В основе нашей уходовой косметики лежат только натуральные ингредиенты, бережно собранные природой. Мы полностью исключаем агрессивные химические добавки, парабены и синтетические отдушки, чтобы не нарушать естественный баланс кожи. Каждое средство работает за счет силы растительных экстрактов и масел, даря мягкое, но эффективное очищение и увлажнение. Выбирая натуральный состав, вы дарите своей коже здоровье без риска раздражения и аллергических реакций.
+                </p>
+            </div>
+            <div class="image" style="flex: 1;">
+                <img src="{{ url('storage/img/bodies.webp') }}" alt="" style="width: 100%; height: auto; border-radius: 10px;" class="zoomable" />
+            </div>
+        </div>
+        <div class="about-section" style="display: flex; align-items: center; gap: 20px; margin-top: 30px;">
+            <div class="image" style="flex: 1;">
+                <img src="{{ url('storage/img/hairs.webp') }}" alt="" style="width: 100%; height: auto; border-radius: 10px;" class="zoomable" />
+            </div>
+            <div class="text" style="flex: 1;">
+                <p style="font-size: 20px;">При создании этой косметики применяются передовые биотехнологии и нано-эмульсионные методы, позволяющие активным компонентам проникать в самые глубокие слои кожи. Высокоточное дозирование и крио-экстракция гарантируют максимальную эффективность и свежесть каждого ингредиента без потери его свойств. Использование интеллектуальных систем доставки активов обеспечивает пролонгированный результат и точечное воздействие на проблемные зоны. Такой высокотехнологичный подход сочетает инновации науки с заботой о здоровье вашей кожи.</p>
+            </div>
+        </div>
+    </div>
+    
 @endsection
 @extends('footer')

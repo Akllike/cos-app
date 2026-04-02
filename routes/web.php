@@ -45,6 +45,7 @@ Route::prefix('cart')->group(function () {
     Route::post('/telegram', 'App\Http\Controllers\CartController@sendTelegram')->name('cart.tg');
 });
 
+/*
 Route::prefix('push')->group(function () {
     Route::post('/subscribe', 'App\Http\Controllers\PushNotificationController@subscribe');
     Route::post('/send', 'App\Http\Controllers\PushNotificationController@sendNotification');
@@ -52,6 +53,7 @@ Route::prefix('push')->group(function () {
     Route::get('/test', 'App\Http\Controllers\PushNotificationController@testNotification');
     Route::get('/stats', 'App\Http\Controllers\PushNotificationController@getStats');
 });
+*/
 
 Auth::routes();
 
